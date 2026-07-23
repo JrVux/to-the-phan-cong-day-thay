@@ -1,6 +1,6 @@
 import { seedData } from '../data/seed'
 
-const STORAGE_KEY = 'tothe_database_v1'
+const STORAGE_KEY = 'to_the_database_v2'
 const clone = (value) => JSON.parse(JSON.stringify(value))
 
 function createSeedSnapshot() {

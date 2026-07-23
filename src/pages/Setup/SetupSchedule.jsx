@@ -8,11 +8,16 @@ import { deleteSchedule, saveSchedule, saveSchedules } from '../../services/sche
 import { useAppStore } from '../../stores/appStore'
 import { parseScheduleFile } from '../../utils/scheduleImport'
 
-const emptyRow = { teacher_id: '', thu: 2, tiet: 1, lop: '', mon: 'Toán' }
+const emptyRow = { teacher_id: '', thu: 2, tiet: 1, lop: '', mon: 'Tin học' }
 
 export default function SetupSchedule() {
   const store = useAppStore()
-  const [periodId, setPeriodId] = useState(localStorage.getItem('tothe_preferred_period') || store.periods[0]?.id || '')
+  const [periodId, setPeriodId] = useState(() => {
+    const preferred = localStorage.getItem('tothe_preferred_period')
+    return store.periods.some((period) => period.id === preferred)
+      ? preferred
+      : store.periods[0]?.id || ''
+  })
   const [editing, setEditing] = useState(null)
   const [preview, setPreview] = useState([])
   const [importErrors, setImportErrors] = useState([])
@@ -109,7 +114,13 @@ export default function SetupSchedule() {
                 <div className="rounded-xl bg-blue-100 px-3 py-2 text-center text-primary">
                   <p className="text-[10px] font-bold">THỨ {row.thu}</p><p className="font-black">T{row.tiet}</p>
                 </div>
-                <div className="min-w-0"><p className="truncate text-sm font-bold">{teacher?.name}</p><p className="mt-1 text-xs text-slate-500">{row.mon} • {row.lop}</p></div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className="truncate text-sm font-bold">{teacher?.name}</p>
+                    <Badge variant={row.buoi === 'Chiều' ? 'warning' : 'neutral'}>{row.buoi || (row.tiet > 5 ? 'Chiều' : 'Sáng')}</Badge>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-500">{row.mon} • {row.lop}</p>
+                </div>
                 <div className="flex">
                   <Button variant="ghost" className="h-9 min-h-9 px-2" onClick={() => setEditing({ ...row })}><Pencil size={16} /></Button>
                   <Button variant="ghost" className="h-9 min-h-9 px-2 text-danger" onClick={() => { deleteSchedule(row.id); store.refresh() }}><Trash2 size={16} /></Button>

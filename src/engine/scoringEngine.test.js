@@ -32,16 +32,24 @@ const baseInput = {
 }
 
 describe('scoreCandidates', () => {
-  it('xác minh Case 1 trên toàn bộ seed: GV Bình đứng #1', () => {
+  it('trả về ứng viên Tin học hợp lệ trên toàn bộ dữ liệu thật', () => {
     const result = scoreCandidates({
       ...baseInput,
+      nghi_teacher_id: 'gv_09',
+      ngay: '2026-01-19',
+      tiet: 2,
+      mon: 'Tin học',
+      hoc_ky: 2,
+      period_id: 'hk2_2025_2026',
       allTeachers: seedTeachers,
       schedules: seedSchedules,
       substitutions: seedSubstitutions,
       locks: seedLocks,
     })
 
-    expect(result[0].teacher.id).toBe('gv_02')
+    expect(result.length).toBeGreaterThan(0)
+    expect(result.every((item) => item.teacher.mon_day.includes('Tin học'))).toBe(true)
+    expect(result.every((item) => item.teacher.id !== 'gv_09')).toBe(true)
   })
 
   it('ưu tiên GV Bình và loại GV sai môn', () => {

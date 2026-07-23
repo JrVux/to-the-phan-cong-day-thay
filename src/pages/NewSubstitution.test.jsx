@@ -13,8 +13,8 @@ describe('NewSubstitution flow', () => {
   it('tìm nhiều tiết, chọn ứng viên và lưu phân công', () => {
     render(<NewSubstitution />)
 
-    fireEvent.change(screen.getByLabelText('Giáo viên vắng'), { target: { value: 'gv_01' } })
-    fireEvent.change(screen.getByLabelText('Ngày nghỉ'), { target: { value: '2025-09-22' } })
+    fireEvent.change(screen.getByLabelText('Giáo viên vắng'), { target: { value: 'gv_09' } })
+    fireEvent.change(screen.getByLabelText('Ngày nghỉ'), { target: { value: '2026-01-19' } })
     fireEvent.click(screen.getByRole('button', { name: /Tìm tiết cần thế/i }))
 
     expect(screen.getByText(/Tìm thấy 2 tiết cần bố trí/i)).toBeInTheDocument()
@@ -31,7 +31,7 @@ describe('NewSubstitution flow', () => {
   it('hiển thị hướng dẫn xử lý thủ công khi không có ứng viên', () => {
     const state = useAppStore.getState()
     state.schedules
-      .filter((lesson) => lesson.period_id === 'dot_1' && lesson.thu === 2)
+      .filter((lesson) => lesson.period_id === 'hk2_2025_2026' && lesson.thu === 2)
       .forEach(() => {})
 
     render(<NewSubstitution />)

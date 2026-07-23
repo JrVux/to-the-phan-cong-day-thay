@@ -8,7 +8,8 @@ import { listAssignments, saveAssignment } from '../../services/scheduleService'
 import { deleteTeacher, saveTeacher } from '../../services/teacherService'
 import { useAppStore } from '../../stores/appStore'
 
-const emptyTeacher = { name: '', mon_day: ['Toán'], active: true }
+const subjectOptions = ['Tin học', 'Giáo dục thể chất', 'GDQP AN', 'HĐ trải nghiệm, hướng nghiệp']
+const emptyTeacher = { name: '', mon_day: ['Tin học'], active: true }
 
 export default function SetupTeachers() {
   const store = useAppStore()
@@ -59,7 +60,10 @@ export default function SetupTeachers() {
         <Button onClick={() => setEditing({ ...emptyTeacher })}><Plus size={18} /> Thêm GV</Button>
       </div>
       <div className="space-y-3">
-        {store.teachers.map((teacher) => (
+        {store.teachers.map((teacher) => {
+          const teacherAssignments = assignments.filter((item) => item.teacher_id === teacher.id)
+          const assignedClasses = [...new Set(teacherAssignments.flatMap((item) => item.classes || []))]
+          return (
           <Card key={teacher.id} className={!teacher.active ? 'opacity-60' : ''}>
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -68,13 +72,19 @@ export default function SetupTeachers() {
                   <Badge variant={teacher.active ? 'success' : 'neutral'}>{teacher.active ? 'Hoạt động' : 'Tạm ẩn'}</Badge>
                 </div>
                 <div className="mt-2 flex flex-wrap gap-1">
-                  {teacher.mon_day.map((subject) => <Badge key={subject} variant="primary">{subject}</Badge>)}
+                  {teacher.mon_day.length
+                    ? teacher.mon_day.map((subject) => <Badge key={subject} variant="primary">{subject}</Badge>)
+                    : <Badge variant="warning">Chưa xác định</Badge>}
                 </div>
+                {assignedClasses.length > 0 && (
+                  <p className="mt-2 text-xs leading-5 text-slate-500">Lớp: {assignedClasses.join(', ')}</p>
+                )}
               </div>
               <Button variant="ghost" className="h-10 min-h-10 px-3" onClick={() => setEditing({ ...teacher })}><Pencil size={17} /></Button>
             </div>
           </Card>
-        ))}
+          )
+        })}
       </div>
 
       <Card className="space-y-4">
@@ -90,16 +100,23 @@ export default function SetupTeachers() {
         </select>
         <div className="space-y-2">
           {store.teachers.filter((teacher) => teacher.active).map((teacher) => {
-            const assignment = assignments.find((item) => item.teacher_id === teacher.id)
+            const teacherAssignments = assignments.filter((item) => item.teacher_id === teacher.id)
+            const assignment = teacherAssignments[0]
+            const assignedClasses = teacherAssignments.flatMap((item) => item.classes || [])
             return (
-              <div key={teacher.id} className="grid grid-cols-[1fr_88px_70px] items-center gap-2 rounded-xl bg-slate-50 p-2">
-                <span className="truncate text-sm font-semibold">{teacher.name}</span>
+              <div key={teacher.id} className="grid grid-cols-[1fr_110px_70px] items-center gap-2 rounded-xl bg-slate-50 p-2">
+                <div className="min-w-0">
+                  <span className="block truncate text-sm font-semibold">{teacher.name}</span>
+                  {assignedClasses.length > 0 && <span className="mt-1 block text-[11px] text-slate-500">{assignedClasses.join(', ')}</span>}
+                </div>
                 <select
                   aria-label={`Môn của ${teacher.name}`}
-                  value={assignment?.mon || teacher.mon_day[0]}
+                  value={assignment?.mon || teacher.mon_day[0] || ''}
                   onChange={(event) => updateAssignment(teacher, { mon: event.target.value })}
+                  disabled={teacherAssignments.length !== 1}
                   className="min-h-9 rounded-lg border border-slate-200 bg-white px-2 text-xs"
                 >
+                  {!teacher.mon_day.length && <option value="">Chưa xác định</option>}
                   {teacher.mon_day.map((subject) => <option key={subject}>{subject}</option>)}
                 </select>
                 <input
@@ -128,7 +145,7 @@ export default function SetupTeachers() {
             <fieldset>
               <legend className="mb-2 text-sm font-semibold">Môn dạy</legend>
               <div className="flex gap-4">
-                {['Toán', 'Tin'].map((subject) => (
+                {subjectOptions.map((subject) => (
                   <label key={subject} className="flex items-center gap-2">
                     <input
                       type="checkbox"
