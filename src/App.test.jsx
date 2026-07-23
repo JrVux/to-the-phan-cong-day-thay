@@ -8,7 +8,9 @@ describe('App', () => {
 
     expect(screen.getByRole('img', { name: /logo tổ tin - thể dục - gdqp/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Tổ Tin - Thể dục - GDQP' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /Vững tri thức.*Khỏe thể chất.*Chắc bản lĩnh/i })).toBeInTheDocument()
+    const slogan = screen.getByRole('heading', { name: /Vững tri thức.*Khỏe thể chất.*Chắc bản lĩnh/i })
+    expect(slogan).toBeInTheDocument()
+    expect(slogan.closest('header')).toHaveClass('text-center')
     expect(screen.queryByText('TổThế')).not.toBeInTheDocument()
     expect(screen.getAllByText(/Phân công dạy thay/i).length).toBeGreaterThan(0)
   })

@@ -20,18 +20,18 @@ export default function Home() {
 
   return (
     <div className="space-y-6">
-      <header className="rounded-3xl bg-gradient-to-br from-blue-950 via-primary to-blue-600 p-6 text-white shadow-xl">
-        <div className="flex items-center justify-between gap-3">
+      <header className="relative rounded-3xl bg-gradient-to-br from-blue-950 via-primary to-blue-600 p-6 text-center text-white shadow-xl">
+        <div className="flex items-center justify-center">
           <Badge className="bg-white/15 text-white" variant="primary">{period?.ten_dot || 'Chưa có đợt hiện tại'}</Badge>
-          <Sparkles size={20} />
+          <Sparkles className="absolute right-6 top-6" size={20} />
         </div>
         <h1 className="mt-8 text-3xl font-black leading-tight">
           Vững tri thức.<br />Khỏe thể chất.<br />Chắc bản lĩnh.
         </h1>
-        <p className="mt-3 max-w-md text-sm leading-6 text-blue-100">
+        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-blue-100">
           Quản lý và phân công dạy thay nhanh chóng, khoa học, góp phần xây dựng một tập thể chủ động, đoàn kết và trách nhiệm.
         </p>
-        <Link to="/phan-cong" className="mt-6 block">
+        <Link to="/phan-cong" className="mx-auto mt-6 block max-w-sm">
           <Button className="w-full bg-white text-primary hover:bg-blue-50">Tạo phân công mới <ArrowRight size={18} /></Button>
         </Link>
       </header>
