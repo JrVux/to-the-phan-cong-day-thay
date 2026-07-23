@@ -5,4 +5,5 @@ dist/
 .preview-*.log
 *.log
 coverage/
+output/
 .DS_Store

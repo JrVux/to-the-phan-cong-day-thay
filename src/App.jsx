@@ -27,7 +27,11 @@ function AppShell() {
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <NavLink to="/" className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-lg font-black text-white">T</span>
+            <img
+              src="/logo-to-tin-the-duc-gdqp.png"
+              alt="Logo Tổ Tin - Thể dục - GDQP"
+              className="h-12 w-12 rounded-full object-cover shadow-sm ring-2 ring-amber-400/70"
+            />
             <div>
               <h1 className="text-lg font-black leading-none text-ink">TổThế</h1>
               <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Phân công dạy thay</p>
