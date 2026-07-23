@@ -147,7 +147,7 @@ export default function NewSubstitution() {
       <header>
         <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">Tác vụ chính</p>
         <h1 className="mt-1 text-2xl font-black text-ink">Phân công dạy thay</h1>
-        <p className="mt-2 text-sm leading-6 text-slate-600">Chọn giáo viên và ngày nghỉ, TổThế sẽ xử lý phần còn lại.</p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">Chọn giáo viên và ngày nghỉ, hệ thống sẽ xử lý phần còn lại.</p>
       </header>
 
       <ol className="grid grid-cols-3 gap-2" aria-label="Tiến trình">

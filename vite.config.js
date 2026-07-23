@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon-192.png', 'icon-512.png', 'og.png'],
       manifest: {
-        name: 'TổThế — Phân công dạy thay',
-        short_name: 'TổThế',
-        description: 'Phân công giáo viên dạy thay công bằng và nhanh chóng.',
+        name: 'Tổ Tin - Thể dục - GDQP',
+        short_name: 'Tin-TD-GDQP',
+        description: 'Vững tri thức, khỏe thể chất, chắc bản lĩnh.',
         theme_color: '#1e40af',
         background_color: '#f8fafc',
         display: 'standalone',

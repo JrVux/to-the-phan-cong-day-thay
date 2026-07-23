@@ -33,7 +33,9 @@ function AppShell() {
               className="h-12 w-12 rounded-full object-cover shadow-sm ring-2 ring-amber-400/70"
             />
             <div>
-              <h1 className="text-lg font-black leading-none text-ink">TổThế</h1>
+              <h1 className="max-w-48 text-sm font-black leading-tight text-ink sm:max-w-none sm:text-base">
+                Tổ Tin - Thể dục - GDQP
+              </h1>
               <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Phân công dạy thay</p>
             </div>
           </NavLink>

@@ -1,4 +1,4 @@
-# TổThế — Phân công dạy thay
+# Tổ Tin - Thể dục - GDQP
 
 PWA mobile-first cho tổ trưởng chuyên môn: chọn giáo viên vắng và ngày nghỉ, hệ thống tự lấy các tiết cần thế, lọc ứng viên, xếp hạng theo cân bằng thừa giờ và lưu lịch sử xuyên suốt nhiều đợt TKB.
 
