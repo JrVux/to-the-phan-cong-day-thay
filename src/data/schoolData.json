@@ -19,7 +19,9 @@
     {
       "id": "gv_03",
       "name": "Tào Phát Đạt",
-      "mon_day": [],
+      "mon_day": [
+        "Giáo dục thể chất"
+      ],
       "active": true
     },
     {
@@ -49,7 +51,9 @@
     {
       "id": "gv_07",
       "name": "Lê Văn Giang",
-      "mon_day": [],
+      "mon_day": [
+        "Giáo dục thể chất"
+      ],
       "active": true
     },
     {
@@ -258,6 +262,50 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 2,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11A4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1000"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 2,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11A2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1001"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 2,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11A1",
+      "mon": "GDQP AN",
+      "id": "tkb_1156"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 2,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11A3",
+      "mon": "GDQP AN",
+      "id": "tkb_1157"
+    },
+    {
       "id": "tkb_006",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_09",
@@ -313,6 +361,50 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 2,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11A1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1002"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 2,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11A4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1003"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 2,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11A3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1004"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 2,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11A2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1005"
+    },
+    {
       "id": "tkb_011",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -333,6 +425,50 @@
       "buoi": "Sáng",
       "lop": "12D4",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 2,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11A1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1006"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 2,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11A3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1007"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 2,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11A2",
+      "mon": "GDQP AN",
+      "id": "tkb_1158"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 2,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11A4",
+      "mon": "GDQP AN",
+      "id": "tkb_1159"
     },
     {
       "id": "tkb_013",
@@ -423,6 +559,50 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 2,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12A2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1008"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 2,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12A4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1009"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 2,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12A1",
+      "mon": "GDQP AN",
+      "id": "tkb_1160"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 2,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12A3",
+      "mon": "GDQP AN",
+      "id": "tkb_1161"
+    },
+    {
       "id": "tkb_021",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_24",
@@ -456,6 +636,50 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 2,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12A2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1010"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 2,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12A3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1011"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 2,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12A1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1012"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 2,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12A4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1013"
+    },
+    {
       "id": "tkb_024",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_24",
@@ -476,6 +700,50 @@
       "buoi": "Chiều",
       "lop": "11B4",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 2,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12A3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1014"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 2,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12A1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1015"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 2,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12A2",
+      "mon": "GDQP AN",
+      "id": "tkb_1162"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 2,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12A4",
+      "mon": "GDQP AN",
+      "id": "tkb_1163"
     },
     {
       "id": "tkb_026",
@@ -509,6 +777,94 @@
       "buoi": "Sáng",
       "lop": "12C5",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11B5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1016"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11B1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1017"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11B6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1018"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10D6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1019"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11B2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1020"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11A5",
+      "mon": "GDQP AN",
+      "id": "tkb_1164"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10D4",
+      "mon": "GDQP AN",
+      "id": "tkb_1165"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 3,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11B3",
+      "mon": "GDQP AN",
+      "id": "tkb_1166"
     },
     {
       "id": "tkb_029",
@@ -566,6 +922,83 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 3,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11B5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1021"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 3,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11B1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1022"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 3,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11B6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1023"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 3,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10D6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1024"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 3,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11B2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1025"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 3,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11A6",
+      "mon": "GDQP AN",
+      "id": "tkb_1167"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 3,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11B4",
+      "mon": "GDQP AN",
+      "id": "tkb_1168"
+    },
+    {
       "id": "tkb_034",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -610,6 +1043,94 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11B3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1026"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11A5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1027"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11B4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1028"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10D4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1029"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11A6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1030"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11B1",
+      "mon": "GDQP AN",
+      "id": "tkb_1169"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10D6",
+      "mon": "GDQP AN",
+      "id": "tkb_1170"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 3,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11B5",
+      "mon": "GDQP AN",
+      "id": "tkb_1171"
+    },
+    {
       "id": "tkb_038",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -641,6 +1162,83 @@
       "buoi": "Sáng",
       "lop": "12B5",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 3,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11B3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1031"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 3,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11A5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1032"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 3,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11B4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1033"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 3,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10D4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1034"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 3,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11A6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1035"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 3,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11B2",
+      "mon": "GDQP AN",
+      "id": "tkb_1172"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 3,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11B6",
+      "mon": "GDQP AN",
+      "id": "tkb_1173"
     },
     {
       "id": "tkb_041",
@@ -731,6 +1329,83 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 3,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12B2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1036"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 3,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12B3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1037"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 3,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12C1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1038"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 3,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10D3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1039"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 3,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12C2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1040"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 3,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10D1",
+      "mon": "GDQP AN",
+      "id": "tkb_1174"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 3,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12A5",
+      "mon": "GDQP AN",
+      "id": "tkb_1175"
+    },
+    {
       "id": "tkb_049",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -764,6 +1439,94 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12B2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1041"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12B3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1042"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12C1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1043"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10D3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1044"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12C2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1045"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10D2",
+      "mon": "GDQP AN",
+      "id": "tkb_1176"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12B1",
+      "mon": "GDQP AN",
+      "id": "tkb_1177"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 3,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12B5",
+      "mon": "GDQP AN",
+      "id": "tkb_1178"
+    },
+    {
       "id": "tkb_052",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -773,6 +1536,94 @@
       "buoi": "Chiều",
       "lop": "11C5",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12A5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1046"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12B1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1047"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10D2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1048"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12B5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1049"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10D1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1050"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10D3",
+      "mon": "GDQP AN",
+      "id": "tkb_1179"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12B2",
+      "mon": "GDQP AN",
+      "id": "tkb_1180"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 3,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12C1",
+      "mon": "GDQP AN",
+      "id": "tkb_1181"
     },
     {
       "id": "tkb_053",
@@ -797,6 +1648,83 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 3,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12A5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1051"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 3,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12B1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1052"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 3,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10D2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1053"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 3,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12B5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1054"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 3,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10D1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1055"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 3,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12B3",
+      "mon": "GDQP AN",
+      "id": "tkb_1182"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 3,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12C2",
+      "mon": "GDQP AN",
+      "id": "tkb_1183"
+    },
+    {
       "id": "tkb_055",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -817,6 +1745,72 @@
       "buoi": "Sáng",
       "lop": "12C3",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 4,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11C7",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1056"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 4,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11C4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1057"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11C8",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1058"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 4,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11C3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1059"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 4,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11C5",
+      "mon": "GDQP AN",
+      "id": "tkb_1184"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 4,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11C1",
+      "mon": "GDQP AN",
+      "id": "tkb_1185"
     },
     {
       "id": "tkb_057",
@@ -852,6 +1846,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 4,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11C7",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1060"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 4,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11C4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1061"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11C8",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1062"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 4,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11C3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1063"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 4,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11C6",
+      "mon": "GDQP AN",
+      "id": "tkb_1186"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 4,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11C2",
+      "mon": "GDQP AN",
+      "id": "tkb_1187"
+    },
+    {
       "id": "tkb_060",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_09",
@@ -885,6 +1945,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 4,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11C5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1064"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 4,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11C2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1065"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11C6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1066"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 4,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11C1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1067"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 4,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11C7",
+      "mon": "GDQP AN",
+      "id": "tkb_1188"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 4,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11C3",
+      "mon": "GDQP AN",
+      "id": "tkb_1189"
+    },
+    {
       "id": "tkb_063",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -916,6 +2042,72 @@
       "buoi": "Sáng",
       "lop": "12B2",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 4,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11C5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1068"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 4,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11C2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1069"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11C6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1070"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 4,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11C1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1071"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 4,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11C8",
+      "mon": "GDQP AN",
+      "id": "tkb_1190"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 4,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11C4",
+      "mon": "GDQP AN",
+      "id": "tkb_1191"
     },
     {
       "id": "tkb_066",
@@ -982,6 +2174,72 @@
       "buoi": "Chiều",
       "lop": "11C8",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 4,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12C6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1072"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 4,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12D4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1073"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 4,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12D3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1074"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12C5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1075"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 4,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12C3",
+      "mon": "GDQP AN",
+      "id": "tkb_1192"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 4,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12D1",
+      "mon": "GDQP AN",
+      "id": "tkb_1193"
     },
     {
       "id": "tkb_072",
@@ -1061,6 +2319,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 4,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12C6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1076"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 4,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12D4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1077"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 4,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12D3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1078"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12C5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1079"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 4,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12C4",
+      "mon": "GDQP AN",
+      "id": "tkb_1194"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 4,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12D2",
+      "mon": "GDQP AN",
+      "id": "tkb_1195"
+    },
+    {
       "id": "tkb_079",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -1116,6 +2440,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 4,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12D2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1080"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 4,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12D1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1081"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12C3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1082"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 4,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12C4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1083"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 4,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12C5",
+      "mon": "GDQP AN",
+      "id": "tkb_1196"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 4,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12D3",
+      "mon": "GDQP AN",
+      "id": "tkb_1197"
+    },
+    {
       "id": "tkb_084",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_01",
@@ -1138,6 +2528,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 4,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12D2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1084"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 4,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12D1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1085"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 4,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12C3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1086"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 4,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12C4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1087"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 4,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12C6",
+      "mon": "GDQP AN",
+      "id": "tkb_1198"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 4,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12D4",
+      "mon": "GDQP AN",
+      "id": "tkb_1199"
+    },
+    {
       "id": "tkb_086",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_08",
@@ -1147,6 +2603,83 @@
       "buoi": "Sáng",
       "lop": "12D7",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 5,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11D3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1088"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11D4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1089"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 5,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10A5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1090"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 5,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10D5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1091"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 5,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10A4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1092"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 5,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11D1",
+      "mon": "GDQP AN",
+      "id": "tkb_1200"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 5,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "11D5",
+      "mon": "GDQP AN",
+      "id": "tkb_1201"
     },
     {
       "id": "tkb_087",
@@ -1204,6 +2737,83 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 5,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11D3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1093"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11D4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1094"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 5,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10A5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1095"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 5,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10D5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1096"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_03",
+      "thu": 5,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10A4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1097"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 5,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11D2",
+      "mon": "GDQP AN",
+      "id": "tkb_1202"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 5,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "11D6",
+      "mon": "GDQP AN",
+      "id": "tkb_1203"
+    },
+    {
       "id": "tkb_092",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_15",
@@ -1237,6 +2847,83 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 5,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11D1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1098"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11D2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1099"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 5,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11D6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1100"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 5,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11D5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1101"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 5,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10D5",
+      "mon": "GDQP AN",
+      "id": "tkb_1204"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 5,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "11D3",
+      "mon": "GDQP AN",
+      "id": "tkb_1205"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 5,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10A4",
+      "mon": "GDQP AN",
+      "id": "tkb_1206"
+    },
+    {
       "id": "tkb_095",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_15",
@@ -1268,6 +2955,72 @@
       "buoi": "Sáng",
       "lop": "12D4",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 5,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11D1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1102"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11D2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1103"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 5,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11D6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1104"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 5,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11D5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1105"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 5,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "11D4",
+      "mon": "GDQP AN",
+      "id": "tkb_1207"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 5,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10A5",
+      "mon": "GDQP AN",
+      "id": "tkb_1208"
     },
     {
       "id": "tkb_098",
@@ -1369,6 +3122,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12D7",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1106"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 5,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10A1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1107"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 5,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12E1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1108"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 5,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12E4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1109"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 5,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12D5",
+      "mon": "GDQP AN",
+      "id": "tkb_1209"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 5,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12E2",
+      "mon": "GDQP AN",
+      "id": "tkb_1210"
+    },
+    {
       "id": "tkb_107",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_24",
@@ -1413,6 +3232,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12D7",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1110"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "thu": 5,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10A1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1111"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 5,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12E1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1112"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 5,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12E4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1113"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 5,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12D6",
+      "mon": "GDQP AN",
+      "id": "tkb_1211"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 5,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12E3",
+      "mon": "GDQP AN",
+      "id": "tkb_1212"
+    },
+    {
       "id": "tkb_111",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_14",
@@ -1446,6 +3331,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 5,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12E3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1114"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12D5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1115"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 5,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12D6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1116"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 5,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12E2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1117"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 5,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12D7",
+      "mon": "GDQP AN",
+      "id": "tkb_1213"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 5,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12E4",
+      "mon": "GDQP AN",
+      "id": "tkb_1214"
+    },
+    {
       "id": "tkb_114",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_14",
@@ -1468,6 +3419,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 5,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12E3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1118"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 5,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12D5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1119"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 5,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12D6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1120"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 5,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12E2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1121"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 5,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "12E1",
+      "mon": "GDQP AN",
+      "id": "tkb_1215"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 5,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10A1",
+      "mon": "GDQP AN",
+      "id": "tkb_1216"
+    },
+    {
       "id": "tkb_116",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_24",
@@ -1477,6 +3494,72 @@
       "buoi": "Sáng",
       "lop": "10D3",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 6,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10B5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1122"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 6,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10C6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1123"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10C7",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1124"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10B6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1125"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 6,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10A6",
+      "mon": "GDQP AN",
+      "id": "tkb_1217"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 6,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "10C4",
+      "mon": "GDQP AN",
+      "id": "tkb_1218"
     },
     {
       "id": "tkb_117",
@@ -1512,6 +3595,72 @@
       "mon": "Tin học"
     },
     {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 6,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10B5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1126"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 6,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10C6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1127"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10C7",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1128"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10B6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1129"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 6,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10B4",
+      "mon": "GDQP AN",
+      "id": "tkb_1219"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 6,
+      "tiet": 2,
+      "tiet_trong_buoi": 2,
+      "buoi": "Sáng",
+      "lop": "10C5",
+      "mon": "GDQP AN",
+      "id": "tkb_1220"
+    },
+    {
       "id": "tkb_120",
       "period_id": "hk2_2025_2026",
       "teacher_id": "gv_09",
@@ -1543,6 +3692,72 @@
       "buoi": "Sáng",
       "lop": "12C6",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 6,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10A6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1130"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 6,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10C4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1131"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10C5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1132"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10B4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1133"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 6,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10B5",
+      "mon": "GDQP AN",
+      "id": "tkb_1221"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 6,
+      "tiet": 3,
+      "tiet_trong_buoi": 3,
+      "buoi": "Sáng",
+      "lop": "10C6",
+      "mon": "GDQP AN",
+      "id": "tkb_1222"
     },
     {
       "id": "tkb_123",
@@ -1587,64 +3802,433 @@
       "buoi": "Sáng",
       "lop": "12D2",
       "mon": "Tin học"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_12",
+      "thu": 6,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10A6",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1134"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "thu": 6,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10C4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1135"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10C5",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1136"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10B4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1137"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "thu": 6,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10B6",
+      "mon": "GDQP AN",
+      "id": "tkb_1223"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 6,
+      "tiet": 4,
+      "tiet_trong_buoi": 4,
+      "buoi": "Sáng",
+      "lop": "10C7",
+      "mon": "GDQP AN",
+      "id": "tkb_1224"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 6,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10B2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1138"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "12B4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1139"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 6,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10B1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1140"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 6,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10C2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1141"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10C3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1142"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 6,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10B3",
+      "mon": "GDQP AN",
+      "id": "tkb_1225"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 6,
+      "tiet": 7,
+      "tiet_trong_buoi": 2,
+      "buoi": "Chiều",
+      "lop": "10A2",
+      "mon": "GDQP AN",
+      "id": "tkb_1226"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "thu": 6,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10B2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1143"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "12B4",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1144"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 6,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10B1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1145"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 6,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10C2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1146"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10C3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1147"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 6,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10C1",
+      "mon": "GDQP AN",
+      "id": "tkb_1227"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 6,
+      "tiet": 8,
+      "tiet_trong_buoi": 3,
+      "buoi": "Chiều",
+      "lop": "10A3",
+      "mon": "GDQP AN",
+      "id": "tkb_1228"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10A3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1148"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 6,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10A2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1149"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 6,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10B3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1150"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10C1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1151"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 6,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10B1",
+      "mon": "GDQP AN",
+      "id": "tkb_1229"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 6,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "10C2",
+      "mon": "GDQP AN",
+      "id": "tkb_1230"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "thu": 6,
+      "tiet": 9,
+      "tiet_trong_buoi": 4,
+      "buoi": "Chiều",
+      "lop": "12B4",
+      "mon": "GDQP AN",
+      "id": "tkb_1231"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_16",
+      "thu": 6,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10A3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1152"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_02",
+      "thu": 6,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10A2",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1153"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "thu": 6,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10B3",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1154"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_13",
+      "thu": 6,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10C1",
+      "mon": "Giáo dục thể chất",
+      "id": "tkb_1155"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_05",
+      "thu": 6,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10B2",
+      "mon": "GDQP AN",
+      "id": "tkb_1232"
+    },
+    {
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "thu": 6,
+      "tiet": 10,
+      "tiet_trong_buoi": 5,
+      "buoi": "Chiều",
+      "lop": "10C3",
+      "mon": "GDQP AN",
+      "id": "tkb_1233"
     }
   ],
   "assignments": [
     {
-      "id": "pc_gv_01_01",
+      "id": "pc_gv_09_01",
       "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_01",
+      "teacher_id": "gv_09",
       "mon": "Tin học",
       "classes": [
-        "11C5"
+        "10A3",
+        "12D3"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 2,
+      "so_tiet_tuan": 5
     },
     {
-      "id": "pc_gv_02_01",
+      "id": "pc_gv_15_01",
       "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_02",
-      "mon": "Giáo dục thể chất",
-      "classes": [
-        "12E4",
-        "12E2"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_04_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_04",
-      "mon": "GDQP AN",
-      "classes": [
-        "10D5"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_05_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_05",
-      "mon": "GDQP AN",
-      "classes": [
-        "11B2"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_06_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_06",
+      "teacher_id": "gv_15",
       "mon": "Tin học",
       "classes": [
-        "10A5"
+        "10D6",
+        "11B5",
+        "12C3",
+        "12D5"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 4,
+      "so_tiet_tuan": 12
+    },
+    {
+      "id": "pc_gv_21_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_21",
+      "mon": "Tin học",
+      "classes": [
+        "10D1",
+        "11B4",
+        "12C4",
+        "12C6"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 4,
+      "so_tiet_tuan": 12
+    },
+    {
+      "id": "pc_gv_14_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_14",
+      "mon": "Tin học",
+      "classes": [
+        "10A6",
+        "11C7",
+        "12C2",
+        "12D2"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 4,
+      "so_tiet_tuan": 11
     },
     {
       "id": "pc_gv_08_01",
@@ -1652,39 +4236,100 @@
       "teacher_id": "gv_08",
       "mon": "Tin học",
       "classes": [
-        "10D4"
+        "10D4",
+        "11C6",
+        "12C5",
+        "12D7"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 4,
+      "so_tiet_tuan": 12
     },
     {
-      "id": "pc_gv_09_01",
+      "id": "pc_gv_17_01",
       "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_09",
+      "teacher_id": "gv_17",
       "mon": "Tin học",
       "classes": [
-        "10A3"
+        "10A2",
+        "10D5",
+        "11C8",
+        "12B4",
+        "12B5"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 5,
+      "so_tiet_tuan": 14
     },
     {
-      "id": "pc_gv_10_01",
+      "id": "pc_gv_06_01",
       "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_10",
-      "mon": "Giáo dục thể chất",
+      "teacher_id": "gv_06",
+      "mon": "Tin học",
       "classes": [
-        "11B1",
-        "11C4",
+        "10A4",
         "10A5",
-        "11C2",
-        "11D6",
-        "10A1",
-        "11A5",
-        "11A4"
+        "11B1",
+        "12B1",
+        "12D4"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 5,
+      "so_tiet_tuan": 13
+    },
+    {
+      "id": "pc_gv_01_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_01",
+      "mon": "Tin học",
+      "classes": [
+        "10D2",
+        "11B6",
+        "11C2",
+        "11C5",
+        "12B3",
+        "12D6"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 6,
+      "so_tiet_tuan": 18
+    },
+    {
+      "id": "pc_gv_24_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_24",
+      "mon": "Tin học",
+      "classes": [
+        "10A1",
+        "10D3",
+        "11B2",
+        "11B3",
+        "11C3",
+        "12C1"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 6,
+      "so_tiet_tuan": 17
+    },
+    {
+      "id": "pc_gv_18_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_18",
+      "mon": "Tin học",
+      "classes": [
+        "11C1",
+        "11C4",
+        "12B2"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 3,
+      "so_tiet_tuan": 9
     },
     {
       "id": "pc_gv_11_01",
@@ -1695,7 +4340,50 @@
         "12D1"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 1,
+      "so_tiet_tuan": 3
+    },
+    {
+      "id": "pc_gv_10_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_10",
+      "mon": "Giáo dục thể chất",
+      "classes": [
+        "10A1",
+        "10A5",
+        "11A4",
+        "11A5",
+        "11B1",
+        "11C2",
+        "11C4",
+        "11D6"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 8,
+      "so_tiet_tuan": 16
+    },
+    {
+      "id": "pc_gv_22_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_22",
+      "mon": "Giáo dục thể chất",
+      "classes": [
+        "10B3",
+        "10C2",
+        "10D4",
+        "10D6",
+        "11A2",
+        "11C6",
+        "11C8",
+        "12C3",
+        "12C5"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 9,
+      "so_tiet_tuan": 18
     },
     {
       "id": "pc_gv_12_01",
@@ -1703,10 +4391,63 @@
       "teacher_id": "gv_12",
       "mon": "Giáo dục thể chất",
       "classes": [
+        "10A6",
+        "10B5",
+        "11A1",
+        "11D1",
+        "11D3",
+        "12A5",
+        "12B2",
+        "12C6",
         "12E3"
       ],
       "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 9,
+      "so_tiet_tuan": 18
+    },
+    {
+      "id": "pc_gv_07_Giáo dục thể chất",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_07",
+      "mon": "Giáo dục thể chất",
+      "classes": [
+        "10C4",
+        "10C6",
+        "10D5",
+        "11A3",
+        "11D5",
+        "12B1",
+        "12B3",
+        "12D2",
+        "12D4"
+      ],
+      "so_lop": 9,
+      "so_tiet_tuan": 18,
+      "tiet_chuan": 17,
       "hoc_ky": 2
+    },
+    {
+      "id": "pc_gv_23_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_23",
+      "mon": "Giáo dục thể chất",
+      "classes": [
+        "10B2",
+        "11B3",
+        "11B5",
+        "11C5",
+        "11C7",
+        "11D2",
+        "11D4",
+        "12A2",
+        "12D5",
+        "12D7"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 10,
+      "so_tiet_tuan": 20
     },
     {
       "id": "pc_gv_13_01",
@@ -1714,33 +4455,57 @@
       "teacher_id": "gv_13",
       "mon": "Giáo dục thể chất",
       "classes": [
-        "11B2",
         "10B4",
         "10B6",
+        "10C1",
+        "10C3",
+        "10D1",
+        "11A6",
+        "11B2",
+        "11C3",
+        "12A4",
         "12C4"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 10,
+      "so_tiet_tuan": 20
     },
     {
-      "id": "pc_gv_14_01",
+      "id": "pc_gv_02_01",
       "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_14",
-      "mon": "Tin học",
+      "teacher_id": "gv_02",
+      "mon": "Giáo dục thể chất",
       "classes": [
-        "10A6"
+        "10A2",
+        "10B1",
+        "10D2",
+        "10D3",
+        "12A3",
+        "12D1",
+        "12D3",
+        "12E2",
+        "12E4"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 9,
+      "so_tiet_tuan": 18
     },
     {
-      "id": "pc_gv_15_01",
+      "id": "pc_gv_03_Giáo dục thể chất",
       "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_15",
-      "mon": "Tin học",
+      "teacher_id": "gv_03",
+      "mon": "Giáo dục thể chất",
       "classes": [
-        "10D6"
+        "10A4",
+        "11C1",
+        "12A1",
+        "12B5",
+        "12C2"
       ],
+      "so_lop": 5,
+      "so_tiet_tuan": 10,
       "tiet_chuan": 17,
       "hoc_ky": 2
     },
@@ -1752,31 +4517,144 @@
       "classes": [
         "10A3",
         "10C5",
-        "12B4",
-        "11B6",
-        "12D6",
         "10C7",
         "11B4",
-        "12E1",
-        "12C1"
+        "11B6",
+        "12B4",
+        "12C1",
+        "12D6",
+        "12E1"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 9,
+      "so_tiet_tuan": 18
     },
     {
-      "id": "pc_gv_17_01",
+      "id": "pc_gv_05_01",
       "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_17",
-      "mon": "Tin học",
+      "teacher_id": "gv_05",
+      "mon": "GDQP AN",
       "classes": [
-        "12B5",
+        "10B1",
+        "10B2",
+        "10D4",
+        "10D6",
+        "11A1",
+        "11A2",
+        "11B2",
+        "11C5",
+        "11C6",
+        "11C7",
         "11C8",
-        "10D5",
-        "12B4",
-        "10A2"
+        "12A5",
+        "12B1",
+        "12B2",
+        "12B3",
+        "12D5",
+        "12D6",
+        "12D7",
+        "12E1"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 19,
+      "so_tiet_tuan": 19
+    },
+    {
+      "id": "pc_gv_19_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_19",
+      "mon": "GDQP AN",
+      "classes": [
+        "10A1",
+        "10B3",
+        "10C1",
+        "10C2",
+        "10C3",
+        "11A3",
+        "11A4",
+        "11B3",
+        "11B4",
+        "11B5",
+        "11B6",
+        "11D3",
+        "11D4",
+        "12D1",
+        "12D2",
+        "12D3",
+        "12D4",
+        "12E2",
+        "12E3",
+        "12E4"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 20,
+      "so_tiet_tuan": 20
+    },
+    {
+      "id": "pc_gv_04_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_04",
+      "mon": "GDQP AN",
+      "classes": [
+        "10A6",
+        "10B4",
+        "10B5",
+        "10B6",
+        "10D1",
+        "10D2",
+        "10D3",
+        "10D5",
+        "11A5",
+        "11A6",
+        "11B1",
+        "11D1",
+        "11D2",
+        "12A1",
+        "12A2",
+        "12C3",
+        "12C4",
+        "12C5",
+        "12C6"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 19,
+      "so_tiet_tuan": 19
+    },
+    {
+      "id": "pc_gv_20_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_20",
+      "mon": "GDQP AN",
+      "classes": [
+        "10A2",
+        "10A3",
+        "10A4",
+        "10A5",
+        "10C4",
+        "10C5",
+        "10C6",
+        "10C7",
+        "11C1",
+        "11C2",
+        "11C3",
+        "11C4",
+        "11D5",
+        "11D6",
+        "12A3",
+        "12A4",
+        "12B4",
+        "12B5",
+        "12C1",
+        "12C2"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 20,
+      "so_tiet_tuan": 20
     },
     {
       "id": "pc_gv_17_02",
@@ -1787,94 +4665,9 @@
         "12B5"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_18_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_18",
-      "mon": "Tin học",
-      "classes": [
-        "11C4",
-        "11C1",
-        "12B2"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_19_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_19",
-      "mon": "GDQP AN",
-      "classes": [
-        "10B3",
-        "10A1",
-        "11B4",
-        "10C2",
-        "10C1",
-        "11D4",
-        "11D3",
-        "12D1",
-        "11A4",
-        "12D3",
-        "11A3",
-        "11B5",
-        "11B3",
-        "12D2",
-        "11B6",
-        "10C3",
-        "12E4",
-        "12D4",
-        "12E3",
-        "12E2"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_20_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_20",
-      "mon": "GDQP AN",
-      "classes": [
-        "10A2",
-        "11C1",
-        "11D5",
-        "10A5",
-        "10A3",
-        "11C4",
-        "11C3",
-        "10C4",
-        "10C6",
-        "10A4",
-        "11D6",
-        "10C7",
-        "11C2",
-        "10C5",
-        "12C2",
-        "12B4",
-        "12B5",
-        "12A3",
-        "12C1",
-        "12A4"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_21_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_21",
-      "mon": "Tin học",
-      "classes": [
-        "10D1",
-        "11B4",
-        "12C6",
-        "12C4"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 1,
+      "so_tiet_tuan": 1
     },
     {
       "id": "pc_gv_21_02",
@@ -1885,62 +4678,9 @@
         "12C4"
       ],
       "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_22_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_22",
-      "mon": "Giáo dục thể chất",
-      "classes": [
-        "10C2",
-        "11A2",
-        "12C3",
-        "10D6",
-        "10D4",
-        "10B3",
-        "11C8",
-        "12C5",
-        "11C6"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_23_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_23",
-      "mon": "Giáo dục thể chất",
-      "classes": [
-        "11C7",
-        "12D5",
-        "11B3",
-        "11C5",
-        "12D7",
-        "11D4",
-        "12A2",
-        "11D2",
-        "10B2",
-        "11B5"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
-    },
-    {
-      "id": "pc_gv_24_01",
-      "period_id": "hk2_2025_2026",
-      "teacher_id": "gv_24",
-      "mon": "Tin học",
-      "classes": [
-        "10A1",
-        "12C1",
-        "11B3",
-        "11B2",
-        "11C3",
-        "10D3"
-      ],
-      "tiet_chuan": 17,
-      "hoc_ky": 2
+      "hoc_ky": 2,
+      "so_lop": 1,
+      "so_tiet_tuan": 1
     }
   ],
   "substitutions": [],

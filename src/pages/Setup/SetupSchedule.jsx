@@ -4,9 +4,55 @@ import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
 import Modal from '../../components/ui/Modal'
-import { deleteSchedule, saveSchedule, saveSchedules } from '../../services/scheduleService'
+import { computeTeacherWorkload, deleteSchedule, saveSchedule, saveSchedules, updateAssignmentsFromSchedules } from '../../services/scheduleService'
 import { useAppStore } from '../../stores/appStore'
 import { parseScheduleFile } from '../../utils/scheduleImport'
+
+function WorkloadTable({ data, title = 'Phân tích khối lượng' }) {
+  const totalThua = data.reduce((sum, d) => sum + Math.max(0, d.thua_thieu), 0)
+  const totalThieu = data.reduce((sum, d) => sum + Math.max(0, -d.thua_thieu), 0)
+  return (
+    <Card className="space-y-3 border-blue-200">
+      <div className="flex items-center justify-between">
+        <h3 className="font-black text-ink">{title}</h3>
+        <Badge variant="primary">{data.length} GV</Badge>
+      </div>
+      <div className="overflow-x-auto rounded-xl border border-slate-200">
+        <table className="w-full min-w-[560px] text-left text-sm">
+          <thead className="bg-slate-900 text-xs uppercase text-white">
+            <tr>
+              <th className="px-3 py-2.5">Giáo viên</th>
+              <th className="px-3 py-2.5 text-center">Môn</th>
+              <th className="px-3 py-2.5 text-center">Số lớp</th>
+              <th className="px-3 py-2.5 text-center">Tiết/tuần</th>
+              <th className="px-3 py-2.5 text-center">Tiết chuẩn</th>
+              <th className="px-3 py-2.5 text-center">Thừa/Thiếu</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100">
+            {data.map((row) => (
+              <tr key={row.teacher_id} className="hover:bg-slate-50">
+                <td className="px-3 py-2 font-semibold text-ink">{row.teacher_name}</td>
+                <td className="px-3 py-2 text-center text-xs text-slate-500">{row.mon}</td>
+                <td className="px-3 py-2 text-center">{row.so_lop}</td>
+                <td className="px-3 py-2 text-center">{row.so_tiet_tuan}</td>
+                <td className="px-3 py-2 text-center">{row.tiet_chuan}</td>
+                <td className={`px-3 py-2 text-center font-bold ${row.thua_thieu > 0 ? 'text-success' : row.thua_thieu < 0 ? 'text-danger' : 'text-slate-400'}`}>
+                  {row.thua_thieu > 0 ? '+' : ''}{row.thua_thieu}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="flex gap-4 text-xs text-slate-500">
+        <span>Tổng thừa: <strong className="text-success">+{totalThua}</strong></span>
+        <span className="text-slate-300">|</span>
+        <span>Tổng thiếu: <strong className="text-danger">{totalThieu}</strong></span>
+      </div>
+    </Card>
+  )
+}
 
 const emptyRow = { teacher_id: '', thu: 2, tiet: 1, lop: '', mon: 'Tin học' }
 
@@ -22,10 +68,15 @@ export default function SetupSchedule() {
   const [preview, setPreview] = useState([])
   const [importErrors, setImportErrors] = useState([])
   const [error, setError] = useState('')
+  const [workloadPreview, setWorkloadPreview] = useState([])
   const rows = useMemo(
     () => store.schedules.filter((row) => row.period_id === periodId).sort((a, b) => a.thu - b.thu || a.tiet - b.tiet),
     [periodId, store.schedules],
   )
+  const existingWorkload = useMemo(() => {
+    if (periodId && rows.length > 0) return computeTeacherWorkload(periodId)
+    return []
+  }, [periodId, rows.length])
 
   async function handleFile(event) {
     const file = event.target.files?.[0]
@@ -34,8 +85,14 @@ export default function SetupSchedule() {
       const result = await parseScheduleFile(file, { teachers: store.teachers, periodId })
       setPreview(result.rows)
       setImportErrors(result.errors)
+      if (result.rows.length) {
+        setWorkloadPreview(computeTeacherWorkload(periodId, result.rows))
+      } else {
+        setWorkloadPreview([])
+      }
     } catch {
       setPreview([])
+      setWorkloadPreview([])
       setImportErrors(['Không thể đọc file. Hãy dùng .xlsx, .xls hoặc .csv với đúng tiêu đề cột.'])
     }
   }
@@ -85,13 +142,16 @@ export default function SetupSchedule() {
                   return <div key={`${row.teacher_id}-${row.thu}-${row.tiet}-${index}`} className="grid grid-cols-[1fr_auto] gap-2 border-b border-slate-100 p-2 text-xs"><span>{teacher?.name} • {row.lop} • {row.mon}</span><span>T{row.thu} / tiết {row.tiet}</span></div>
                 })}
               </div>
+              {workloadPreview.length > 0 && <WorkloadTable data={workloadPreview} title="Phân tích khối lượng (dữ liệu import)" />}
               <Button className="w-full" variant="success" onClick={() => {
                 try {
                   saveSchedules(preview)
+                  updateAssignmentsFromSchedules(periodId)
                   store.refresh()
                   setPreview([])
+                  setWorkloadPreview([])
                   setImportErrors([])
-                  store.notify(`Đã import ${preview.length} dòng TKB.`)
+                  store.notify(`Đã import ${preview.length} dòng TKB và cập nhật phân công.`)
                 } catch (saveError) {
                   setImportErrors((current) => [...current, saveError.message])
                 }
@@ -130,6 +190,21 @@ export default function SetupSchedule() {
           })}
         </div>
       </div>
+
+      {existingWorkload.length > 0 && (
+        <>
+          <WorkloadTable data={existingWorkload} title="Phân tích khối lượng (TKB hiện tại)" />
+          <Button variant="secondary" onClick={() => {
+            try {
+              updateAssignmentsFromSchedules(periodId)
+              store.refresh()
+              store.notify('Đã cập nhật phân công chuyên môn từ TKB.')
+            } catch (err) {
+              store.notify(err.message, 'error')
+            }
+          }}>Cập nhật phân công từ TKB</Button>
+        </>
+      )}
 
       <Modal open={Boolean(editing)} title={editing?.id ? 'Sửa dòng TKB' : 'Nhập dòng TKB'} onClose={() => setEditing(null)}>
         {editing && (

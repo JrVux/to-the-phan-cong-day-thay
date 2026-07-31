@@ -98,39 +98,67 @@ export default function SetupTeachers() {
         <select value={periodId} onChange={(event) => setPeriodId(event.target.value)} className="min-h-11 w-full rounded-xl border border-slate-300 px-3">
           {store.periods.map((period) => <option key={period.id} value={period.id}>{period.ten_dot}</option>)}
         </select>
-        <div className="space-y-2">
-          {store.teachers.filter((teacher) => teacher.active).map((teacher) => {
-            const teacherAssignments = assignments.filter((item) => item.teacher_id === teacher.id)
-            const assignment = teacherAssignments[0]
-            const assignedClasses = teacherAssignments.flatMap((item) => item.classes || [])
-            return (
-              <div key={teacher.id} className="grid grid-cols-[1fr_110px_70px] items-center gap-2 rounded-xl bg-slate-50 p-2">
-                <div className="min-w-0">
-                  <span className="block truncate text-sm font-semibold">{teacher.name}</span>
-                  {assignedClasses.length > 0 && <span className="mt-1 block text-[11px] text-slate-500">{assignedClasses.join(', ')}</span>}
-                </div>
-                <select
-                  aria-label={`Môn của ${teacher.name}`}
-                  value={assignment?.mon || teacher.mon_day[0] || ''}
-                  onChange={(event) => updateAssignment(teacher, { mon: event.target.value })}
-                  disabled={teacherAssignments.length !== 1}
-                  className="min-h-9 rounded-lg border border-slate-200 bg-white px-2 text-xs"
-                >
-                  {!teacher.mon_day.length && <option value="">Chưa xác định</option>}
-                  {teacher.mon_day.map((subject) => <option key={subject}>{subject}</option>)}
-                </select>
-                <input
-                  aria-label={`Tiết chuẩn của ${teacher.name}`}
-                  type="number"
-                  min="0"
-                  max="40"
-                  value={assignment?.tiet_chuan ?? 17}
-                  onChange={(event) => updateAssignment(teacher, { tiet_chuan: Number(event.target.value) })}
-                  className="min-h-9 rounded-lg border border-slate-200 px-2 text-center text-xs"
-                />
-              </div>
-            )
-          })}
+        <div className="overflow-x-auto rounded-xl border border-slate-200">
+          <table className="w-full min-w-[600px] text-left text-sm">
+            <thead className="bg-slate-900 text-xs uppercase text-white">
+              <tr>
+                <th className="px-3 py-2.5">Giáo viên</th>
+                <th className="px-3 py-2.5 text-center">Môn</th>
+                <th className="px-3 py-2.5 text-center">Lớp</th>
+                <th className="px-3 py-2.5 text-center">Tiết/tuần</th>
+                <th className="px-3 py-2.5 text-center">Tiết chuẩn</th>
+                <th className="px-3 py-2.5 text-center">Thừa/Thiếu</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {store.teachers.filter((teacher) => teacher.active).map((teacher) => {
+                const teacherAssignments = assignments.filter((item) => item.teacher_id === teacher.id)
+                const assignment = teacherAssignments[0]
+                const assignedClasses = teacherAssignments.flatMap((item) => item.classes || [])
+                const soTietTuan = assignment?.so_tiet_tuan ?? 0
+                const tietChuan = Number(assignment?.tiet_chuan ?? 17)
+                const thuaThieu = soTietTuan - tietChuan
+                return (
+                  <tr key={teacher.id} className="hover:bg-slate-50">
+                    <td className="px-3 py-2">
+                      <span className="font-semibold text-ink">{teacher.name}</span>
+                      {assignedClasses.length > 0 && (
+                        <span className="mt-0.5 block text-[11px] text-slate-400">{assignedClasses.join(', ')}</span>
+                      )}
+                    </td>
+                    <td className="px-3 py-2 text-center">
+                      <select
+                        aria-label={`Môn của ${teacher.name}`}
+                        value={assignment?.mon || teacher.mon_day[0] || ''}
+                        onChange={(event) => updateAssignment(teacher, { mon: event.target.value })}
+                        disabled={teacherAssignments.length !== 1}
+                        className="min-h-8 rounded-lg border border-slate-200 bg-white px-2 text-xs"
+                      >
+                        {!teacher.mon_day.length && <option value="">Chưa xác định</option>}
+                        {teacher.mon_day.map((subject) => <option key={subject}>{subject}</option>)}
+                      </select>
+                    </td>
+                    <td className="px-3 py-2 text-center text-xs text-slate-500">{assignment?.so_lop ?? 0}</td>
+                    <td className="px-3 py-2 text-center">{soTietTuan}</td>
+                    <td className="px-3 py-2 text-center">
+                      <input
+                        aria-label={`Tiết chuẩn của ${teacher.name}`}
+                        type="number"
+                        min="0"
+                        max="40"
+                        value={tietChuan}
+                        onChange={(event) => updateAssignment(teacher, { tiet_chuan: Number(event.target.value) })}
+                        className="min-h-8 w-16 rounded-lg border border-slate-200 px-2 text-center text-xs"
+                      />
+                    </td>
+                    <td className={`px-3 py-2 text-center font-bold ${thuaThieu > 0 ? 'text-success' : thuaThieu < 0 ? 'text-danger' : 'text-slate-400'}`}>
+                      {thuaThieu > 0 ? '+' : ''}{thuaThieu}
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         </div>
       </Card>
 

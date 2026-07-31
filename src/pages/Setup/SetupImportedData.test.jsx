@@ -11,15 +11,14 @@ describe('giao diện dữ liệu chuyên môn đã nhập', () => {
     useAppStore.getState().loadData()
   })
 
-  it('hiển thị môn, lớp phân công và giáo viên chưa xác định môn', () => {
+  it('hiển thị môn, lớp phân công và số lớp/tiết từ TKB', () => {
     render(<SetupTeachers />)
 
     expect(screen.getAllByText('Tin học').length).toBeGreaterThan(0)
     expect(screen.getAllByText('Giáo dục thể chất').length).toBeGreaterThan(0)
     expect(screen.getAllByText('GDQP AN').length).toBeGreaterThan(0)
-    expect(screen.getAllByText('Chưa xác định').length).toBeGreaterThanOrEqual(2)
-    expect(screen.getByText(/Lớp: 11C5/)).toBeInTheDocument()
     expect(screen.getByLabelText('Môn của Nguyễn Trung Kiên')).toBeDisabled()
+    expect(screen.getAllByRole('table').length).toBeGreaterThan(0)
   })
 
   it('tự chọn HK II khi máy còn lưu mã đợt cũ và hiển thị buổi chiều', () => {
@@ -27,7 +26,7 @@ describe('giao diện dữ liệu chuyên môn đã nhập', () => {
 
     render(<SetupSchedule />)
 
-    expect(screen.getByText('126 dòng')).toBeInTheDocument()
+    expect(screen.getByText('360 dòng')).toBeInTheDocument()
     expect(screen.getAllByText('Chiều').length).toBeGreaterThan(0)
   })
 })
