@@ -68,18 +68,24 @@ Khi đẩy lên nhánh `main`, workflow [.github/workflows/pages.yml](./.github/
 
 ## Kết nối Supabase (đồng bộ + đăng nhập)
 
-1. Tạo project Supabase.
-2. Chạy [supabase/schema.sql](./supabase/schema.sql) trong SQL Editor (gồm bảng nghiệp vụ, `profiles`, `invite_codes`, RLS và trigger tự gán admin đầu tiên / kiểm tra mã mời).
-3. **Authentication → Providers → Email**: đảm bảo bật Email; muốn vào ngay không cần xác nhận thì tắt **"Confirm email"**.
-4. Sao chép `.env.example` thành `.env.local` và điền `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY`.
-5. Trên GitHub: **Settings → Secrets and variables → Actions** thêm 2 secrets cùng tên để CI build bật đồng bộ.
-6. Chạy lại ứng dụng.
+Sau khi tạo project, **chạy lại [supabase/schema.sql](./supabase/schema.sql) đầy đủ trong SQL Editor mỗi khi bạn đổi migrations** (gồm bảng nghiệp vụ, `profiles`, `invite_codes`, hàm `is_admin()`, RLS và trigger tự gán admin đầu tiên / kiểm tra mã mời).
 
-### Quản lý tài khoản & mã mời
-- **Người đầu tiên** tự đăng ký → tự thành **Admin** (không cần mã mời).
-- Admin tạo **mã mời** (có giới hạn lượt) trong menu **Quản trị**.
-- Người khác đăng ký **phải nhập mã mời** do admin cấp — sai/hết lượt thì không vào được.
-- Admin quản lý người dùng: nâng/hạ quyền quản trị.
+1. **Authentication → Providers → Email**: bật **Email**; để vào app ngay không cần xác nhận thì **tắt "Confirm email"**.
+2. Sao chép `.env.example` thành `.env.local` và điền `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY`.
+3. Trên GitHub: **Settings → Secrets and variables → Actions** thêm 2 secrets cùng tên để CI build bật đồng bộ (biến build thành `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`).
+4. Chạy lại ứng dụng.
+
+### Quản trị & mã mời (Auth)
+- **Người đăng ký đầu tiên** tự thành **Admin** (không cần mã mời). Nếu đăng ký trước khi có schema, hãy cấp admin thủ công:
+  ```sql
+  insert into public.profiles (id, email, role)
+  select id, email, 'admin' from auth.users
+  where email = 'email-admin' on conflict (id) do update set role = 'admin';
+  ```
+- Admin vào menu **Quản trị** để **Tạo mã mời** (có giới hạn lượt), **Sao chép** mã chia sẻ, khóa/xóa mã và **nâng/hạ quyền** người dùng.
+- Người khác đăng ký **phải nhập mã mời** hợp lệ — sai/hết lượt/thành email không nhập được.
+
+> **Lưu ý RLS:**schema dùng hàm `security definer` `is_admin()` thay vì subquery tự tham chiếu bảng `profiles` để tránh lỗi "infinite recursion" (nếu đang chạy bản cũ gây báo lỗi, chạy lại schema để tạo hàm và policy mới).
 
 Adapter hoạt động theo mô hình **local-first**: UI đọc/ghi cache trên thiết bị ngay lập tức, đồng thời tải và mirror dữ liệu với Supabase (mọi thao tác qua phiên đăng nhập). Khi mất mạng, người dùng vẫn thao tác được; có mạng tự đồng bộ. Nhiều thiết bị dùng chung 1 project → dữ liệu giống nhau.
 
@@ -92,9 +98,9 @@ Hỗ trợ `.xlsx`, `.xls`, `.csv`. Dòng tiêu đề chấp nhận: `Giáo viê
 ```
 src/
 ├── engine/scoringEngine.js    # Thuật toán xếp hạng ứng viên
-├── services/                  # DB + nghiệp vụ (TKB, phân công, báo cáo)
-├── stores/appStore.js         # Zustand store
+├── services/                  # DB + nghiệp vụ (TKB, phân công, báo cáo, auth)
+├── stores/appStore.js         # Zustand store (data + auth/role)
 ├── components/                # UI + CandidateCard
-├── pages/                     # Home, Phân công, Lịch sử, Thiết lập lập
+├── pages/                     # Home, Phân công, Lịch sử, Thiết lập, Auth, Quản trị
 └── data/                      # Seed dữ liệu thật
 ```

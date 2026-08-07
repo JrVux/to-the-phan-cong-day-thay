@@ -145,8 +145,15 @@ table(
     ['Phân công', 'Tác vụ chính: tạo phân công dạy thay'],
     ['Lịch sử', 'Lịch sử phân công, báo cáo cân bằng tiết chuẩn, xuất Excel/PDF'],
     ['Thiết lập', 'Giáo viên, đợt TKB, thời khóa biểu, ngoại lệ, năm mới'],
+    ['Quản trị (admin)', 'Tạo mã mời, quản lý quyền người dùng'],
   ],
 )
+subtitle('1.3 Đăng nhập & đăng ký')
+bullet([
+  'Người đăng ký đầu tiên tự thành Admin (không cần mã mời).',
+  'Thành viên tổ đăng ký phải nhập mã mời do admin cấp.',
+  'Nút Thoát ở góc phải trên để đăng xuất.',
+])
 
 section('2. Phân công dạy thay (tác vụ chính)')
 paragraph('Chỉ cần 2 thao tác, phần còn lại hệ thống tự làm:', { bold: true })
@@ -236,6 +243,9 @@ table(
     ['Phân nhầm người', 'Vào Lịch sử, nhấn nút xóa trên bản ghi (có xác nhận), tạo lại phân công.'],
     ['Thấy "Thừa/Thiếu" lớn hơn chênh lệch 1 tuần', 'Đây là tổng cộng dồn qua các đợt (nhân với số tuần). Xem cột "Số tuần qua" để đối chiếu.'],
     ['Đổi sang năm học mới', 'Thiết lập → Năm mới → Bắt đầu năm học mới, rồi tạo Đợt TKB mới và import TKB.'],
+    ['Không thấy menu "Quản trị"', 'Tài khoản chưa phải Admin. Người đăng ký đầu tiên là admin; nếu đăng ký trước khi nâng cấp, nhờ admin nâng quyền rồi đăng nhập lại.'],
+    ['Nhập mã mời báo "không hợp lệ"', 'Mã sai, đã khóa hoặc hết lượt. Liên hệ admin cấp mã mới.'],
+    ['App vẫn là bản cũ', 'Xóa cache PWA / gỡ rồi cài lại app. Nếu icon vẫn là Chrome, gỡ và cài lại app.'],
   ],
 )
 

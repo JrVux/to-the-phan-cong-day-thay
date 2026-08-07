@@ -31,6 +31,11 @@ Thanh điều hướng có 4 mục (thêm **Quản trị** nếu bạn là admin
 - **Thành viên tổ:** đăng ký **phải nhập mã mời** do admin cấp (sai/hết lượt thì không vào được). Liên hệ admin để nhận mã.
 - Nút **Thoát** ở góc phải trên để đăng xuất.
 
+### 1.4 Màn hình Quản trị (dành cho admin)
+Chỉ xuất hiện khi đăng nhập bằng tài khoản **Admin**:
+- **Tạo mã mời:** nhập mã (VD `TD-TOTIN-2026`) + số lần dùng → **Tạo mã mời**. Bấm **Sao chép** để gửi mã kèm link đăng ký cho thành viên; bấm khóa (🔒) để tắt hoặc **xóa** (🗑) mã không dùng nữa.
+- **Người dùng:** xem danh sách tài khoản, bấm **Nâng lên quản trị / Hạ xuống người dùng** để phân quyền.
+
 ---
 
 ## 2. Phân công dạy thay (tác vụ chính)
@@ -113,7 +118,7 @@ Dùng cuối năm học để chuẩn bị dữ liệu cho năm học mới:
 ## 5. Mẹo dùng trên điện thoại
 
 - **Bảng rộng** (TKB, phân công chuyên môn, báo cáo) cuộn ngang được; cột "Giáo viên" và dòng tiêu đề luôn cố định khi cuộn.
-- **Cài làm ứng dụng** để có màn hình riêng, không bị thanh trình duyệt che.
+- **Cài làm ứng dụng** để có màn hình riêng, không bị thanh trình duyệt che. Nếu icon trên màn hình chính vẫn là biểu tượng Chrome, hãy **gỡ cài rồi cài lại** app (bản cũ đã lưu icon cũ).
 - Mất mạng vẫn thao tác được; dữ liệu được lưu ngay trên máy.
 
 ---
@@ -131,3 +136,6 @@ Dùng cuối năm học để chuẩn bị dữ liệu cho năm học mới:
 | Thấy "Thừa/Thiếu" lớn hơn chênh lệch 1 tuần | Đây là **tổng cộng dồn** qua các đợt (nhân với số tuần). Xem cột **Số tuần qua** để đối chiếu. |
 | Đổi sang năm học mới | **Thiết lập → Năm mới → Bắt đầu năm học mới**, rồi tạo Đợt TKB mới và import TKB. |
 | Dữ liệu không đúng môn/tiết chuẩn | Vào **Thiết lập → Giáo viên** chỉnh phân công chuyên môn; hoặc **Thiết lập → Thời khóa biểu → Cập nhật phân công từ TKB**. |
+| Không thấy menu **Quản trị** | Tài khoản chưa phải Admin. Người đăng ký **đầu tiên** là admin; nếu đăng ký trước khi nâng cấp, admin cần nâng quyền thủ công (xem README) rồi **đăng nhập lại**. |
+| Nhập mã mời báo "không hợp lệ" | Mã sai, đã khóa hoặc đã hết lượt dùng. Liên hệ admin cấp mã mới. |
+| App vẫn chạy bản cũ (không thấy tính năng mới) | Do cache PWA. Thoát rồi tải lại, hoặc xóa dữ liệu site / gỡ rồi cài lại app. |
