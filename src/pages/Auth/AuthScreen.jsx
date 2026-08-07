@@ -22,9 +22,6 @@ export default function AuthScreen() {
       if (mode === 'login') {
         await store.login(email.trim(), password)
       } else {
-        if (!invite.trim()) {
-          throw new Error('Vui lòng nhập mã mời. Liên hệ admin (người quản lý) để được cấp mã.')
-        }
         await store.register({ email: email.trim(), password, inviteCode: invite.trim() })
       }
     } catch (submitError) {
@@ -61,12 +58,12 @@ export default function AuthScreen() {
             </label>
 
             {mode === 'register' && (
-              <label className="block"><span className="mb-1 block text-sm font-semibold">Mã mời (do admin cấp)</span>
+              <label className="block"><span className="mb-1 block text-sm font-semibold">Mã mời <span className="font-normal text-slate-400">(nếu có)</span></span>
                 <div className="relative">
                   <Gift size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                   <input value={invite} onChange={(event) => setInvite(event.target.value)} placeholder="Ví dụ: TD-TOTIN-2026" className="min-h-11 w-full rounded-xl border border-slate-300 pl-9 pr-3 text-sm uppercase" />
                 </div>
-                <span className="mt-1 block text-[11px] text-slate-400">Người đầu tiên đăng ký sẽ tự động thành Admin.</span>
+                <span className="mt-1 block text-[11px] text-slate-400">Người đầu tiên đăng ký sẽ tự động thành Admin, không cần mã mời.</span>
               </label>
             )}
 
