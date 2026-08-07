@@ -85,39 +85,56 @@ export default function History() {
           <div className="flex items-center gap-2"><HistoryIcon size={20} className="text-primary" /><h2 className="text-lg font-black text-ink">Chi tiết lịch sử</h2></div>
           <Badge variant="neutral">{history.length} bản ghi</Badge>
         </div>
-        <div className="space-y-3">
-          {history.map((item) => {
-            const absent = store.teachers.find((teacher) => teacher.id === item.nghi_teacher_id)
-            const substitute = store.teachers.find((teacher) => teacher.id === item.the_teacher_id)
-            return (
-              <Card key={item.id}>
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="font-bold text-ink">{describeTiet(item).label} • {item.mon} • {item.lop}</p>
-                    <p className="mt-1 text-xs text-slate-500">{item.ngay} • {item.nam_hoc} • HK{item.hoc_ky}</p>
-                  </div>
-                  <div className="flex shrink-0 items-center gap-2">
-                    <Badge variant={substitute ? 'success' : 'warning'}>{substitute ? 'Đã phân công' : 'Chưa phân công'}</Badge>
-                    {confirmId === item.id ? (
-                      <div className="flex items-center gap-1">
-                        <Button variant="danger" className="min-h-9 px-3 py-1.5" onClick={() => confirmDelete(item.id)}>Xóa</Button>
-                        <Button variant="ghost" className="min-h-9 px-3 py-1.5" onClick={() => setConfirmId('')}>Hủy</Button>
-                      </div>
-                    ) : (
-                      <Button variant="ghost" className="min-h-9 px-3 py-1.5" onClick={() => setConfirmId(item.id)} aria-label={`Xóa phân công ${describeTiet(item).label}`}><Trash2 size={16} /></Button>
-                    )}
-                  </div>
-                </div>
-                <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-xl bg-slate-50 p-3 text-sm">
-                  <div><p className="text-[10px] font-bold uppercase text-slate-400">GV vắng</p><p className="mt-1 font-semibold">{absent?.name || item.nghi_teacher_id}</p></div>
-                  <span className="text-primary">→</span>
-                  <div className="text-right"><p className="text-[10px] font-bold uppercase text-slate-400">GV dạy thế</p><p className="mt-1 font-semibold">{substitute?.name || 'Chưa phân công'}</p></div>
-                </div>
-                {item.ghi_chu && <p className="mt-3 text-xs italic text-slate-500">“{item.ghi_chu}”</p>}
-              </Card>
-            )
-          })}
-          {!history.length && (
+        <div className="overflow-x-auto rounded-xl border border-slate-200">
+          {history.length ? (
+            <table className="w-full min-w-[820px] text-left text-sm">
+              <thead>
+                <tr className="bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  <th className="px-4 py-3">Ngày</th>
+                  <th className="px-4 py-3">Tiết dạy</th>
+                  <th className="px-4 py-3">Lớp / Môn</th>
+                  <th className="px-4 py-3">GV vắng</th>
+                  <th className="px-4 py-3">GV dạy thế</th>
+                  <th className="px-4 py-3">Trạng thái</th>
+                  <th className="px-4 py-3 text-right">Học kỳ</th>
+                  <th className="px-4 py-3 text-right"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.map((item) => {
+                  const absent = store.teachers.find((teacher) => teacher.id === item.nghi_teacher_id)
+                  const substitute = store.teachers.find((teacher) => teacher.id === item.the_teacher_id)
+                  return (
+                    <tr key={item.id} className="border-t border-slate-100 align-top hover:bg-slate-50/60">
+                      <td className="whitespace-nowrap px-4 py-3">
+                        <p className="font-semibold text-ink">{item.ngay}</p>
+                        <p className="text-xs text-slate-400">{item.nam_hoc}</p>
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3 font-medium text-ink">{describeTiet(item).label}</td>
+                      <td className="px-4 py-3">
+                        <p className="font-semibold text-ink">{item.lop}</p>
+                        <p className="text-xs text-slate-400">{item.mon}</p>
+                      </td>
+                      <td className="px-4 py-3">{absent?.name || item.nghi_teacher_id}</td>
+                      <td className="px-4 py-3">{substitute?.name || (<span className="text-slate-400">Chưa phân công</span>)}</td>
+                      <td className="px-4 py-3"><Badge variant={substitute ? 'success' : 'warning'}>{substitute ? 'Đã phân công' : 'Chưa phân công'}</Badge></td>
+                      <td className="whitespace-nowrap px-4 py-3 text-right text-slate-500">HK{item.hoc_ky}</td>
+                      <td className="whitespace-nowrap px-4 py-3 text-right">
+                        {confirmId === item.id ? (
+                          <div className="flex justify-end gap-1">
+                            <Button variant="danger" className="min-h-8 px-3 py-1" onClick={() => confirmDelete(item.id)}>Xóa</Button>
+                            <Button variant="ghost" className="min-h-8 px-3 py-1" onClick={() => setConfirmId('')}>Hủy</Button>
+                          </div>
+                        ) : (
+                          <Button variant="ghost" className="min-h-8 px-3 py-1" onClick={() => setConfirmId(item.id)} aria-label={`Xóa phân công ${describeTiet(item).label}`}><Trash2 size={16} /></Button>
+                        )}
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          ) : (
             <Card className="py-10 text-center">
               <Download className="mx-auto text-slate-300" size={32} />
               <p className="mt-3 text-sm font-semibold text-slate-500">Không có bản ghi phù hợp bộ lọc.</p>
