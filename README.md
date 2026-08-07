@@ -2,7 +2,7 @@
 
 PWA **mobile-first** dành cho tổ trưởng chuyên môn. Khi có giáo viên vắng, chỉ cần chọn **tên giáo viên** và **ngày nghỉ**, hệ thống tự lấy toàn bộ tiết cần thế, lọc và xếp hạng ứng viên theo cân bằng tiết chuẩn trong tổ, rồi lưu lịch sử xuyên suốt nhiều đợt TKB.
 
-- **Demo đang chạy:** https://production.to-the-phan-cong-day-thay.pages.dev
+- **Demo đang chạy:** https://jrvux.github.io/to-the-phan-cong-day-thay/
 - **Cài đặt trên điện thoại:** mở bằng Chrome/Edge/Safari → "Cài đặt ứng dụng" / "Thêm vào màn hình chính". Dùng offline được.
 
 ---
@@ -55,16 +55,16 @@ pnpm build      # build PWA vào dist/
 
 Sau build, `dist/` phải có `manifest.webmanifest`, `sw.js`, icon 192/512 và toàn bộ static assets.
 
-## Triển khai (Cloudflare Pages)
+## Triển khai (GitHub Pages)
 
-```bash
-pnpm build
-npx wrangler pages deploy dist --project-name to-the-phan-cong-day-thay --branch production
-npx wrangler pages deploy dist --project-name to-the-phan-cong-day-thay --branch main
-```
+Repo: **JrVux/to-the-phan-cong-day-thay** — triển khai tự động qua GitHub Actions.
 
-- `--branch production` gắn alias `production.to-the-phan-cong-day-thay.pages.dev`.
-- Mỗi lần deploy tạo URL riêng dạng `https://<id>.to-the-phan-cong-day-thay.pages.dev`.
+Khi đẩy lên nhánh `main`, workflow [.github/workflows/pages.yml](./.github/workflows/pages.yml): lint → test → build → deploy PWA lên GitHub Pages.
+
+- Địa chỉ: `https://jrvux.github.io/to-the-phan-cong-day-thay/`
+- `vite.config.js` đặt `base: './'` để PWA hoạt động trên đường dẫn sub-path của Pages.
+
+> Triển khai thủ công (không qua CI): `pnpm build` rồi tại repo → **Settings → Pages → Build and deployment → Source: GitHub Actions** (workflow đã định sẵn).
 
 ## Kết nối Supabase (tùy chọn)
 

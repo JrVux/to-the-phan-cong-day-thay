@@ -9,7 +9,7 @@ Hệ thống **Phân công dạy thay** của Tổ Tin - Thể dục - GDQP dàn
 ### 1.1 Mở và cài ứng dụng trên điện thoại
 
 1. Mở trình duyệt Chrome (Android) hoặc Safari (iPhone) đến địa chỉ:
-   `https://production.to-the-phan-cong-day-thay.pages.dev`
+   `https://jrvux.github.io/to-the-phan-cong-day-thay/`
 2. Chọn **Cài đặt ứng dụng** (Chrome) hoặc **Chia sẻ → Thêm vào màn hình chính** (Safari).
 3. Mở app từ màn hình chính như một ứng dụng bình thường. Dùng offline vẫn được.
 
