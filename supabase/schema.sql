@@ -24,6 +24,8 @@ create table if not exists public.schedules (
   teacher_id text not null references public.teachers(id),
   thu integer not null check (thu between 2 and 7),
   tiet integer not null check (tiet between 1 and 10),
+  buoi text not null default 'Sáng',
+  tiet_trong_buoi integer not null default 0,
   lop text not null,
   mon text not null,
   unique (period_id, teacher_id, thu, tiet)
@@ -35,7 +37,11 @@ create table if not exists public.assignments (
   teacher_id text not null references public.teachers(id),
   mon text not null,
   tiet_chuan integer not null check (tiet_chuan >= 0),
-  hoc_ky integer not null check (hoc_ky in (1, 2))
+  hoc_ky integer not null check (hoc_ky in (1, 2)),
+  classes text[] not null default '{}',
+  so_lop integer not null default 0,
+  so_tiet_tuan integer not null default 0,
+  phu_cap_cn integer not null default 0
 );
 
 create table if not exists public.teacher_locks (
@@ -56,6 +62,8 @@ create table if not exists public.substitutions (
   ngay date not null,
   thu integer not null check (thu between 2 and 7),
   tiet integer not null check (tiet between 1 and 10),
+  tiet_trong_buoi integer not null default 0,
+  buoi text not null default 'Sáng',
   lop text not null,
   mon text not null,
   hoc_ky integer not null check (hoc_ky in (1, 2)),
