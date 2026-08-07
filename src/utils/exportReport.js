@@ -231,13 +231,6 @@ export async function exportAssignmentPdf({
   doc.save(filename)
 }
 
-const sortRecordsByTime = (records) =>
-  [...records].sort((a, b) => {
-    const dateDiff = String(a.ngay).localeCompare(String(b.ngay))
-    if (dateDiff !== 0) return dateDiff
-    return (Number(a.tiet_trong_buoi) || a.tiet) - (Number(b.tiet_trong_buoi) || b.tiet)
-  })
-
 export async function exportAssignmentsByAbsentTeacher({
   records,
   teachers = [],
@@ -257,12 +250,6 @@ export async function exportAssignmentsByAbsentTeacher({
   })
 
   for (const [teacherId, teacherRecords] of groupedByTeacher) {
-    const days = new Map()
-    teacherRecords.forEach((row) => {
-      if (!days.has(row.ngay)) days.set(row.ngay, [])
-      days.get(row.ngay).push(row)
-    })
-
     const teacher = teachers.find((item) => item.id === teacherId)
     const doc = new jsPDF({ orientation: 'landscape' })
     const vi = await loadVietnameseFonts(doc)
@@ -270,43 +257,64 @@ export async function exportAssignmentsByAbsentTeacher({
     const fix = (value) => (vi ? value : stripDiacritics(value))
     const cleanName = stripDiacritics(teacher?.name || teacherId).replace(/\s+/g, '-')
 
-    let first = true
-    for (const [ngay, dayRecords] of days) {
-      if (!first) doc.addPage()
-      first = false
-      doc.setFont(fontName, 'bold')
-      doc.setFontSize(16)
-      doc.text(fix('PHIẾU PHÂN CÔNG DẠY THẾ'), 14, 16)
-      doc.setFont(fontName, 'normal')
-      doc.setFontSize(10)
-      doc.text(fix(`Ngày: ${ngay}`), 14, 23)
-      doc.text(fix(`Giáo viên vắng: ${teacher?.name || teacherId}`), 14, 29)
-      autoTable(doc, {
-        startY: 35,
-        head: [['Buổi', 'Tiết', 'Lớp', 'Môn', 'GV dạy thế', 'Ghi chú']],
-        body: sortRecordsByTime(dayRecords).map((row) => {
-          const lesson = describeLesson(row)
-          return [
-            fix(lesson.buoi),
-            lesson.tietTrongBuoi,
-            row.lop,
-            fix(row.mon),
-            fix(teacherName(teachers, row.the_teacher_id)),
-            fix(row.ghi_chu || ''),
-          ]
-        }),
-        theme: 'grid',
-        headStyles: vi ? headStyles : fallbackHeadStyles,
-        styles: vi ? bodyStyles : fallbackBodyStyles,
-      })
-      const tableEndY = doc.lastAutoTable?.finalY || 60
-      const pageHeight = doc.internal.pageSize.getHeight()
-      const signatureY = Math.min(pageHeight - 55, tableEndY + 20)
-      addSignatureBlock(doc, signatureY, {
-        fullName: nguoiKy,
-        fallback: !vi,
-      })
-    }
+    doc.setFont(fontName, 'bold')
+    doc.setFontSize(16)
+    doc.text(fix('PHIẾU PHÂN CÔNG DẠY THẾ'), 14, 16)
+    doc.setFont(fontName, 'normal')
+    doc.setFontSize(10)
+    doc.text(fix(`Giáo viên vắng: ${teacher?.name || teacherId}`), 14, 23)
+
+    const sorted = sortRecordsByWeekday(teacherRecords)
+    autoTable(doc, {
+      startY: 29,
+      head: [['Ngày', 'Buổi', 'Tiết', 'Lớp', 'Môn', 'GV dạy thế', 'Ghi chú']],
+      body: sorted.map((row) => {
+        const lesson = describeLesson(row)
+        return [
+          `${row.ngay} (${fix(weekdayLabel(row.ngay))})`,
+          fix(lesson.buoi),
+          lesson.tietTrongBuoi,
+          row.lop,
+          fix(row.mon),
+          fix(teacherName(teachers, row.the_teacher_id)),
+          fix(row.ghi_chu || ''),
+        ]
+      }),
+      theme: 'grid',
+      headStyles: vi ? headStyles : fallbackHeadStyles,
+      styles: vi ? bodyStyles : fallbackBodyStyles,
+      columnStyles: {
+        0: { cellWidth: 46 },
+      },
+    })
+
+    const tableEndY = doc.lastAutoTable?.finalY || 60
+    const pageHeight = doc.internal.pageSize.getHeight()
+    const signatureY = Math.min(pageHeight - 55, tableEndY + 20)
+    addSignatureBlock(doc, signatureY, {
+      fullName: nguoiKy,
+      fallback: !vi,
+    })
     doc.save(`${filenamePrefix}-${cleanName}.pdf`)
   }
+}
+
+const WEEKDAY_ORDER = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 }
+const VIETNAMESE_WEEKDAY = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7']
+
+function weekdayLabel(dateString) {
+  const date = new Date(`${String(dateString).slice(0, 10)}T12:00:00`)
+  return VIETNAMESE_WEEKDAY[date.getDay()] || 'Thứ 2'
+}
+
+function sortRecordsByWeekday(records) {
+  return [...records].sort((a, b) => {
+    const dayA = new Date(`${String(a.ngay).slice(0, 10)}T12:00:00`).getDay()
+    const dayB = new Date(`${String(b.ngay).slice(0, 10)}T12:00:00`).getDay()
+    const weekdayDiff = WEEKDAY_ORDER[dayA] - WEEKDAY_ORDER[dayB]
+    if (weekdayDiff !== 0) return weekdayDiff
+    const dateDiff = String(a.ngay).localeCompare(String(b.ngay))
+    if (dateDiff !== 0) return dateDiff
+    return (Number(a.tiet_trong_buoi) || a.tiet) - (Number(b.tiet_trong_buoi) || b.tiet)
+  })
 }
