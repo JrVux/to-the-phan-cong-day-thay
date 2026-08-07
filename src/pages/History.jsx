@@ -68,7 +68,7 @@ export default function History() {
 
       <section>
         <div className="mb-3 flex items-end justify-between gap-3">
-          <div><h2 className="text-lg font-black text-ink">Tổng hợp cân bằng tiết chuẩn</h2><p className="text-xs text-slate-500">Tiết/tuần = TKB + phụ cấp chủ nhiệm (+4). Thừa/Thiếu = tiết/tuần + thế so với chuẩn, cộng dồn theo đợt.</p></div>
+          <div><h2 className="text-lg font-black text-ink">Tổng hợp cân bằng tiết chuẩn</h2><p className="text-xs text-slate-500">Tiết/tuần = TKB + phụ cấp chủ nhiệm (+4). Thừa/Thiếu = tổng (tiết/tuần − chuẩn × số tuần + thế) cộng dồn theo đợt.</p></div>
           <Badge variant="primary">{summary.length} GV</Badge>
         </div>
         <Report summary={summary} />

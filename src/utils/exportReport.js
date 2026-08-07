@@ -5,6 +5,7 @@ export function buildSummaryExportRows(summary) {
     'Tiết chuẩn': row.tiet_chuan,
     'Tiết/tuần': row.so_tiet_tuan,
     'Tiết thế': row.tiet_the,
+    'Số tuần qua': row.so_tuan,
     'Thừa/Thiếu': row.thua_thieu,
   }))
 }

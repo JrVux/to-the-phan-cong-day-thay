@@ -11,7 +11,7 @@ export default function Report({ summary }) {
         <div className="max-h-[70vh] overflow-auto">
           <table className="w-full min-w-[520px] text-left text-sm">
             <thead className="bg-slate-900 text-xs uppercase tracking-wide text-white">
-              <tr><th className="sticky left-0 top-0 z-30 bg-slate-900 px-4 py-3">Giáo viên</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Chuẩn</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Tiết/tuần</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Thế</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Thừa/Thiếu</th></tr>
+              <tr><th className="sticky left-0 top-0 z-30 bg-slate-900 px-4 py-3">Giáo viên</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Chuẩn</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Tiết/tuần</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Thế</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Số tuần qua</th><th className="sticky top-0 z-20 bg-slate-900 px-3 py-3 text-center">Thừa/Thiếu</th></tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {summary.map((row) => (
@@ -20,6 +20,7 @@ export default function Report({ summary }) {
                   <td className="px-3 py-3 text-center">{row.tiet_chuan}</td>
                   <td className="px-3 py-3 text-center">{row.so_tiet_tuan}</td>
                   <td className="px-3 py-3 text-center font-bold text-primary">{row.tiet_the}</td>
+                  <td className="px-3 py-3 text-center text-slate-500">{row.so_tuan}</td>
                   <td className={`px-3 py-3 text-center font-bold ${row.thua_thieu > 0 ? 'text-amber-600' : row.thua_thieu < 0 ? 'text-ink' : 'text-slate-500'}`}>
                     {row.thua_thieu === 0 ? 'Đủ chuẩn' : row.thua_thieu > 0 ? `Thừa ${row.thua_thieu}` : `Thiếu ${-row.thua_thieu}`}
                   </td>

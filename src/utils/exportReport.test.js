@@ -4,7 +4,7 @@ import { buildHistoryExportRows, buildSummaryExportRows } from './exportReport'
 describe('report export mapping', () => {
   it('ánh xạ tổng hợp đủ cột nghiệp vụ', () => {
     const rows = buildSummaryExportRows([
-      { name: 'Lê Văn Cường', mon_day: ['Toán', 'Tin'], tiet_chuan: 17, so_tiet_tuan: 18, tiet_the: 4, tong: 22, thua_thieu: 23 },
+      { name: 'Lê Văn Cường', mon_day: ['Toán', 'Tin'], tiet_chuan: 17, so_tiet_tuan: 18, tiet_the: 4, so_tuan: 3, tong: 22, thua_thieu: 23 },
     ])
     expect(rows[0]).toEqual({
       'Giáo viên': 'Lê Văn Cường',
@@ -12,6 +12,7 @@ describe('report export mapping', () => {
       'Tiết chuẩn': 17,
       'Tiết/tuần': 18,
       'Tiết thế': 4,
+      'Số tuần qua': 3,
       'Thừa/Thiếu': 23,
     })
   })

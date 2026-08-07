@@ -26,8 +26,10 @@ export function buildTeacherSummary(filters = {}) {
       const tietThe = substitutions.filter((row) => row.the_teacher_id === teacher.id).length
 
       let thuaThieu = 0
+      let soTuan = 0
       for (const period of periods) {
         const weeks = countWeeks(period.tu_ngay, period.den_ngay)
+        soTuan += weeks
         const periodAssignment = teacherAssignments.find((row) => row.period_id === period.id)
         const periodChuan = computeEffectiveTietChuan(periodAssignment?.tiet_chuan ?? tietChuanGoc, teacher.vai_tro)
         const periodWeekly = schedules.filter(
@@ -53,6 +55,7 @@ export function buildTeacherSummary(filters = {}) {
         tiet_chuan: tietChuan,
         so_tiet_tuan: soTietTuan,
         tiet_the: tietThe,
+        so_tuan: soTuan,
         tong: soTietTuan + tietThe,
         thua_thieu: thuaThieu,
       }
