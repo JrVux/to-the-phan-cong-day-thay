@@ -9,17 +9,19 @@ describe('CandidateCard', () => {
       <CandidateCard
         rank={1}
         name="Trần Thị Bình"
-        thua_gio_hk={2}
+        balance={3}
         lien_ke
         tiet_ngay_do={[2, 3]}
         finalScore={0.87}
-        ly_do="Ít thừa giờ nhất, có tiết liền kề"
+        ly_do="Chưa cân bằng tiết chuẩn, có tiết liền kề"
         onSelect={onSelect}
       />,
     )
 
     expect(screen.getByText('Đề xuất')).toBeInTheDocument()
     expect(screen.getByText('Trần Thị Bình')).toBeInTheDocument()
+    expect(screen.getByText(/Thiếu 3 tiết chuẩn/)).toBeInTheDocument()
+    expect(screen.getByText(/Đang dạy tiết Sáng T2, Sáng T3/i)).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Chọn Trần Thị Bình/i }))
     expect(onSelect).toHaveBeenCalledOnce()
   })

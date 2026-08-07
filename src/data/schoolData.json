@@ -60,17 +60,25 @@
       "id": "gv_08",
       "name": "Trần Thị Thanh Hương",
       "mon_day": [
-        "Tin học"
+        "Tin học",
+        "HĐ trải nghiệm, hướng nghiệp"
       ],
-      "active": true
+      "active": true,
+      "vai_tro": [
+        "chu_nhiem"
+      ]
     },
     {
       "id": "gv_09",
       "name": "Lưu Tấn Khang",
       "mon_day": [
-        "Tin học"
+        "Tin học",
+        "HĐ trải nghiệm, hướng nghiệp"
       ],
-      "active": true
+      "active": true,
+      "vai_tro": [
+        "chu_nhiem"
+      ]
     },
     {
       "id": "gv_10",
@@ -108,17 +116,25 @@
       "id": "gv_14",
       "name": "Trần Ngọc Thu",
       "mon_day": [
-        "Tin học"
+        "Tin học",
+        "HĐ trải nghiệm, hướng nghiệp"
       ],
-      "active": true
+      "active": true,
+      "vai_tro": [
+        "chu_nhiem"
+      ]
     },
     {
       "id": "gv_15",
       "name": "Nguyễn Thanh Tuyền",
       "mon_day": [
-        "Tin học"
+        "Tin học",
+        "HĐ trải nghiệm, hướng nghiệp"
       ],
-      "active": true
+      "active": true,
+      "vai_tro": [
+        "chu_nhiem"
+      ]
     },
     {
       "id": "gv_16",
@@ -135,7 +151,10 @@
         "Tin học",
         "HĐ trải nghiệm, hướng nghiệp"
       ],
-      "active": true
+      "active": true,
+      "vai_tro": [
+        "chu_nhiem"
+      ]
     },
     {
       "id": "gv_18",
@@ -168,7 +187,10 @@
         "Tin học",
         "HĐ trải nghiệm, hướng nghiệp"
       ],
-      "active": true
+      "active": true,
+      "vai_tro": [
+        "chu_nhiem"
+      ]
     },
     {
       "id": "gv_22",
@@ -4165,6 +4187,72 @@
       "lop": "10C3",
       "mon": "GDQP AN",
       "id": "tkb_1233"
+    },
+    {
+      "id": "tkb_chao_co_09",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_09",
+      "thu": 2,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "12D3",
+      "mon": "HĐ trải nghiệm, hướng nghiệp"
+    },
+    {
+      "id": "tkb_chao_co_15",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_15",
+      "thu": 2,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "12D5",
+      "mon": "HĐ trải nghiệm, hướng nghiệp"
+    },
+    {
+      "id": "tkb_chao_co_17",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_17",
+      "thu": 2,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "12B5",
+      "mon": "HĐ trải nghiệm, hướng nghiệp"
+    },
+    {
+      "id": "tkb_chao_co_21",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_21",
+      "thu": 2,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "12C4",
+      "mon": "HĐ trải nghiệm, hướng nghiệp"
+    },
+    {
+      "id": "tkb_chao_co_14",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_14",
+      "thu": 2,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "12D2",
+      "mon": "HĐ trải nghiệm, hướng nghiệp"
+    },
+    {
+      "id": "tkb_chao_co_08",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_08",
+      "thu": 2,
+      "tiet": 1,
+      "tiet_trong_buoi": 1,
+      "buoi": "Sáng",
+      "lop": "12C5",
+      "mon": "HĐ trải nghiệm, hướng nghiệp"
     }
   ],
   "assignments": [
@@ -4676,6 +4764,58 @@
       "mon": "HĐ trải nghiệm, hướng nghiệp",
       "classes": [
         "12C4"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 1,
+      "so_tiet_tuan": 1
+    },
+    {
+      "id": "pc_gv_09_hdtn_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_09",
+      "mon": "HĐ trải nghiệm, hướng nghiệp",
+      "classes": [
+        "12D3"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 1,
+      "so_tiet_tuan": 1
+    },
+    {
+      "id": "pc_gv_15_hdtn_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_15",
+      "mon": "HĐ trải nghiệm, hướng nghiệp",
+      "classes": [
+        "12D5"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 1,
+      "so_tiet_tuan": 1
+    },
+    {
+      "id": "pc_gv_14_hdtn_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_14",
+      "mon": "HĐ trải nghiệm, hướng nghiệp",
+      "classes": [
+        "12D2"
+      ],
+      "tiet_chuan": 17,
+      "hoc_ky": 2,
+      "so_lop": 1,
+      "so_tiet_tuan": 1
+    },
+    {
+      "id": "pc_gv_08_hdtn_01",
+      "period_id": "hk2_2025_2026",
+      "teacher_id": "gv_08",
+      "mon": "HĐ trải nghiệm, hướng nghiệp",
+      "classes": [
+        "12C5"
       ],
       "tiet_chuan": 17,
       "hoc_ky": 2,

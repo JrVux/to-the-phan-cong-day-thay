@@ -1,8 +1,15 @@
 import { db } from './db'
+import { computeEffectiveTietChuan, computePhuCapChuNhiem } from './roleService'
 import { listSubstitutions } from './substitutionService'
+import { countWeeks } from '../engine/scoringEngine'
 
 export function buildTeacherSummary(filters = {}) {
   const teachers = db.getAll('teachers')
+  const periods = db
+    .getAll('schedule_periods')
+    .filter((period) => !filters.hoc_ky || period.hoc_ky === Number(filters.hoc_ky))
+    .sort((a, b) => a.tu_ngay.localeCompare(b.tu_ngay))
+  const schedules = db.getAll('schedules')
   const assignments = db
     .getAll('assignments')
     .filter((row) => !filters.hoc_ky || row.hoc_ky === Number(filters.hoc_ky))
@@ -12,21 +19,45 @@ export function buildTeacherSummary(filters = {}) {
     .filter((teacher) => teacher.active)
     .map((teacher) => {
       const teacherAssignments = assignments.filter((row) => row.teacher_id === teacher.id)
-      const tietChuan = teacherAssignments.length
+      const tietChuanGoc = teacherAssignments.length
         ? Math.max(...teacherAssignments.map((row) => Number(row.tiet_chuan) || 0))
-        : 0
+        : 17
+      const tietChuan = computeEffectiveTietChuan(tietChuanGoc, teacher.vai_tro)
       const tietThe = substitutions.filter((row) => row.the_teacher_id === teacher.id).length
+
+      let thuaThieu = 0
+      for (const period of periods) {
+        const weeks = countWeeks(period.tu_ngay, period.den_ngay)
+        const periodAssignment = teacherAssignments.find((row) => row.period_id === period.id)
+        const periodChuan = computeEffectiveTietChuan(periodAssignment?.tiet_chuan ?? tietChuanGoc, teacher.vai_tro)
+        const periodWeekly = schedules.filter(
+          (lesson) => lesson.teacher_id === teacher.id && lesson.period_id === period.id,
+        ).length + computePhuCapChuNhiem(teacher.vai_tro)
+        const periodThe = substitutions.filter(
+          (row) => row.the_teacher_id === teacher.id && row.period_id === period.id,
+        ).length
+        thuaThieu += (periodWeekly - periodChuan) * weeks + periodThe
+      }
+
+      const latestPeriod = periods[periods.length - 1]
+      const soTietTuan = latestPeriod
+        ? schedules.filter(
+            (lesson) => lesson.teacher_id === teacher.id && lesson.period_id === latestPeriod.id,
+          ).length + computePhuCapChuNhiem(teacher.vai_tro)
+        : 0
+
       return {
         teacher_id: teacher.id,
         name: teacher.name,
         mon_day: teacher.mon_day,
         tiet_chuan: tietChuan,
+        so_tiet_tuan: soTietTuan,
         tiet_the: tietThe,
-        tong: tietChuan + tietThe,
-        thua_thieu: tietThe,
+        tong: soTietTuan + tietThe,
+        thua_thieu: thuaThieu,
       }
     })
-    .sort((a, b) => a.tiet_the - b.tiet_the || a.name.localeCompare(b.name, 'vi'))
+    .sort((a, b) => a.thua_thieu - b.thua_thieu || a.name.localeCompare(b.name, 'vi'))
 }
 
 export function getDashboardStats(date = new Date()) {

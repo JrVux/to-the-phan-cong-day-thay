@@ -1,4 +1,5 @@
 import { db, makeId } from './db'
+import { computeEffectiveTietChuan, computePhuCapChuNhiem } from './roleService'
 
 const asDateOnly = (value) => {
   if (!value) return ''
@@ -52,6 +53,32 @@ export function getSchedulesForTeacherDate(teacherId, date, periodId) {
   return listSchedules(periodId).filter((row) => row.teacher_id === teacherId && row.thu === thu)
 }
 
+export function describeTiet({ tiet, tiet_trong_buoi, buoi } = {}) {
+  const soTiet = Number(tiet) || 0
+  const session = buoi || (soTiet > 5 ? 'Chiều' : 'Sáng')
+  const trongBuoi = Number(tiet_trong_buoi) || (session === 'Chiều' ? soTiet - 5 : soTiet)
+  return {
+    buoi: session,
+    tiet_trong_buoi: trongBuoi,
+    label: `${session} T${trongBuoi}`,
+  }
+}
+
+export function compactDayTKB(lessons = []) {
+  return lessons
+    .filter((lesson) => !isChaoCoPeriod(lesson))
+    .map((lesson) => ({ ...describeTiet(lesson), mon: lesson.mon, lop: lesson.lop }))
+    .sort((a, b) => a.buoi.localeCompare(b.buoi) || a.tiet_trong_buoi - b.tiet_trong_buoi)
+}
+
+export function isChaoCoPeriod({ thu, tiet, buoi, tiet_trong_buoi } = {}) {
+  if (Number(thu) !== 2) return false
+  const soTiet = Number(tiet) || 0
+  const session = buoi || (soTiet > 5 ? 'Chiều' : 'Sáng')
+  const trongBuoi = Number(tiet_trong_buoi) || (session === 'Chiều' ? soTiet - 5 : soTiet)
+  return (session === 'Sáng' && trongBuoi === 1) || (session === 'Chiều' && trongBuoi === 5)
+}
+
 export function saveSchedule(schedule) {
   const thu = Number(schedule.thu)
   const tiet = Number(schedule.tiet)
@@ -97,6 +124,7 @@ export function saveAssignment(assignment) {
     classes: assignment.classes || [],
     so_lop: Number(assignment.so_lop) || 0,
     so_tiet_tuan: Number(assignment.so_tiet_tuan) || 0,
+    phu_cap_cn: Number(assignment.phu_cap_cn) || 0,
   }
   return assignment.id ? db.update('assignments', assignment.id, record) : db.insert('assignments', record)
 }
@@ -122,15 +150,23 @@ export function computeTeacherWorkload(periodId, scheduleRows) {
     .map(([teacherId, data]) => {
       const teacher = teachers.find((t) => t.id === teacherId)
       const assignment = assignments.find((a) => a.teacher_id === teacherId)
-      const tietChuan = Number(assignment?.tiet_chuan) || 0
+      const vaiTro = teacher?.vai_tro || []
+      const tietChuanGoc = Number(assignment?.tiet_chuan) || 17
+      const phuCapCN = computePhuCapChuNhiem(vaiTro)
+      const soTietTuan = data.total_tiet + phuCapCN
+      const tietChuan = computeEffectiveTietChuan(tietChuanGoc, vaiTro)
       return {
         teacher_id: teacherId,
         teacher_name: teacher?.name || teacherId,
         mon: [...data.mons].join(', '),
         so_lop: data.classes.length,
-        so_tiet_tuan: data.total_tiet,
+        so_tiet_tuan: soTietTuan,
+        so_tiet_cb: data.total_tiet,
+        phu_cap_cn: phuCapCN,
         tiet_chuan: tietChuan,
-        thua_thieu: data.total_tiet - tietChuan,
+        tiet_chuan_goc: tietChuanGoc,
+        vai_tro: vaiTro,
+        thua_thieu: soTietTuan - tietChuan,
         classes: data.classes,
       }
     })
@@ -143,7 +179,7 @@ export function updateAssignmentsFromSchedules(periodId) {
   if (!period) return []
 
   return workload
-    .filter((item) => item.so_tiet_tuan > 0)
+    .filter((item) => item.so_tiet_cb > 0)
     .map((item) => {
       const existing = listAssignments(periodId).find((a) => a.teacher_id === item.teacher_id)
       return saveAssignment({
@@ -155,7 +191,8 @@ export function updateAssignmentsFromSchedules(periodId) {
         hoc_ky: period.hoc_ky,
         classes: item.classes,
         so_lop: item.so_lop,
-        so_tiet_tuan: item.so_tiet_tuan,
+        so_tiet_tuan: item.so_tiet_cb,
+        phu_cap_cn: item.phu_cap_cn,
       })
     })
 }

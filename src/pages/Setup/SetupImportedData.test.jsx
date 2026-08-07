@@ -26,7 +26,7 @@ describe('giao diện dữ liệu chuyên môn đã nhập', () => {
 
     render(<SetupSchedule />)
 
-    expect(screen.getByText('360 dòng')).toBeInTheDocument()
+    expect(screen.getByText('366 dòng')).toBeInTheDocument()
     expect(screen.getAllByText('Chiều').length).toBeGreaterThan(0)
   })
 })

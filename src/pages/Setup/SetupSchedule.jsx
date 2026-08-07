@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
-import { FileSpreadsheet, Pencil, Plus, Trash2, Upload } from 'lucide-react'
+import { FileSpreadsheet, Plus, Upload } from 'lucide-react'
 import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
 import Modal from '../../components/ui/Modal'
-import { computeTeacherWorkload, deleteSchedule, saveSchedule, saveSchedules, updateAssignmentsFromSchedules } from '../../services/scheduleService'
+import { computeTeacherWorkload, saveSchedule, saveSchedules, updateAssignmentsFromSchedules } from '../../services/scheduleService'
+import { getRoles } from '../../services/roleService'
 import { useAppStore } from '../../stores/appStore'
 import { parseScheduleFile } from '../../utils/scheduleImport'
 
@@ -17,26 +18,46 @@ function WorkloadTable({ data, title = 'Phân tích khối lượng' }) {
         <h3 className="font-black text-ink">{title}</h3>
         <Badge variant="primary">{data.length} GV</Badge>
       </div>
-      <div className="overflow-x-auto rounded-xl border border-slate-200">
-        <table className="w-full min-w-[560px] text-left text-sm">
+      <div className="max-h-[70vh] overflow-auto rounded-xl border border-slate-200">
+        <table className="w-full min-w-[720px] text-left text-sm">
           <thead className="bg-slate-900 text-xs uppercase text-white">
             <tr>
-              <th className="px-3 py-2.5">Giáo viên</th>
-              <th className="px-3 py-2.5 text-center">Môn</th>
-              <th className="px-3 py-2.5 text-center">Số lớp</th>
-              <th className="px-3 py-2.5 text-center">Tiết/tuần</th>
-              <th className="px-3 py-2.5 text-center">Tiết chuẩn</th>
-              <th className="px-3 py-2.5 text-center">Thừa/Thiếu</th>
+              <th className="sticky left-0 top-0 z-30 bg-slate-900 px-3 py-2.5">Giáo viên</th>
+              <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Môn</th>
+              <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Số lớp</th>
+              <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Tiết/TKB</th>
+              <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Phụ cấp CN</th>
+              <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Tổng tiết</th>
+              <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Tiết chuẩn</th>
+              <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Thừa/Thiếu</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
             {data.map((row) => (
               <tr key={row.teacher_id} className="hover:bg-slate-50">
-                <td className="px-3 py-2 font-semibold text-ink">{row.teacher_name}</td>
+                <td className="sticky left-0 z-10 bg-white px-3 py-2">
+                  <p className="font-semibold text-ink">{row.teacher_name}</p>
+                  {row.vai_tro?.length > 0 && (
+                    <p className="mt-0.5 space-x-1">
+                      {getRoles(row.vai_tro).map((role) => (
+                        <Badge key={role.id} variant={role.id === 'chu_nhiem' ? 'warning' : 'primary'}>{role.label}</Badge>
+                      ))}
+                    </p>
+                  )}
+                </td>
                 <td className="px-3 py-2 text-center text-xs text-slate-500">{row.mon}</td>
                 <td className="px-3 py-2 text-center">{row.so_lop}</td>
-                <td className="px-3 py-2 text-center">{row.so_tiet_tuan}</td>
-                <td className="px-3 py-2 text-center">{row.tiet_chuan}</td>
+                <td className="px-3 py-2 text-center">{row.so_tiet_cb}</td>
+                <td className="px-3 py-2 text-center">
+                  {row.phu_cap_cn > 0 ? <Badge variant="warning">+{row.phu_cap_cn}</Badge> : <span className="text-slate-300">0</span>}
+                </td>
+                <td className="px-3 py-2 text-center font-black text-ink">{row.so_tiet_tuan}</td>
+                <td className="px-3 py-2 text-center">
+                  {row.tiet_chuan}
+                  {row.tiet_chuan !== row.tiet_chuan_goc && (
+                    <span className="block text-[10px] text-slate-400">gốc {row.tiet_chuan_goc}</span>
+                  )}
+                </td>
                 <td className={`px-3 py-2 text-center font-bold ${row.thua_thieu > 0 ? 'text-success' : row.thua_thieu < 0 ? 'text-danger' : 'text-slate-400'}`}>
                   {row.thua_thieu > 0 ? '+' : ''}{row.thua_thieu}
                 </td>
@@ -50,7 +71,87 @@ function WorkloadTable({ data, title = 'Phân tích khối lượng' }) {
         <span className="text-slate-300">|</span>
         <span>Tổng thiếu: <strong className="text-danger">{totalThieu}</strong></span>
       </div>
+      <p className="text-xs text-slate-400">Phụ cấp chủ nhiệm +4 tiết/tuần cho GVCN. Tiết chuẩn hiệu lực đã trừ kiêm nhiệm (Tổ Trưởng −3, Tổ phó −1, TTND −2, TTCĐ −3, TPCĐ −1, KTPMTin −2; Phó BTĐ đặt 8,5, Bí thư Đoàn đặt 2,5).</p>
     </Card>
+  )
+}
+
+function TimetableGrid({ rows, teachers }) {
+  const days = [2, 3, 4, 5, 6, 7]
+  const sessions = ['Sáng', 'Chiều']
+
+  const grid = useMemo(() => {
+    const map = new Map()
+    rows.forEach((row) => {
+      const buoi = row.buoi || (row.tiet > 5 ? 'Chiều' : 'Sáng')
+      const key = `${row.teacher_id}\u0000${row.thu}\u0000${buoi}`
+      const cell = map.get(key) || new Map()
+      cell.set(row.tiet_trong_buoi || row.tiet, row.lop)
+      map.set(key, cell)
+    })
+    return map
+  }, [rows])
+
+  const totals = useMemo(() => {
+    const map = new Map()
+    rows.forEach((row) => map.set(row.teacher_id, (map.get(row.teacher_id) || 0) + 1))
+    return map
+  }, [rows])
+
+  const teacherIds = useMemo(() => {
+    const ids = new Set(rows.map((row) => row.teacher_id))
+    return [...ids].map((id) => {
+      const teacher = teachers.find((item) => item.id === id)
+      return { id, name: teacher?.name || id, mons: [...new Set(rows.filter((row) => row.teacher_id === id).map((row) => row.mon))].join(', ') }
+    }).sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+  }, [rows, teachers])
+
+  return (
+    <div className="max-h-[70vh] overflow-auto rounded-xl border border-slate-200">
+      <table className="w-full min-w-[900px] text-left text-sm">
+        <thead>
+          <tr className="bg-slate-900 text-xs uppercase text-white">
+            <th rowSpan={2} className="sticky left-0 top-0 z-30 bg-slate-900 px-3 py-2.5">Giáo viên</th>
+            {days.map((day) => (
+              <th key={day} colSpan={2} className="sticky top-0 z-20 bg-slate-900 border-l border-slate-700 px-3 py-2.5 text-center">Thứ {day}</th>
+            ))}
+            <th rowSpan={2} className="sticky top-0 z-20 bg-slate-900 border-l border-slate-700 px-3 py-2.5 text-center">Tổng tiết</th>
+          </tr>
+          <tr className="bg-slate-800 text-xs uppercase text-white">
+            {days.map((day) => sessions.map((buoi) => (
+              <th key={`${day}-${buoi}`} className="sticky top-9 z-20 bg-slate-800 border-l border-slate-700 px-2 py-2 text-center font-medium">{buoi}</th>
+            )))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-slate-100">
+          {teacherIds.map((teacher) => (
+            <tr key={teacher.id} className="align-top hover:bg-slate-50">
+              <td className="sticky left-0 z-10 bg-white px-3 py-2">
+                <p className="whitespace-nowrap font-semibold text-ink">{teacher.name}</p>
+                <p className="text-[10px] text-slate-400">{teacher.mons}</p>
+              </td>
+              {days.map((day) => sessions.map((buoi) => {
+                const cell = grid.get(`${teacher.id}\u0000${day}\u0000${buoi}`)
+                return (
+                  <td key={`${day}-${buoi}`} className="border-l border-slate-100 px-1 py-1">
+                    {[1, 2, 3, 4, 5].map((tiet) => {
+                      const lop = cell?.get(tiet)
+                      return (
+                        <div key={tiet} className={`flex items-center gap-1 rounded px-1 py-0.5 text-xs ${lop ? 'hover:bg-blue-50' : ''}`}>
+                          <span className="w-4 shrink-0 text-center text-[10px] font-bold text-slate-400">T{tiet}</span>
+                          {lop ? <span className="truncate font-bold text-ink">{lop}</span> : <span className="text-slate-200">·</span>}
+                        </div>
+                      )
+                    })}
+                  </td>
+                )
+              }))}
+              <td className="border-l border-slate-100 px-3 py-2 text-center text-base font-black text-primary">{totals.get(teacher.id) || 0}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
@@ -115,7 +216,7 @@ export default function SetupSchedule() {
       <Card className="space-y-4">
         <div>
           <h2 className="font-black text-ink">Thời khóa biểu theo đợt</h2>
-          <p className="mt-1 text-xs text-slate-500">Nhập tay hoặc import bảng tính.</p>
+          <p className="mt-1 text-xs text-slate-500">Nhập tay hoặc import bảng tính. Tự nhận diện file mẫu TKB theo môn (Tin học, Thể dục, GDQP) dạng lưới THỨ/BUỔI/TIẾT + cột giáo viên.</p>
         </div>
         <select value={periodId} onChange={(event) => setPeriodId(event.target.value)} className="min-h-11 w-full rounded-xl border border-slate-300 px-3">
           {store.periods.map((period) => <option key={period.id} value={period.id}>{period.ten_dot}</option>)}
@@ -166,29 +267,8 @@ export default function SetupSchedule() {
           <h3 className="font-black text-ink">Lưới TKB</h3>
           <Badge variant="primary">{rows.length} dòng</Badge>
         </div>
-        <div className="space-y-2">
-          {rows.map((row) => {
-            const teacher = store.teachers.find((item) => item.id === row.teacher_id)
-            return (
-              <Card key={row.id} className="grid grid-cols-[auto_1fr_auto] items-center gap-3 p-3">
-                <div className="rounded-xl bg-blue-100 px-3 py-2 text-center text-primary">
-                  <p className="text-[10px] font-bold">THỨ {row.thu}</p><p className="font-black">T{row.tiet}</p>
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="truncate text-sm font-bold">{teacher?.name}</p>
-                    <Badge variant={row.buoi === 'Chiều' ? 'warning' : 'neutral'}>{row.buoi || (row.tiet > 5 ? 'Chiều' : 'Sáng')}</Badge>
-                  </div>
-                  <p className="mt-1 text-xs text-slate-500">{row.mon} • {row.lop}</p>
-                </div>
-                <div className="flex">
-                  <Button variant="ghost" className="h-9 min-h-9 px-2" onClick={() => setEditing({ ...row })}><Pencil size={16} /></Button>
-                  <Button variant="ghost" className="h-9 min-h-9 px-2 text-danger" onClick={() => { deleteSchedule(row.id); store.refresh() }}><Trash2 size={16} /></Button>
-                </div>
-              </Card>
-            )
-          })}
-        </div>
+        <TimetableGrid rows={rows} teachers={store.teachers} />
+        <p className="mt-2 text-xs text-slate-400">Mỗi ô hiện các tiết dạy từ 1–5 trong buổi hôm đó kèm lớp. Cột cuối là tổng số tiết dạy trong đợt.</p>
       </div>
 
       {existingWorkload.length > 0 && (

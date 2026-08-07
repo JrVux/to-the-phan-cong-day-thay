@@ -171,6 +171,8 @@ scoreCandidates({
   schedules,         // TKB đợt hiện tại
   substitutions,     // Lịch sử thế từ đầu năm
   locks,             // Danh sách ngoại lệ hiện hành
+  assignments,       // Phân công chuyên môn (tiết chuẩn, số tiết/tuần)
+  periods,           // Các đợt TKB (để cộng dồn thừa/thiếu)
 })
 ```
 
@@ -180,22 +182,48 @@ scoreCandidates({
 ❌ Loại: GV không dạy môn cần thế (mon_day không chứa môn đó)
 ❌ Loại: GV đang bị khóa ngoại lệ trong tuần đó (teacher_locks)
 ❌ Loại: GV đã có tiết dạy chính thức vào đúng (thu, tiet) đó trong TKB
+❌ Loại: GV đã thế ≥ 3 tiết trong chính ngày cần thế (quy định tối đa 3 tiết thế/GV/ngày)
+❌ Loại: GV có tổng tiết (dạy TKB + thế) trong ngày ≥ 6 (quy định tối đa 6 tiết dạy + thế/GV/ngày)
+```
+
+### 5.2b Bước 1.5 — Cân bằng tiết chuẩn của ứng viên
+```
+Tiêu chí PHÂN CÔNG DẠY THẾ = GV nào KHÔNG ĐỦ tiết chuẩn sẽ được ưu tiên dạy thay.
+
+Tính cho từng GV:
+  tiet_chuan_effective = computeEffectiveTietChuan(tiet_chuan, vai_tro)
+                         (chu_nhiệm +4, tổ trưởng -3, ... — xem roleService)
+  so_tiet_tuan  = số dòng TKB của GV trong đợt hiện tại
+  the_tuan      = số tiết thế GV nhận trong TUẦN chứa ngày nghỉ
+  week_balance  = tiet_chuan_effective - (so_tiet_tuan + the_tuan)
+                  // > 0 = thiếu tiết chuẩn, < 0 = thừa, = 0 = đủ
+
+Cộng dồn theo ĐỢT (carryover):
+  Sau mỗi đợt TKB, cộng lại toàn bộ thừa/thiếu của đợt đó làm số dư ban đầu
+  cho giai đoạn sau:
+  carryover = Σ (tiet_chuan_đợt - so_tiet_tuan_đợt) * số_tuần_đợt - Σ tiết_thế_đợt
+              (chỉ tính các đợt KẾT THÚC trước đợt hiện tại)
+
+  balance = week_balance + carryover   // > 0 = thiếu, < 0 = thừa, = 0 = đủ
 ```
 
 ### 5.3 Bước 2 — Chấm điểm (điểm CAO = ưu tiên HƠN)
 
-**Tiêu chí A — Thừa giờ tích lũy (trọng số 60%)**
+**Tiêu chí A — Cân bằng tiết chuẩn (trọng số 70%)**
 ```
-thua_gio = số lần GV đã dạy thế trong học kỳ hiện tại
-           (đếm từ bảng substitutions)
+Chuẩn hóa balance theo dải ứng viên trong danh sách:
+  min = min(balance của các ứng viên)
+  range = max(balance) - min
 
-score_A = 1 / (thua_gio + 1)
-// GV chưa thế lần nào: score_A = 1.0
-// GV đã thế 3 lần:     score_A = 0.25
-// GV đã thế 9 lần:     score_A = 0.1
+  score_A = (balance - min) / range   (nếu range > 0)
+          = 0.5                       (nếu mọi ứng viên bằng nhau)
+
+// GV thiếu tiết chuẩn NHIỀU nhất → score_A = 1.0
+// GV thừa tiết chuẩn NHIỀU nhất     → score_A = 0.0
+// Sau khi phân thế, the_tuan +1 làm balance giảm đi → ưu tiên thấp hơn lần sau
 ```
 
-**Tiêu chí B — Tối ưu lịch trong buổi (trọng số 30%)**
+**Tiêu chí B — Tối ưu lịch trong buổi (trọng số 20%)**
 ```
 Kiểm tra TKB của ứng viên vào ngày (thu) cần thế:
 
@@ -221,8 +249,18 @@ score_C = 1 / (the_tuan + 1)
 
 **Tổng điểm:**
 ```js
-finalScore = score_A * 0.6 + score_B * 0.3 + score_C * 0.1
+finalScore = score_A * 0.7 + score_B * 0.2 + score_C * 0.1
 ```
+
+**Thứ tự ưu tiên chọn phân công tối ưu (compareOptimal):**
+```js
+1. balance giảm dần      // Thiếu giờ nhiều nhất → chọn trước
+2. lien_ke đứng trước    // Phân liền kề với tiết đang dạy
+3. ít tiết trong ngày    // tiet_ngay_do.length tăng dần
+4. finalScore giảm dần   // Các ưu tiên đã có (thế tuần, ...) tiếp theo
+5. tên GV (stable)
+```
+Áp dụng cho cả thứ tự danh sách ứng viên và nút "Tự chọn phân công tối ưu nhất".
 
 ### 5.4 Đầu ra
 ```js
@@ -231,24 +269,28 @@ finalScore = score_A * 0.6 + score_B * 0.3 + score_C * 0.1
   {
     teacher: { id, name },
     finalScore: 0.87,
-    thua_gio_hk: 2,          // Đã thế bao nhiêu tiết HK này
+    tiet_chuan: 17,            // Tiết chuẩn hiệu lực
+    so_tiet_tuan: 16,          // Số tiết TKB/tuần
+    the_tuan: 1,               // Số tiết thế trong tuần hiện tại
+    carryover: 3,              // Số dư thừa/thiếu từ các đợt trước
+    balance: 2,                // Thiếu/đủ/thừa tiết chuẩn (thiếu = dương)
+    thua_gio_hk: 2,            // Tổng tiết thế trong học kỳ
+    the_trong_ngay: 1,         // Số tiết thế trong chính ngày cần thế
     score_A, score_B, score_C,
-    lien_ke: true,            // Có tiết liền kề không
-    tiet_ngay_do: [2, 3],     // Tiết GV đang dạy ngày đó
-    ly_do_uu_tien: "Ít thừa giờ nhất, có tiết liền kề"
+    lien_ke: true,             // Có tiết liền kề không
+    tiet_ngay_do: [2, 3],      // Tiết GV đang dạy ngày đó
+    ly_do: "thiếu 2 tiết chuẩn (chuẩn 17, TKB 16/tuần, thế 1 tuần này), có tiết liền kề"
   },
   ...
 ]
-// Chỉ trả về top 5, nhưng UI chỉ hiển thị top 3
+// UI chỉ hiển thị top 3
 ```
 
 ### 5.5 Cảnh báo mất cân bằng
 ```js
-// Sau khi scoring, kiểm tra thêm:
-const thua_gio_list = allTeachers.map(gv => countThuaGio(gv.id))
-const max = Math.max(...thua_gio_list)
-const min = Math.min(...thua_gio_list)
-const chenh_lech = max - min
+// Dựa trên balance (thiếu tiết chuẩn) của các ứng viên/giáo viên:
+const values = candidates.map(gv => gv.balance)
+const chenh_lech = Math.max(...values) - Math.min(...values)
 
 // Nếu chenh_lech > 5: hiện cảnh báo màu vàng
 // Nếu chenh_lech > 10: hiện cảnh báo màu đỏ
@@ -537,6 +579,18 @@ export const seedLocks = [
    Nếu sau lọc cứng không còn GV nào → hiển thị thông báo rõ ràng:
    "Không tìm được GV thay phù hợp cho tiết này. Vui lòng xử lý thủ công."
    Cho phép tổ trưởng ghi chú và lưu trạng thái "Chưa phân công".
+
+7. GIỚI HẠN 3 TIẾT THẾ/GV/NGÀY VÀ 6 TIẾT DẠY + THẾ/GV/NGÀY
+   Một GV không được nhận quá 3 tiết dạy thế trong cùng một ngày,
+   đồng thời tổng (tiết dạy TKB + tiết thế) trong ngày không vượt quá 6 tiết.
+   Ví dụ: sáng đã dạy 3 tiết, chiều chỉ được phân thế tối đa 2 tiết (3 + 2 ≤ 6).
+   Engine loại bỏ ứng viên vi phạm (kể cả các tiết đang chọn trong phiên).
+   Nếu lưu vi phạm, hệ thống chặn và báo lỗi.
+
+8. CHÀO CỜ THỨ 2 — KHÔNG PHÂN CÔNG THẾ
+   Tiết 1 Sáng thứ 2 (chào cờ đầu tuần / HĐTN) và Tiết 5 Chiều thứ 2 là chào cờ,
+   không có giờ dạy. Khi GV vắng, hệ thống BỎ QUA các tiết này — không tìm GV thế
+   (vẫn giữ trong TKB và tính khối lượng HĐTN 1 tiết). Xem isChaoCoPeriod() trong scheduleService.
 ```
 
 ---
@@ -591,11 +645,11 @@ VitePWA({
 <CandidateCard
   rank={1}                    // #1, #2, #3
   name="Trần Thị Bình"
-  thua_gio_hk={2}            // Thừa giờ HK này
+  balance={2}                 // Thiếu tiết chuẩn (dương = thiếu, âm = thừa)
   lien_ke={true}             // Có tiết liền kề không
   tiet_ngay_do={[1, 2]}      // Tiết GV đang dạy ngày đó
   finalScore={0.87}
-  ly_do="Ít thừa giờ nhất, có tiết liền kề"
+  ly_do="thiếu 2 tiết chuẩn, có tiết liền kề"
   onSelect={() => handleSelect(teacher)}
 />
 // Rank 1: border xanh đậm + badge "Đề xuất"

@@ -1,6 +1,38 @@
-# Tổ Tin - Thể dục - GDQP
+# Phân công dạy thay — Tổ Tin - Thể dục - GDQP
 
-PWA mobile-first cho tổ trưởng chuyên môn: chọn giáo viên vắng và ngày nghỉ, hệ thống tự lấy các tiết cần thế, lọc ứng viên, xếp hạng theo cân bằng thừa giờ và lưu lịch sử xuyên suốt nhiều đợt TKB.
+PWA **mobile-first** dành cho tổ trưởng chuyên môn. Khi có giáo viên vắng, chỉ cần chọn **tên giáo viên** và **ngày nghỉ**, hệ thống tự lấy toàn bộ tiết cần thế, lọc và xếp hạng ứng viên theo cân bằng tiết chuẩn trong tổ, rồi lưu lịch sử xuyên suốt nhiều đợt TKB.
+
+- **Demo đang chạy:** https://production.to-the-phan-cong-day-thay.pages.dev
+- **Cài đặt trên điện thoại:** mở bằng Chrome/Edge/Safari → "Cài đặt ứng dụng" / "Thêm vào màn hình chính". Dùng offline được.
+
+---
+
+## Tính năng
+
+- **Phân công dạy thay 3 bước:** chọn GV vắng + ngày → hệ thống tìm các tiết cần bố trí (tự bỏ qua tiết chào cờ thứ 2) → chọn người thế, xác nhận, lưu.
+- **Đề xuất thông minh:** mỗi tiết hiện top 3 ứng viên kèm lý do (thiếu/thừa tiết chuẩn, tiết liền kề, số tiết thế trong tuần/ngày) và **TKB ngày hôm đó** của từng ứng viên + TKB gọn của GV nghỉ.
+- **Tự chọn phân công tối ưu nhất:** 1 lớp 1 GV thế, dạy liên tiếp; ưu tiên GV đang thiếu tiết chuẩn nhất.
+- **Lịch sử & báo cáo:** bộ lọc học kỳ / giáo viên / tháng, bảng cân bằng tiết chuẩn, xuất **Excel** và **PDF** (tự động xóa dòng phân công nhầm).
+- **Thiết lập dữ liệu:** quản lý giáo viên (môn dạy, kiêm nhiệm, tiết chuẩn, lớp), đợt TKB, nhập **Excel TKB** (tự nhận diện cột Giáo viên/Thứ/Tiết/Lớp/Môn), và ngoại lệ khóa giáo viên.
+- **PWA offline:** dữ liệu lưu trên thiết bị (localStorage), tự seed dữ liệu mẫu, không cần tài khoản.
+
+### Quy định nghiệp vụ đã áp dụng
+
+| Quy định | Mô tả |
+|---|---|
+| Tiết chuẩn | 17 tiết/tuần; **Chủ nhiệm +4** tiết/tuần; HĐTN tính **1 tiết**; kiêm nhiệm trừ tiết chuẩn (Tổ trưởng −3, Tổ phó −1, TTND −2, TTCĐ −3, TPCĐ −1, KTPM Tin −2; Phó BTĐ đặt 8,5; Bí thư Đoàn đặt 2,5). |
+| Cân bằng | Ưu tiên GV thiếu tiết chuẩn nhất (70%), tối ưu lịch trong buổi (20%), số lần thế trong tuần (10%). Cộng dồn thừa/thiếu qua các đợt TKB. |
+| Giới hạn thế | Mỗi GV thế tối đa **3 tiết/ngày** và tổng dạy + thế không quá **6 tiết/ngày**. |
+| Chào cờ | Tiết 1 Sáng thứ 2 và Tiết 5 Chiều thứ 2 là chào cờ — không tìm GV thế (vẫn giữ trong TKB và tính khối lượng). |
+| Ngoại lệ | GV bị khóa (nghỉ dài ngày, kiêm nhiệm BGH…) tự hết hiệu lực sau ngày kết thúc. |
+
+---
+
+## Hướng dẫn sử dụng
+
+Hướng dẫn chi tiết từng màn hình: [docs/HUONG-DAN-SU-DUNG.md](./docs/HUONG-DAN-SU-DUNG.md)
+
+---
 
 ## Chạy trên máy
 
@@ -13,17 +45,28 @@ pnpm dev
 
 Ứng dụng tự seed dữ liệu mẫu vào `localStorage`. Không cần tài khoản hoặc backend để dùng bản demo.
 
-## Kiểm tra
+## Kiểm tra & build
 
 ```bash
-pnpm test:run
-pnpm lint
-pnpm build
+pnpm test:run   # chạy toàn bộ unit test
+pnpm lint       # ESLint (không chấp nhận warning)
+pnpm build      # build PWA vào dist/
 ```
 
 Sau build, `dist/` phải có `manifest.webmanifest`, `sw.js`, icon 192/512 và toàn bộ static assets.
 
-## Kết nối Supabase
+## Triển khai (Cloudflare Pages)
+
+```bash
+pnpm build
+npx wrangler pages deploy dist --project-name to-the-phan-cong-day-thay --branch production
+npx wrangler pages deploy dist --project-name to-the-phan-cong-day-thay --branch main
+```
+
+- `--branch production` gắn alias `production.to-the-phan-cong-day-thay.pages.dev`.
+- Mỗi lần deploy tạo URL riêng dạng `https://<id>.to-the-phan-cong-day-thay.pages.dev`.
+
+## Kết nối Supabase (tùy chọn)
 
 1. Tạo project Supabase.
 2. Chạy [supabase/schema.sql](./supabase/schema.sql) trong SQL Editor.
@@ -31,22 +74,22 @@ Sau build, `dist/` phải có `manifest.webmanifest`, `sw.js`, icon 192/512 và 
 4. Điền `VITE_SUPABASE_URL` và `VITE_SUPABASE_ANON_KEY`.
 5. Chạy lại ứng dụng.
 
-Adapter hoạt động theo mô hình local-first: UI đọc/ghi cache trên thiết bị ngay lập tức, đồng thời tải và mirror dữ liệu với Supabase. Khi mất mạng, người dùng vẫn thao tác được; dữ liệu local không bị mất.
+Adapter hoạt động theo mô hình **local-first**: UI đọc/ghi cache trên thiết bị ngay lập tức, đồng thời tải và mirror dữ liệu với Supabase. Khi mất mạng, người dùng vẫn thao tác được; dữ liệu local không bị mất.
 
 > Policy trong schema cho phép anon đọc/ghi để phù hợp yêu cầu một người dùng, không đăng nhập. Với dữ liệu trường học thật, hãy bật Supabase Auth và giới hạn policy theo tài khoản tổ trưởng.
 
 ## File import TKB
 
-Hỗ trợ `.xlsx`, `.xls`, `.csv`. Dòng tiêu đề chấp nhận:
+Hỗ trợ `.xlsx`, `.xls`, `.csv`. Dòng tiêu đề chấp nhận: `Giáo viên` (hoặc `Mã GV`), `Thứ` (2–7), `Tiết` (1–10), `Lớp`, `Môn`. Ứng dụng kiểm tra dữ liệu và hiển thị preview trước khi lưu.
 
-- `Giáo viên` hoặc `Mã GV`
-- `Thứ` (2–7)
-- `Tiết` (1–10)
-- `Lớp`
-- `Môn`
+## Cấu trúc thư mục
 
-Ứng dụng kiểm tra dữ liệu và hiển thị preview trước khi lưu.
-
-## Cài PWA
-
-Mở bản HTTPS trên Chrome/Edge/Safari, chọn “Cài đặt ứng dụng” hoặc “Thêm vào màn hình chính”. Service worker tự cập nhật và dùng chiến lược Network First cho Supabase.
+```
+src/
+├── engine/scoringEngine.js    # Thuật toán xếp hạng ứng viên
+├── services/                  # DB + nghiệp vụ (TKB, phân công, báo cáo)
+├── stores/appStore.js         # Zustand store
+├── components/                # UI + CandidateCard
+├── pages/                     # Home, Phân công, Lịch sử, Thiết lập
+└── data/                      # Seed dữ liệu thật
+```

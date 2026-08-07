@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { databaseMode, db, initializeDatabase, resetDatabase } from '../services/db'
-import { createSubstitutions } from '../services/substitutionService'
+import { createSubstitutions, deleteSubstitution } from '../services/substitutionService'
 
 const emptyState = {
   teachers: [],
@@ -48,6 +48,10 @@ export const useAppStore = create((set, get) => ({
     const saved = createSubstitutions(records)
     set({ substitutions: db.getAll('substitutions') })
     return saved
+  },
+  removeSubstitution(id) {
+    deleteSubstitution(id)
+    set({ substitutions: db.getAll('substitutions') })
   },
   notify(message, type = 'success') {
     set({ toast: { message, type } })

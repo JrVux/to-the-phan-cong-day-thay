@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react'
-import { Download, FileSpreadsheet, FileText, Filter, History as HistoryIcon } from 'lucide-react'
+import { Download, FileSpreadsheet, FileText, Filter, History as HistoryIcon, Trash2 } from 'lucide-react'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import { buildTeacherSummary } from '../services/reportService'
+import { describeTiet } from '../services/scheduleService'
 import { listSubstitutions } from '../services/substitutionService'
 import { useAppStore } from '../stores/appStore'
 import { exportReportExcel, exportReportPdf } from '../utils/exportReport'
@@ -15,6 +16,7 @@ export default function History() {
   const [teacherId, setTeacherId] = useState('')
   const [month, setMonth] = useState('')
   const [exporting, setExporting] = useState('')
+  const [confirmId, setConfirmId] = useState('')
   const filters = useMemo(
     () => ({
       hoc_ky: hocKy || undefined,
@@ -30,13 +32,19 @@ export default function History() {
     setExporting(type)
     try {
       if (type === 'excel') await exportReportExcel({ summary, history, teachers: store.teachers })
-      else await exportReportPdf({ summary })
+      else await exportReportPdf({ summary, history, teachers: store.teachers })
       store.notify(`Đã xuất báo cáo ${type === 'excel' ? 'Excel' : 'PDF'}.`)
     } catch {
       store.notify('Không thể xuất báo cáo. Vui lòng thử lại.', 'error')
     } finally {
       setExporting('')
     }
+  }
+
+  function confirmDelete(id) {
+    store.removeSubstitution(id)
+    setConfirmId('')
+    store.notify('Đã xóa phân công dạy thay.')
   }
 
   return (
@@ -58,7 +66,7 @@ export default function History() {
 
       <section>
         <div className="mb-3 flex items-end justify-between gap-3">
-          <div><h2 className="text-lg font-black text-ink">Tổng hợp thừa giờ</h2><p className="text-xs text-slate-500">Tiết thế không cộng vào tiết chuẩn.</p></div>
+          <div><h2 className="text-lg font-black text-ink">Tổng hợp cân bằng tiết chuẩn</h2><p className="text-xs text-slate-500">Tiết/tuần = TKB + phụ cấp chủ nhiệm (+4). Thừa/Thiếu = tiết/tuần + thế so với chuẩn, cộng dồn theo đợt.</p></div>
           <Badge variant="primary">{summary.length} GV</Badge>
         </div>
         <Report summary={summary} />
@@ -82,10 +90,20 @@ export default function History() {
               <Card key={item.id}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="font-bold text-ink">Tiết {item.tiet} • {item.mon} • {item.lop}</p>
+                    <p className="font-bold text-ink">{describeTiet(item).label} • {item.mon} • {item.lop}</p>
                     <p className="mt-1 text-xs text-slate-500">{item.ngay} • {item.nam_hoc} • HK{item.hoc_ky}</p>
                   </div>
-                  <Badge variant={substitute ? 'success' : 'warning'}>{substitute ? 'Đã phân công' : 'Chưa phân công'}</Badge>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <Badge variant={substitute ? 'success' : 'warning'}>{substitute ? 'Đã phân công' : 'Chưa phân công'}</Badge>
+                    {confirmId === item.id ? (
+                      <div className="flex items-center gap-1">
+                        <Button variant="danger" className="min-h-9 px-3 py-1.5" onClick={() => confirmDelete(item.id)}>Xóa</Button>
+                        <Button variant="ghost" className="min-h-9 px-3 py-1.5" onClick={() => setConfirmId('')}>Hủy</Button>
+                      </div>
+                    ) : (
+                      <Button variant="ghost" className="min-h-9 px-3 py-1.5" onClick={() => setConfirmId(item.id)} aria-label={`Xóa phân công ${describeTiet(item).label}`}><Trash2 size={16} /></Button>
+                    )}
+                  </div>
                 </div>
                 <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-xl bg-slate-50 p-3 text-sm">
                   <div><p className="text-[10px] font-bold uppercase text-slate-400">GV vắng</p><p className="mt-1 font-semibold">{absent?.name || item.nghi_teacher_id}</p></div>

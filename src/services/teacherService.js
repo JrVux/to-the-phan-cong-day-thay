@@ -1,4 +1,5 @@
 import { db, makeId } from './db'
+import { KIEM_NHIEM_ROLES, MAX_KIEM_NHIEM } from './roleService'
 
 export function listTeachers({ includeInactive = true } = {}) {
   return db
@@ -12,10 +13,16 @@ export function saveTeacher(teacher) {
   if (!Array.isArray(teacher.mon_day) || teacher.mon_day.length === 0) {
     throw new Error('Giáo viên phải có ít nhất một môn dạy')
   }
+  const validRoleIds = KIEM_NHIEM_ROLES.map((role) => role.id)
+  const vaiTro = [...new Set((teacher.vai_tro || []).filter((id) => validRoleIds.includes(id)))]
+  if (vaiTro.length > MAX_KIEM_NHIEM) {
+    throw new Error(`Mỗi người chỉ được tối đa ${MAX_KIEM_NHIEM} kiêm nhiệm`)
+  }
   const record = {
     ...teacher,
     name: teacher.name.trim(),
     mon_day: [...new Set(teacher.mon_day.map((subject) => subject.trim()).filter(Boolean))],
+    vai_tro: vaiTro,
     active: teacher.active ?? true,
     id: teacher.id || makeId('gv'),
   }

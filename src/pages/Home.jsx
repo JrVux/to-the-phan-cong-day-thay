@@ -15,7 +15,7 @@ export default function Home() {
   const stats = getDashboardStats(demoDate)
   const period = getCurrentPeriod(demoDate)
   const summary = buildTeacherSummary({ hoc_ky: period?.hoc_ky, nam_hoc: period?.nam_hoc })
-  const warning = getBalanceWarning(summary.map((row) => ({ thua_gio_hk: row.tiet_the })))
+  const warning = getBalanceWarning(summary.map((row) => ({ balance: -row.thua_thieu })))
   const recent = [...store.substitutions].sort((a, b) => b.ngay.localeCompare(a.ngay)).slice(0, 3)
 
   return (

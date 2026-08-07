@@ -1,4 +1,5 @@
 import { CalendarDays, Check, Clock3, Sparkles } from 'lucide-react'
+import { describeTiet } from '../services/scheduleService'
 import Badge from './ui/Badge'
 import Button from './ui/Button'
 
@@ -11,14 +12,17 @@ const borderClasses = {
 export default function CandidateCard({
   rank,
   name,
-  thua_gio_hk,
+  balance,
   lien_ke,
   tiet_ngay_do = [],
+  dayTKB = [],
+  the_trong_ngay = 0,
   finalScore,
   ly_do,
   selected = false,
   onSelect,
 }) {
+  const balanceText = balance > 0 ? `Thiếu ${balance} tiết chuẩn` : balance < 0 ? `Thừa ${-balance} tiết chuẩn` : 'Đủ tiết chuẩn'
   return (
     <article className={`rounded-2xl bg-white p-4 shadow-sm transition ${borderClasses[rank] || borderClasses[3]} ${selected ? 'ring-2 ring-primary ring-offset-2' : ''}`}>
       <div className="flex items-start justify-between gap-3">
@@ -30,14 +34,23 @@ export default function CandidateCard({
           </div>
           <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-600">
             <span className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-2 py-1">
-              <Clock3 size={14} /> Thừa giờ: {thua_gio_hk}
+              <Clock3 size={14} /> {balanceText}
             </span>
             <span className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-2 py-1">
               <CalendarDays size={14} />
-              {tiet_ngay_do.length ? `Đang dạy tiết ${tiet_ngay_do.join(', ')}` : 'Không có tiết ngày này'}
+              {tiet_ngay_do.length ? `Đang dạy tiết ${tiet_ngay_do.map((tiet) => describeTiet({ tiet }).label).join(', ')}` : 'Không có tiết ngày này'}
             </span>
             {lien_ke && <Badge variant="primary">Liền kề</Badge>}
+            {the_trong_ngay > 0 && <Badge variant="warning">Đã thế {the_trong_ngay} tiết hôm nay</Badge>}
           </div>
+          {dayTKB.length > 0 && (
+            <div className="mt-3 rounded-xl bg-slate-50 p-3">
+              <p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">TKB hôm nay</p>
+              <p className="mt-1 text-xs leading-5 text-slate-600">
+                {dayTKB.map((item) => `${item.label}: ${item.mon} ${item.lop}`).join(' • ')}
+              </p>
+            </div>
+          )}
         </div>
         <span className="text-xs font-bold text-slate-400">{Math.round(finalScore * 100)}đ</span>
       </div>

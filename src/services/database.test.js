@@ -21,7 +21,7 @@ describe('dữ liệu khởi tạo cục bộ', () => {
     resetDatabase()
 
     expect(db.getAll('teachers')).toHaveLength(24)
-    expect(db.getAll('schedules')).toHaveLength(360)
+    expect(db.getAll('schedules')).toHaveLength(366)
     expect(db.getAll('schedule_periods')).toEqual([
       expect.objectContaining({ id: 'hk2_2025_2026', hoc_ky: 2 }),
     ])

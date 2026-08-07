@@ -68,6 +68,9 @@ function AppShell() {
           ))}
         </div>
       </nav>
+      <footer className="mx-auto max-w-6xl px-4 pb-24 pt-2 text-left md:pb-4">
+        <p className="text-[11px] font-semibold text-slate-400">Phòng CNTT - Trường THPT Cà Mau By OPENCODE</p>
+      </footer>
       <Toast toast={toast} onClose={clearToast} />
     </div>
   )

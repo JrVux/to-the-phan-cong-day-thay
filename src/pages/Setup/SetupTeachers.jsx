@@ -6,16 +6,18 @@ import Card from '../../components/ui/Card'
 import Modal from '../../components/ui/Modal'
 import { listAssignments, saveAssignment } from '../../services/scheduleService'
 import { deleteTeacher, saveTeacher } from '../../services/teacherService'
+import { KIEM_NHIEM_ROLES, MAX_KIEM_NHIEM, computeEffectiveTietChuan, computePhuCapChuNhiem, getRoles } from '../../services/roleService'
 import { useAppStore } from '../../stores/appStore'
 
 const subjectOptions = ['Tin học', 'Giáo dục thể chất', 'GDQP AN', 'HĐ trải nghiệm, hướng nghiệp']
-const emptyTeacher = { name: '', mon_day: ['Tin học'], active: true }
+const emptyTeacher = { name: '', mon_day: ['Tin học'], active: true, vai_tro: [] }
 
 export default function SetupTeachers() {
   const store = useAppStore()
   const [editing, setEditing] = useState(null)
   const [error, setError] = useState('')
   const [periodId, setPeriodId] = useState(store.periods[0]?.id || '')
+  const [classEdits, setClassEdits] = useState({})
   const assignments = listAssignments(periodId)
 
   function submitTeacher(event) {
@@ -50,6 +52,39 @@ export default function SetupTeachers() {
     }
   }
 
+  function toggleRole(teacher, roleId) {
+    const current = teacher.vai_tro || []
+    const next = current.includes(roleId)
+      ? current.filter((id) => id !== roleId)
+      : current.length >= MAX_KIEM_NHIEM
+        ? current
+        : [...current, roleId]
+    try {
+      saveTeacher({ ...teacher, vai_tro: next })
+      store.refresh()
+    } catch (roleError) {
+      store.notify(roleError.message, 'error')
+    }
+  }
+
+  function commitClasses(teacher, rawText) {
+    const classes = [...new Set(rawText.split(',').map((item) => item.trim()).filter(Boolean))]
+    const teacherAssignments = assignments.filter((item) => item.teacher_id === teacher.id)
+    if (teacherAssignments.length === 0) return
+    const period = store.periods.find((item) => item.id === periodId)
+    teacherAssignments.forEach((item) => {
+      saveAssignment({
+        ...item,
+        classes,
+        so_lop: classes.length,
+        hoc_ky: period?.hoc_ky || item.hoc_ky || 1,
+      })
+    })
+    setClassEdits((current) => ({ ...current, [teacher.id]: undefined }))
+    store.refresh()
+    store.notify('Đã cập nhật danh sách lớp.')
+  }
+
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3">
@@ -79,6 +114,13 @@ export default function SetupTeachers() {
                 {assignedClasses.length > 0 && (
                   <p className="mt-2 text-xs leading-5 text-slate-500">Lớp: {assignedClasses.join(', ')}</p>
                 )}
+                {teacher.vai_tro?.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {getRoles(teacher.vai_tro).map((role) => (
+                      <Badge key={role.id} variant={role.id === 'chu_nhiem' ? 'warning' : 'primary'}>{role.label}</Badge>
+                    ))}
+                  </div>
+                )}
               </div>
               <Button variant="ghost" className="h-10 min-h-10 px-3" onClick={() => setEditing({ ...teacher })}><Pencil size={17} /></Button>
             </div>
@@ -98,32 +140,45 @@ export default function SetupTeachers() {
         <select value={periodId} onChange={(event) => setPeriodId(event.target.value)} className="min-h-11 w-full rounded-xl border border-slate-300 px-3">
           {store.periods.map((period) => <option key={period.id} value={period.id}>{period.ten_dot}</option>)}
         </select>
-        <div className="overflow-x-auto rounded-xl border border-slate-200">
-          <table className="w-full min-w-[600px] text-left text-sm">
+        <div className="max-h-[70vh] overflow-auto rounded-xl border border-slate-200">
+          <table className="w-full min-w-[1000px] text-left text-sm">
             <thead className="bg-slate-900 text-xs uppercase text-white">
               <tr>
-                <th className="px-3 py-2.5">Giáo viên</th>
-                <th className="px-3 py-2.5 text-center">Môn</th>
-                <th className="px-3 py-2.5 text-center">Lớp</th>
-                <th className="px-3 py-2.5 text-center">Tiết/tuần</th>
-                <th className="px-3 py-2.5 text-center">Tiết chuẩn</th>
-                <th className="px-3 py-2.5 text-center">Thừa/Thiếu</th>
+                <th className="sticky left-0 top-0 z-30 bg-slate-900 px-3 py-2.5">Giáo viên</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Môn</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Kiêm nhiệm</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Lớp</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Số lớp</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Tiết/TKB</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Tổng</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Tiết chuẩn</th>
+                <th className="sticky top-0 z-20 bg-slate-900 px-3 py-2.5 text-center">Thừa/Thiếu</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {store.teachers.filter((teacher) => teacher.active).map((teacher) => {
                 const teacherAssignments = assignments.filter((item) => item.teacher_id === teacher.id)
                 const assignment = teacherAssignments[0]
-                const assignedClasses = teacherAssignments.flatMap((item) => item.classes || [])
-                const soTietTuan = assignment?.so_tiet_tuan ?? 0
-                const tietChuan = Number(assignment?.tiet_chuan ?? 17)
-                const thuaThieu = soTietTuan - tietChuan
+                const assignedClasses = [...new Set(teacherAssignments.flatMap((item) => item.classes || []))]
+                const soTietTuan = teacherAssignments.reduce((sum, item) => sum + (Number(item.so_tiet_tuan) || 0), 0)
+                const vaiTro = teacher.vai_tro || []
+                const phuCapCN = computePhuCapChuNhiem(vaiTro)
+                const tongTiet = soTietTuan + phuCapCN
+                const tietChuanGoc = Number(assignment?.tiet_chuan ?? 17)
+                const tietChuan = computeEffectiveTietChuan(tietChuanGoc, vaiTro)
+                const thuaThieu = tongTiet - tietChuan
+                const classDraft = classEdits[teacher.id]
+                const classText = classDraft !== undefined ? classDraft : assignedClasses.join(', ')
                 return (
                   <tr key={teacher.id} className="hover:bg-slate-50">
-                    <td className="px-3 py-2">
+                    <td className="sticky left-0 z-10 bg-white px-3 py-2">
                       <span className="font-semibold text-ink">{teacher.name}</span>
-                      {assignedClasses.length > 0 && (
-                        <span className="mt-0.5 block text-[11px] text-slate-400">{assignedClasses.join(', ')}</span>
+                      {vaiTro.length > 0 && (
+                        <span className="mt-0.5 block space-x-1">
+                          {getRoles(vaiTro).map((role) => (
+                            <Badge key={role.id} variant={role.id === 'chu_nhiem' ? 'warning' : 'primary'}>{role.label}</Badge>
+                          ))}
+                        </span>
                       )}
                     </td>
                     <td className="px-3 py-2 text-center">
@@ -138,18 +193,56 @@ export default function SetupTeachers() {
                         {teacher.mon_day.map((subject) => <option key={subject}>{subject}</option>)}
                       </select>
                     </td>
-                    <td className="px-3 py-2 text-center text-xs text-slate-500">{assignment?.so_lop ?? 0}</td>
-                    <td className="px-3 py-2 text-center">{soTietTuan}</td>
+                    <td className="px-3 py-2 text-center">
+                      <div className="mx-auto grid w-48 grid-cols-3 gap-1">
+                        {KIEM_NHIEM_ROLES.map((role) => {
+                          const checked = vaiTro.includes(role.id)
+                          const disabled = !checked && vaiTro.length >= MAX_KIEM_NHIEM
+                          return (
+                            <label key={role.id} title={`${role.label}${checked ? '' : disabled ? ' (đạt giới hạn kiêm nhiệm)' : ''}`} className={`flex cursor-pointer items-center justify-center gap-1 rounded-md border px-1 py-1 text-[10px] font-bold leading-none ${checked ? 'border-primary bg-blue-50 text-primary' : disabled ? 'cursor-not-allowed border-slate-100 text-slate-300' : 'border-slate-200 text-slate-500'}`}>
+                              <input
+                                type="checkbox"
+                                className="size-2.5 accent-blue-600"
+                                checked={checked}
+                                disabled={disabled}
+                                onChange={() => toggleRole(teacher, role.id)}
+                              />
+                              <span className="truncate">{role.label}</span>
+                            </label>
+                          )
+                        })}
+                      </div>
+                    </td>
+                    <td className="px-3 py-2 text-center">
+                      <input
+                        aria-label={`Lớp của ${teacher.name}`}
+                        value={classText}
+                        placeholder="10A3, 12D3"
+                        onChange={(event) => setClassEdits({ ...classEdits, [teacher.id]: event.target.value })}
+                        onBlur={() => commitClasses(teacher, classText)}
+                        onKeyDown={(event) => { if (event.key === 'Enter') event.target.blur() }}
+                        className="min-h-8 w-full min-w-36 rounded-lg border border-slate-200 px-2 text-xs"
+                      />
+                    </td>
+                    <td className="px-3 py-2 text-center text-xs text-slate-500">{classText.split(',').map((item) => item.trim()).filter(Boolean).length}</td>
+                    <td className="px-3 py-2 text-center">
+                      {soTietTuan}
+                      {phuCapCN > 0 && <span className="block text-[10px] text-slate-400">+{phuCapCN} CN</span>}
+                    </td>
+                    <td className="px-3 py-2 text-center font-black text-ink">{tongTiet}</td>
                     <td className="px-3 py-2 text-center">
                       <input
                         aria-label={`Tiết chuẩn của ${teacher.name}`}
                         type="number"
                         min="0"
                         max="40"
-                        value={tietChuan}
+                        value={tietChuanGoc}
                         onChange={(event) => updateAssignment(teacher, { tiet_chuan: Number(event.target.value) })}
                         className="min-h-8 w-16 rounded-lg border border-slate-200 px-2 text-center text-xs"
                       />
+                      {tietChuan !== tietChuanGoc && (
+                        <span className="block text-[10px] text-amber-600">hiệu lực {tietChuan}</span>
+                      )}
                     </td>
                     <td className={`px-3 py-2 text-center font-bold ${thuaThieu > 0 ? 'text-success' : thuaThieu < 0 ? 'text-danger' : 'text-slate-400'}`}>
                       {thuaThieu > 0 ? '+' : ''}{thuaThieu}
@@ -160,6 +253,10 @@ export default function SetupTeachers() {
             </tbody>
           </table>
         </div>
+        <p className="text-xs text-slate-400">
+          Mỗi người được tối đa {MAX_KIEM_NHIEM} kiêm nhiệm. Chủ nhiệm cộng {computePhuCapChuNhiem(['chu_nhiem'])} tiết/tuần;
+          Phó BTĐ và Bí thư Đoàn đặt tiết chuẩn 8,5 / 2,5 tiết; Tổ Trưởng (−3), Tổ phó (−1), TTND (−2), TTCĐ (−3), TPCĐ (−1), KTPMTin (−2) giảm từ tiết chuẩn gốc.
+        </p>
       </Card>
 
       <Modal open={Boolean(editing)} title={editing?.id ? 'Sửa giáo viên' : 'Thêm giáo viên'} onClose={() => setEditing(null)}>

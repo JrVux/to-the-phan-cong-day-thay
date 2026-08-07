@@ -8,3 +8,10 @@ coverage/
 output/
 .worktrees/
 .DS_Store
+
+# Kilo worktree artifacts
+.kilo/
+
+# Large binary source workbooks (generated/parsed under /output)
+*.xls
+*.xlsx

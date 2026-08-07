@@ -4,10 +4,11 @@ import data from './schoolData.json'
 describe('dữ liệu HK II 2025–2026', () => {
   it('chứa đúng số giáo viên, phân công và tiết dạy đã duyệt', () => {
     expect(data.teachers).toHaveLength(24)
-    expect(data.schedules).toHaveLength(360)
+    expect(data.schedules).toHaveLength(366)
     expect(data.schedules.filter((row) => row.mon === 'Tin học')).toHaveLength(126)
     expect(data.schedules.filter((row) => row.mon === 'Giáo dục thể chất')).toHaveLength(156)
     expect(data.schedules.filter((row) => row.mon === 'GDQP AN')).toHaveLength(78)
+    expect(data.schedules.filter((row) => row.mon === 'HĐ trải nghiệm, hướng nghiệp')).toHaveLength(6)
     expect(data.schedule_periods).toEqual([
       expect.objectContaining({
         id: 'hk2_2025_2026',
@@ -40,5 +41,17 @@ describe('dữ liệu HK II 2025–2026', () => {
     expect(data.assignments.every((row) => Number.isFinite(row.so_lop))).toBe(true)
     expect(data.assignments.every((row) => Number.isFinite(row.so_tiet_tuan))).toBe(true)
     expect(data.assignments.some((row) => row.so_tiet_tuan > 0)).toBe(true)
+  })
+
+  it('6 giáo viên dạy HĐTN được đánh dấu chủ nhiệm qua vai_tro, không còn phu_cap_cn rời', () => {
+    const gvcnIds = data.schedules
+      .filter((row) => row.mon === 'HĐ trải nghiệm, hướng nghiệp')
+      .map((row) => row.teacher_id)
+    expect(gvcnIds).toHaveLength(6)
+    for (const id of gvcnIds) {
+      const teacher = data.teachers.find((item) => item.id === id)
+      expect(teacher.vai_tro).toContain('chu_nhiem')
+    }
+    expect(data.assignments.every((row) => !('phu_cap_cn' in row))).toBe(true)
   })
 })
