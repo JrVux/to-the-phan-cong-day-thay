@@ -30,7 +30,7 @@ PWA **mobile-first** dành cho tổ trưởng chuyên môn. Khi có giáo viên 
 
 ## Hướng dẫn sử dụng
 
-Hướng dẫn chi tiết từng màn hình: [docs/HUONG-DAN-SU-DUNG.md](./docs/HUONG-DAN-SU-DUNG.md) — bản PDF để gửi tổ: [docs/HUONG-DAN-SU-DUNG.pdf](./docs/HUONG-DAN-SU-DUNG.pdf)
+Hướng dẫn chi tiết từng màn hình: [docs/HUONG-DAN-SU-DUNG.md](./docs/HUONG-DAN-SU-DUNG.md) — bản PDF để gửi tổ: [docs/HUONG-DAN-SU-DUNG.pdf](./docs/HUONG-DAN-SU-DUNG.pdf) hoặc trực tuyến: <https://jrvux.github.io/to-the-phan-cong-day-thay/HUONG-DAN-SU-DUNG.pdf>
 
 ---
 

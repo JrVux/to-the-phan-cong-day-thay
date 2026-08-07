@@ -242,6 +242,9 @@ table(
 footer()
 
 const outPath = join(root, 'docs', 'HUONG-DAN-SU-DUNG.pdf')
+const webPath = join(root, 'public', 'HUONG-DAN-SU-DUNG.pdf')
 const out = Buffer.from(doc.output('arraybuffer'))
 writeFileSync(outPath, out)
+writeFileSync(webPath, out)
 console.log('PDF created:', outPath)
+console.log('PDF copied for web:', webPath)

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Download, FileSpreadsheet, FileText, Filter, History as HistoryIcon, Trash2 } from 'lucide-react'
+import { BookOpen, Download, FileSpreadsheet, FileText, Filter, History as HistoryIcon, Trash2 } from 'lucide-react'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
@@ -59,6 +59,7 @@ export default function History() {
 
       <Card className="space-y-3">
         <div className="flex items-center gap-2 text-sm font-black text-ink"><Filter size={18} className="text-primary" /> Bộ lọc</div>
+        <div className="flex justify-end"><a href={`${import.meta.env.BASE_URL}HUONG-DAN-SU-DUNG.pdf`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"><BookOpen size={15} /> Tải hướng dẫn sử dụng (PDF)</a></div>
         <div className="grid gap-3 sm:grid-cols-3">
           <select aria-label="Học kỳ" value={hocKy} onChange={(event) => setHocKy(event.target.value)} className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"><option value="">Tất cả học kỳ</option><option value="1">Học kỳ 1</option><option value="2">Học kỳ 2</option></select>
           <select aria-label="Giáo viên" value={teacherId} onChange={(event) => setTeacherId(event.target.value)} className="min-h-11 rounded-xl border border-slate-300 px-3 text-sm"><option value="">Tất cả giáo viên</option>{store.teachers.map((teacher) => <option key={teacher.id} value={teacher.id}>{teacher.name}</option>)}</select>
