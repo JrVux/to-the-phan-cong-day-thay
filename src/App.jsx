@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
+import { HashRouter, NavLink, Route, Routes } from 'react-router-dom'
 import { CalendarPlus, History as HistoryIcon, Home as HomeIcon, Settings } from 'lucide-react'
 import Toast from './components/ui/Toast'
 import ConnectionStatus from './components/ConnectionStatus'
@@ -93,8 +93,8 @@ className={({ isActive }) =>
 
 export default function App() {
   return (
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <AppShell />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
