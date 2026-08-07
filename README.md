@@ -12,8 +12,8 @@ PWA **mobile-first** dành cho tổ trưởng chuyên môn. Khi có giáo viên 
 - **Phân công dạy thay 3 bước:** chọn GV vắng + ngày → hệ thống tìm các tiết cần bố trí (tự bỏ qua tiết chào cờ thứ 2) → chọn người thế, xác nhận, lưu.
 - **Đề xuất thông minh:** mỗi tiết hiện top 3 ứng viên kèm lý do (thiếu/thừa tiết chuẩn, tiết liền kề, số tiết thế trong tuần/ngày) và **TKB ngày hôm đó** của từng ứng viên + TKB gọn của GV nghỉ.
 - **Tự chọn phân công tối ưu nhất:** 1 lớp 1 GV thế, dạy liên tiếp; ưu tiên GV đang thiếu tiết chuẩn nhất.
-- **Lịch sử & báo cáo:** bộ lọc học kỳ / giáo viên / tháng, bảng cân bằng tiết chuẩn, xuất **Excel** và **PDF** (tự động xóa dòng phân công nhầm).
-- **Thiết lập dữ liệu:** quản lý giáo viên (môn dạy, kiêm nhiệm, tiết chuẩn, lớp), đợt TKB, nhập **Excel TKB** (tự nhận diện cột Giáo viên/Thứ/Tiết/Lớp/Môn), và ngoại lệ khóa giáo viên.
+- **Lịch sử & báo cáo:** bộ lọc học kỳ / giáo viên / tháng, bảng cân bằng tiết chuẩn (có cột **Số tuần qua**), xuất **Excel** và **PDF**; riêng nút **Xuất PDF theo từng GV vắng** tạo mỗi GV nghỉ 1 file, gom toàn bộ tiết vào 1 trang xếp theo thứ trong tuần.
+- **Thiết lập dữ liệu:** quản lý giáo viên (môn dạy, kiêm nhiệm, tiết chuẩn, lớp), đợt TKB, nhập **Excel TKB** (tự nhận diện cột Giáo viên/Thứ/Tiết/Lớp/Môn), ngoại lệ khóa giáo viên và **Năm mới** (xóa dữ liệu cũ, giữ giáo viên).
 - **PWA offline:** dữ liệu lưu trên thiết bị (localStorage), tự seed dữ liệu mẫu, không cần tài khoản.
 
 ### Quy định nghiệp vụ đã áp dụng
@@ -30,7 +30,7 @@ PWA **mobile-first** dành cho tổ trưởng chuyên môn. Khi có giáo viên 
 
 ## Hướng dẫn sử dụng
 
-Hướng dẫn chi tiết từng màn hình: [docs/HUONG-DAN-SU-DUNG.md](./docs/HUONG-DAN-SU-DUNG.md)
+Hướng dẫn chi tiết từng màn hình: [docs/HUONG-DAN-SU-DUNG.md](./docs/HUONG-DAN-SU-DUNG.md) — bản PDF để gửi tổ: [docs/HUONG-DAN-SU-DUNG.pdf](./docs/HUONG-DAN-SU-DUNG.pdf)
 
 ---
 
@@ -90,6 +90,6 @@ src/
 ├── services/                  # DB + nghiệp vụ (TKB, phân công, báo cáo)
 ├── stores/appStore.js         # Zustand store
 ├── components/                # UI + CandidateCard
-├── pages/                     # Home, Phân công, Lịch sử, Thiết lập
+├── pages/                     # Home, Phân công, Lịch sử, Thiết lập lập
 └── data/                      # Seed dữ liệu thật
 ```

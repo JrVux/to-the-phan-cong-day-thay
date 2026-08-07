@@ -22,7 +22,7 @@ Thanh điều hướng có 4 mục:
 | **Tổng quan** | Số liệu GV, tiết thế trong tháng, chưa phân công, ngoại lệ + phân công gần đây |
 | **Phân công** | Tác vụ chính: tạo phân công dạy thay |
 | **Lịch sử** | Lịch sử phân công, báo cáo cân bằng tiết chuẩn, xuất Excel/PDF |
-| **Thiết lập** | Giáo viên, đợt TKB, thời khóa biểu, ngoại lệ |
+| **Thiết lập** | Giáo viên, đợt TKB, thời khóa biểu, ngoại lệ, năm mới |
 
 ---
 
@@ -57,9 +57,13 @@ Chỉ cần **2 thao tác**, phần còn lại hệ thống tự làm:
 ## 3. Lịch sử & Báo cáo
 
 - **Bộ lọc:** chọn học kỳ, giáo viên, tháng để xem đúng phần cần.
-- **Tổng hợp cân bằng tiết chuẩn:** bảng từng GV với Tiết chuẩn, Tiết/tuần (đã cộng phụ cấp chủ nhiệm +4), Số tiết thế, Thừa/Thiếu. Cảnh báo vàng/đỏ khi chênh lệch lớn.
-- **Xuất báo cáo:** nút **Xuất Excel** (số liệu thô) và **Xuất PDF** (hồ sơ tổ).
-- **Chi tiết lịch sử:** từng bản ghi GV vắng → GV dạy thế, tiết, môn, lớp. Nút **xóa** (xác nhận) khi phân nhầm.
+- **Tổng hợp cân bằng tiết chuẩn:** bảng từng GV với **Tiết chuẩn**, **Tiết/tuần** (đã cộng phụ cấp chủ nhiệm +4), **Số tiết thế**, **Số tuần đã qua** và **Thừa/Thiếu**. Cảnh báo vàng/đỏ khi chênh lệch lớn.
+- **Cách đọc cột Thừa/Thiếu:** đây là **tổng cộng dồn cho cả đợt/học kỳ**, không phải của 1 tuần. Ví dụ GV chuẩn 15 mà dạy 9 tiết/tuần thì mỗi tuần thiếu 6; sau 3,5 tuần cộng dồn ra **Thiếu 21**. Cột **Số tuần qua** giúp đối chiếu con số này.
+- **Xuất báo cáo:**
+  - **Xuất Excel** — số liệu thô (gồm cả cột Số tuần qua).
+  - **Xuất PDF** — hồ sơ tổ.
+  - **Xuất PDF theo từng GV vắng** — mỗi GV nghỉ trong kỳ được tạo **1 file PDF riêng**, toàn bộ tiết cần bố trí gom vào **một bảng trên 1 trang**, xếp theo **thứ trong tuần tăng dần** (Thứ 2 → Chủ nhật) kèm ngày, GV dạy thế và khối chữ ký.
+- **Chi tiết lịch sử:** hiển thị **một bảng gọn** gồm Ngày, Tiết dạy, Lớp/Môn, GV vắng, GV dạy thế, trạng thái, học kỳ — xếp **tăng dần theo ngày và thứ** để dễ dò lại. Nút **xóa** (xác nhận) khi phân nhầm.
 
 ---
 
@@ -90,6 +94,13 @@ Chỉ cần **2 thao tác**, phần còn lại hệ thống tự làm:
 - Dùng cho GV nghỉ dài ngày, kiêm nhiệm BGH… — những người này **không được gợi ý dạy thế**.
 - Thêm: chọn GV, từ ngày → đến ngày, ghi lý do. Tự hết hiệu lực khi quá ngày kết thúc.
 
+### 4.5 Năm mới
+Dùng cuối năm học để chuẩn bị dữ liệu cho năm học mới:
+- **Bắt đầu năm học mới:** xóa lịch sử dạy thay, thời khóa biểu, phân công chuyên môn và ngoại lệ của năm cũ; **giữ nguyên danh sách giáo viên**. Gõ `XÁC NHẬN` rồi bấm xác nhận. Sau đó tạo đợt TKB mới (năm học mới, từ ngày → đến ngày) trong **4.2 Đợt TKB** và import TKB mới.
+- **Xóa toàn bộ dữ liệu:** khôi phục về dữ liệu mẫu ban đầu (dùng khi chạy thử hoặc làm lại từ đầu).
+
+> Gợi ý trình tự sang năm học mới: (1) **Thiết lập → Năm mới → Bắt đầu năm học mới** → (2) tạo **Đợt TKB** mới cho năm học → (3) **Thời khóa biểu → Import Excel** TKB mới.
+
 ---
 
 ## 5. Mẹo dùng trên điện thoại
@@ -110,4 +121,6 @@ Chỉ cần **2 thao tác**, phần còn lại hệ thống tự làm:
 | Không tìm được GV thay | Toàn bộ GV cùng môn vắng/bị khóa hoặc trùng tiết đúng (thu, tiết) đó. Xử lý thủ công + ghi chú. |
 | Chưa phân công được vẫn lưu | Được phép: ghi chú lý do và lưu trạng thái "Chưa phân công" để theo dõi sau. |
 | Phân nhầm người | Vào **Lịch sử**, nhấn nút xóa trên bản ghi (có xác nhận), tạo lại phân công. |
+| Thấy "Thừa/Thiếu" lớn hơn chênh lệch 1 tuần | Đây là **tổng cộng dồn** qua các đợt (nhân với số tuần). Xem cột **Số tuần qua** để đối chiếu. |
+| Đổi sang năm học mới | **Thiết lập → Năm mới → Bắt đầu năm học mới**, rồi tạo Đợt TKB mới và import TKB. |
 | Dữ liệu không đúng môn/tiết chuẩn | Vào **Thiết lập → Giáo viên** chỉnh phân công chuyên môn; hoặc **Thiết lập → Thời khóa biểu → Cập nhật phân công từ TKB**. |
