@@ -30,7 +30,7 @@ export default function Home() {
           aria-hidden="true"
         />
         <div className="relative flex items-center justify-center">
-          <Badge className="bg-gold/20 text-gold" variant="primary">{period?.ten_dot || 'Chưa có đợt hiện tại'}</Badge>
+          <Badge className="bg-gold/20 !text-gold" variant="primary">{period?.ten_dot || 'Chưa có đợt hiện tại'}</Badge>
           <Sparkles className="absolute right-6 top-1 text-gold/80" size={20} />
         </div>
         <h1 className="relative mt-8 text-3xl font-black leading-tight tracking-tight">
