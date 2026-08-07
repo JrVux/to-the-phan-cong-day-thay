@@ -7,7 +7,7 @@ export function listSubstitutions(filters = {}) {
     .filter((row) => !filters.nam_hoc || row.nam_hoc === filters.nam_hoc)
     .filter((row) => !filters.teacher_id || row.the_teacher_id === filters.teacher_id || row.nghi_teacher_id === filters.teacher_id)
     .filter((row) => !filters.month || row.ngay.startsWith(filters.month))
-    .sort((a, b) => b.ngay.localeCompare(a.ngay) || b.tiet - a.tiet)
+    .sort((a, b) => a.ngay.localeCompare(b.ngay) || a.tiet - b.tiet)
 }
 
 export function createSubstitutions(records) {
