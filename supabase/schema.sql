@@ -193,20 +193,36 @@ begin
   end loop;
 end $$;
 
+-- Hàm kiểm tra admin bằng security definer (tránh đệ quy RLS khi tham chiếu chính bảng profiles)
+create or replace function public.is_admin()
+returns boolean
+language sql
+security definer
+set search_path = public
+stable
+as $$
+  select exists(
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+$$;
+
+grant execute on function public.is_admin() to authenticated;
+
 -- profiles: người dùng xem/sửa profile của bản thân; admin xem sửa tất cả
 drop policy if exists "profiles_select" on public.profiles;
 create policy "profiles_select" on public.profiles
   for select to authenticated
-  using (auth.uid() = id or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
+  using (auth.uid() = id or public.is_admin());
 
 drop policy if exists "profiles_update" on public.profiles;
 create policy "profiles_update" on public.profiles
   for update to authenticated
-  using (auth.uid() = id or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
+  using (auth.uid() = id or public.is_admin());
 
 -- invite_codes: chỉ admin thấy/quản lý được
 drop policy if exists "invite_admin_all" on public.invite_codes;
 create policy "invite_admin_all" on public.invite_codes
   for all to authenticated
-  using (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'))
-  with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
+  using (public.is_admin())
+  with check (public.is_admin());
