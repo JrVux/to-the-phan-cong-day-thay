@@ -4,7 +4,7 @@ import Button from './Button'
 export default function Modal({ open, title, children, onClose }) {
   if (!open) return null
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/40 p-0 sm:items-center sm:p-4" role="presentation">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/40 p-0 backdrop-blur-sm sm:items-center sm:p-4" role="presentation">
       <section
         aria-modal="true"
         aria-labelledby="modal-title"
@@ -13,7 +13,7 @@ export default function Modal({ open, title, children, onClose }) {
       >
         <div className="mb-4 flex items-center justify-between gap-4">
           <h2 id="modal-title" className="text-xl font-bold text-ink">{title}</h2>
-          <Button variant="ghost" className="h-10 min-h-10 w-10 px-0" onClick={onClose} aria-label="Đóng">
+          <Button variant="ghost" className="h-10 min-h-10 w-10 rounded-full px-0" onClick={onClose} aria-label="Đóng">
             <X size={20} />
           </Button>
         </div>

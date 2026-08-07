@@ -13,7 +13,7 @@ function WorkloadTable({ data, title = 'Phân tích khối lượng' }) {
   const totalThua = data.reduce((sum, d) => sum + Math.max(0, d.thua_thieu), 0)
   const totalThieu = data.reduce((sum, d) => sum + Math.max(0, -d.thua_thieu), 0)
   return (
-    <Card className="space-y-3 border-blue-200">
+    <Card className="space-y-3 border-gold/40">
       <div className="flex items-center justify-between">
         <h3 className="font-black text-ink">{title}</h3>
         <Badge variant="primary">{data.length} GV</Badge>
@@ -137,7 +137,7 @@ function TimetableGrid({ rows, teachers }) {
                     {[1, 2, 3, 4, 5].map((tiet) => {
                       const lop = cell?.get(tiet)
                       return (
-                        <div key={tiet} className={`flex items-center gap-1 rounded px-1 py-0.5 text-xs ${lop ? 'hover:bg-blue-50' : ''}`}>
+                        <div key={tiet} className={`flex items-center gap-1 rounded px-1 py-0.5 text-xs ${lop ? 'hover:bg-gold/10' : ''}`}>
                           <span className="w-4 shrink-0 text-center text-[10px] font-bold text-slate-400">T{tiet}</span>
                           {lop ? <span className="truncate font-bold text-ink">{lop}</span> : <span className="text-slate-200">·</span>}
                         </div>
@@ -223,7 +223,7 @@ export default function SetupSchedule() {
         </select>
         <div className="grid grid-cols-2 gap-3">
           <Button onClick={() => setEditing({ ...emptyRow, period_id: periodId })}><Plus size={18} /> Nhập một dòng</Button>
-          <label className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-blue-50 px-3 text-sm font-bold text-primary">
+          <label className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl bg-gold/15 px-3 text-sm font-bold text-ink">
             <Upload size={18} /> Import Excel
             <input type="file" accept=".xlsx,.xls,.csv" onChange={handleFile} className="sr-only" />
           </label>
@@ -231,7 +231,7 @@ export default function SetupSchedule() {
       </Card>
 
       {(preview.length > 0 || importErrors.length > 0) && (
-        <Card className="space-y-4 border-blue-200">
+        <Card className="space-y-4 border-gold/40">
           <div className="flex items-center gap-2"><FileSpreadsheet className="text-primary" size={20} /><h3 className="font-black">Xem trước import</h3></div>
           <p className="text-sm text-slate-600">{preview.length} dòng hợp lệ • {importErrors.length} lỗi</p>
           {importErrors.length > 0 && <ul className="max-h-32 overflow-y-auto rounded-xl bg-red-50 p-3 text-xs leading-5 text-danger">{importErrors.map((item) => <li key={item}>{item}</li>)}</ul>}

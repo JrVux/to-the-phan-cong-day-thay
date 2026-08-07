@@ -6,7 +6,7 @@ export default function DatePicker({ value, onChange, label = 'Ngày nghỉ' }) 
         type="date"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base text-ink outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+        className="min-h-12 w-full rounded-xl border border-slate-300 bg-white px-3 text-base text-ink outline-none focus:border-primary focus:ring-2 focus:ring-gold/30"
       />
     </label>
   )

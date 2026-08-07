@@ -4,9 +4,9 @@ import Badge from './ui/Badge'
 import Button from './ui/Button'
 
 const borderClasses = {
-  1: 'border-2 border-success bg-green-50/40',
-  2: 'border-2 border-blue-300',
-  3: 'border border-slate-300',
+  1: 'border-2 border-success bg-emerald-50/40',
+  2: 'border-2 border-primary/40',
+  3: 'border border-slate-200/70',
 }
 
 export default function CandidateCard({
@@ -52,7 +52,7 @@ export default function CandidateCard({
             </div>
           )}
         </div>
-        <span className="text-xs font-bold text-slate-400">{Math.round(finalScore * 100)}đ</span>
+        <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-bold text-primary">{Math.round(finalScore * 100)}đ</span>
       </div>
       <p className="mt-3 text-sm leading-6 text-slate-600">{ly_do}</p>
       <Button

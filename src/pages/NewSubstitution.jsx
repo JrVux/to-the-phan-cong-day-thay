@@ -434,7 +434,7 @@ export default function NewSubstitution() {
       {step === 1 && (
         <Card className="space-y-5 p-5">
           <div className="flex items-center gap-3">
-            <div className="rounded-xl bg-blue-100 p-2 text-primary"><UserRoundX size={22} /></div>
+            <div className="rounded-xl bg-gold/15 p-2 text-ink"><UserRoundX size={22} /></div>
             <div>
               <h2 className="font-bold text-ink">Ai sẽ nghỉ?</h2>
               <p className="text-xs text-slate-500">Hệ thống tự tìm tất cả tiết trong ngày.</p>
@@ -458,7 +458,7 @@ export default function NewSubstitution() {
             <Badge variant="primary">Thứ {getVietnameseWeekday(date)}</Badge>
           </div>
           {absentDayTKB.length > 0 && (
-            <div className="rounded-xl bg-blue-50 px-4 py-2 text-xs leading-6 text-blue-800">
+            <div className="rounded-xl bg-gold/10 px-4 py-2 text-xs leading-6 text-ink">
               <span className="font-bold">TKB của {absentTeacher?.name}:</span>{' '}
               {absentDayTKB.map((item) => `${item.label}: ${item.mon} ${item.lop}`).join(' • ')}
             </div>

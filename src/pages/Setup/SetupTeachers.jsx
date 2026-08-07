@@ -131,7 +131,7 @@ export default function SetupTeachers() {
 
       <Card className="space-y-4">
         <div className="flex items-center gap-3">
-          <div className="rounded-xl bg-blue-100 p-2 text-primary"><BookOpenCheck size={20} /></div>
+          <div className="rounded-xl bg-gold/15 p-2 text-ink"><BookOpenCheck size={20} /></div>
           <div>
             <h2 className="font-black text-ink">Phân công chuyên môn</h2>
             <p className="text-xs text-slate-500">Môn và tiết chuẩn theo từng đợt.</p>
@@ -199,10 +199,10 @@ export default function SetupTeachers() {
                           const checked = vaiTro.includes(role.id)
                           const disabled = !checked && vaiTro.length >= MAX_KIEM_NHIEM
                           return (
-                            <label key={role.id} title={`${role.label}${checked ? '' : disabled ? ' (đạt giới hạn kiêm nhiệm)' : ''}`} className={`flex cursor-pointer items-center justify-center gap-1 rounded-md border px-1 py-1 text-[10px] font-bold leading-none ${checked ? 'border-primary bg-blue-50 text-primary' : disabled ? 'cursor-not-allowed border-slate-100 text-slate-300' : 'border-slate-200 text-slate-500'}`}>
+                            <label key={role.id} title={`${role.label}${checked ? '' : disabled ? ' (đạt giới hạn kiêm nhiệm)' : ''}`} className={`flex cursor-pointer items-center justify-center gap-1 rounded-md border px-1 py-1 text-[10px] font-bold leading-none ${checked ? 'border-primary bg-gold/20 text-ink' : disabled ? 'cursor-not-allowed border-slate-100 text-slate-300' : 'border-slate-200 text-slate-500'}`}>
                               <input
                                 type="checkbox"
-                                className="size-2.5 accent-blue-600"
+                                className="size-2.5 accent-amber-500"
                                 checked={checked}
                                 disabled={disabled}
                                 onChange={() => toggleRole(teacher, role.id)}

@@ -20,7 +20,7 @@ export default function Report({ summary }) {
                   <td className="px-3 py-3 text-center">{row.tiet_chuan}</td>
                   <td className="px-3 py-3 text-center">{row.so_tiet_tuan}</td>
                   <td className="px-3 py-3 text-center font-bold text-primary">{row.tiet_the}</td>
-                  <td className={`px-3 py-3 text-center font-bold ${row.thua_thieu > 0 ? 'text-amber-600' : row.thua_thieu < 0 ? 'text-blue-600' : 'text-slate-500'}`}>
+                  <td className={`px-3 py-3 text-center font-bold ${row.thua_thieu > 0 ? 'text-amber-600' : row.thua_thieu < 0 ? 'text-ink' : 'text-slate-500'}`}>
                     {row.thua_thieu === 0 ? 'Đủ chuẩn' : row.thua_thieu > 0 ? `Thừa ${row.thua_thieu}` : `Thiếu ${-row.thua_thieu}`}
                   </td>
                 </tr>
