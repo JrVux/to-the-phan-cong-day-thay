@@ -82,6 +82,10 @@ export const localStorageDb = {
   exportSnapshot() {
     return clone(loadSnapshot())
   },
+  restoreSnapshot(snapshot) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot))
+    return clone(snapshot)
+  },
 }
 
 export function makeId(prefix = 'id') {
