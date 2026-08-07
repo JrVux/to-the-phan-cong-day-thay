@@ -1,6 +1,12 @@
--- TổThế database schema
+-- Tổ Thế database schema (có đăng nhập & mã mời)
 -- Chạy toàn bộ file này trong Supabase SQL Editor.
+-- Sau đó: Authentication → Providers → Email → đảm bảo "Confirm email" bật hoặc tắt tuỳ ý.
+-- Người đầu tiên tự đăng ký sẽ tự thành ADMIN (không cần mã mời).
+-- Những người đăng ký sau PHẢI có mã mời hợp lệ (admin tạo).
 
+-- ============================================================
+-- NGHIỆP VỤ
+-- ============================================================
 create table if not exists public.teachers (
   id text primary key,
   name text not null,
@@ -77,26 +83,130 @@ create index if not exists substitutions_school_term_idx on public.substitutions
 create index if not exists substitutions_substitute_idx on public.substitutions(the_teacher_id, ngay);
 create index if not exists teacher_locks_date_idx on public.teacher_locks(teacher_id, tu_ngay, den_ngay);
 
--- Ứng dụng dành cho một tổ trưởng và không yêu cầu đăng nhập.
--- Các policy anon dưới đây phù hợp bản triển khai nội bộ/demo. Với dữ liệu thật,
--- nên bật Supabase Auth và thay policy bằng điều kiện auth.uid().
+-- ============================================================
+-- NGƯỜI DÙNG & MÃ MỜI
+-- ============================================================
+create table if not exists public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  email text not null,
+  role text not null default 'user' check (role in ('admin', 'user')),
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.invite_codes (
+  id uuid primary key default gen_random_uuid(),
+  code text not null unique,
+  max_uses integer not null default 1 check (max_uses > 0),
+  used_uses integer not null default 0 check (used_uses >= 0),
+  active boolean not null default true,
+  created_by uuid references public.profiles(id),
+  created_at timestamptz not null default now()
+);
+
+-- Tạo profile + kiểm tra mã mời khi tạo tài khoản.
+-- Người ĐẦU TIÊN (chưa có admin) -> role admin, KHÔNG cần mã mời.
+-- Các tài khoản sau -> role user, BẮT BUỘC có mã mời hợp lệ (trong user_metadata.invite_code).
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = public, auth
+as $$
+declare
+  v_invite text := coalesce(new.raw_user_meta_data ->> 'invite_code', '');
+  v_has_admin boolean;
+begin
+  select exists(select 1 from public.profiles) into v_has_admin;
+
+  if not v_has_admin then
+    -- Người đầu tiên -> admin
+    insert into public.profiles (id, email, role)
+    values (new.id, new.email, 'admin');
+  else
+    -- Người tiếp theo -> cần mã mời
+    if v_invite = '' then
+      raise exception 'Vui lòng nhập mã mời.';
+    end if;
+    update public.invite_codes
+       set used_uses = used_uses + 1
+     where code = v_invite
+       and active = true
+       and used_uses < max_uses;
+    if not found then
+      raise exception 'Mã mời không hợp lệ hoặc đã hết lượt.';
+    end if;
+    insert into public.profiles (id, email, role)
+    values (new.id, new.email, 'user');
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_user();
+
+-- Xoá tài khoản -> xoá profile
+create or replace function public.delete_user_cascade()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  delete from public.profiles where id = old.id;
+  return old;
+end;
+$$;
+
+drop trigger if exists on_auth_user_deleted on auth.users;
+create trigger on_auth_user_deleted
+  after delete on auth.users
+  for each row execute function public.delete_user_cascade();
+
+-- ============================================================
+-- ROW LEVEL SECURITY
+-- ============================================================
 alter table public.teachers enable row level security;
 alter table public.schedule_periods enable row level security;
 alter table public.schedules enable row level security;
 alter table public.assignments enable row level security;
 alter table public.teacher_locks enable row level security;
 alter table public.substitutions enable row level security;
+alter table public.profiles enable row level security;
+alter table public.invite_codes enable row level security;
 
 do $$
 declare table_name text;
 begin
+  -- Dữ liệu nghiệp vụ: chỉ người ĐÃ ĐĂNG NHẬP thao tác được
   foreach table_name in array array[
     'teachers', 'schedule_periods', 'schedules', 'assignments', 'teacher_locks', 'substitutions'
   ] loop
     execute format('drop policy if exists "internal_demo_access" on public.%I', table_name);
     execute format(
-      'create policy "internal_demo_access" on public.%I for all to anon using (true) with check (true)',
+      'create policy "authenticated_access" on public.%I for all to authenticated using (true) with check (true)',
       table_name
     );
   end loop;
 end $$;
+
+-- profiles: người dùng xem/sửa profile của bản thân; admin xem sửa tất cả
+drop policy if exists "profiles_select" on public.profiles;
+create policy "profiles_select" on public.profiles
+  for select to authenticated
+  using (auth.uid() = id or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
+
+drop policy if exists "profiles_update" on public.profiles;
+create policy "profiles_update" on public.profiles
+  for update to authenticated
+  using (auth.uid() = id or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
+
+-- invite_codes: chỉ admin thấy/quản lý được
+drop policy if exists "invite_admin_all" on public.invite_codes;
+create policy "invite_admin_all" on public.invite_codes
+  for all to authenticated
+  using (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'))
+  with check (exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));

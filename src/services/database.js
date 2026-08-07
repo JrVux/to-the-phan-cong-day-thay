@@ -1,5 +1,6 @@
 import { localStorageDb } from './localStorageDb'
 import { createSupabaseDatabase } from './supabaseDb'
+import { hasSupabase, supabaseClient } from './supabaseClient'
 
 export function resolveDatabaseMode(env = {}) {
   return env.VITE_SUPABASE_URL && env.VITE_SUPABASE_ANON_KEY ? 'supabase' : 'local'
@@ -8,11 +9,10 @@ export function resolveDatabaseMode(env = {}) {
 const env = import.meta.env || {}
 export const databaseMode = resolveDatabaseMode(env)
 export const database = databaseMode === 'supabase'
-  ? createSupabaseDatabase({
-      url: env.VITE_SUPABASE_URL,
-      anonKey: env.VITE_SUPABASE_ANON_KEY,
-    })
+  ? createSupabaseDatabase()
   : localStorageDb
+
+export { hasSupabase, supabaseClient }
 
 export async function initializeDatabase() {
   if (databaseMode === 'supabase' && database.initialize) {

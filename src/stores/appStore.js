@@ -1,6 +1,15 @@
 import { create } from 'zustand'
 import { databaseMode, db, initializeDatabase, resetDatabase } from '../services/db'
 import { createSubstitutions, deleteSubstitution } from '../services/substitutionService'
+import {
+  getSessionUser,
+  hasSupabase,
+  onAuthStateChange,
+  signInWithEmail,
+  signOut,
+  signUpWithEmail,
+} from '../services/supabaseClient'
+import { fetchMyProfile } from '../services/authService'
 
 const emptyState = {
   teachers: [],
@@ -28,6 +37,58 @@ function snapshotState() {
 
 export const useAppStore = create((set, get) => ({
   ...emptyState,
+  authReady: false,
+  user: null,
+  profile: null,
+  isAdmin: false,
+
+  async initAuth() {
+    if (!hasSupabase) {
+      set({ authReady: true, user: { id: 'local', email: 'Bản demo (không đăng nhập)' }, profile: { role: 'admin' }, isAdmin: true })
+      get().loadData()
+      return
+    }
+    const user = await getSessionUser()
+    set({ user })
+    if (user) {
+      const profile = await fetchMyProfile(user.id)
+      set({ profile, isAdmin: profile?.role === 'admin' })
+    }
+    set({ authReady: true })
+    onAuthStateChange((event, nextUser) => {
+      if (nextUser) {
+        fetchMyProfile(nextUser.id).then((profile) => {
+          set({ user: nextUser, profile, isAdmin: profile?.role === 'admin' })
+          get().loadData()
+        })
+      } else {
+        set({ user: null, profile: null, isAdmin: false, ...emptyState })
+      }
+    })
+  },
+
+  async login(email, password) {
+    const user = await signInWithEmail(email, password)
+    const profile = await fetchMyProfile(user.id)
+    set({ user, profile, isAdmin: profile?.role === 'admin' })
+    get().loadData()
+    return profile
+  },
+
+  async register({ email, password, inviteCode }) {
+    const user = await signUpWithEmail(email, password, inviteCode)
+    if (!user) return null
+    const profile = await fetchMyProfile(user.id)
+    set({ user, profile, isAdmin: profile?.role === 'admin' })
+    get().loadData()
+    return profile
+  },
+
+  async logout() {
+    await signOut()
+    set({ user: null, profile: null, isAdmin: false, ...emptyState })
+  },
+
   loadData() {
     set({ loading: true, error: '' })
     try {

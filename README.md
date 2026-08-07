@@ -14,7 +14,7 @@ PWA **mobile-first** dành cho tổ trưởng chuyên môn. Khi có giáo viên 
 - **Tự chọn phân công tối ưu nhất:** 1 lớp 1 GV thế, dạy liên tiếp; ưu tiên GV đang thiếu tiết chuẩn nhất.
 - **Lịch sử & báo cáo:** bộ lọc học kỳ / giáo viên / tháng, bảng cân bằng tiết chuẩn (có cột **Số tuần qua**), xuất **Excel** và **PDF**; riêng nút **Xuất PDF theo từng GV vắng** tạo mỗi GV nghỉ 1 file, gom toàn bộ tiết vào 1 trang xếp theo thứ trong tuần.
 - **Thiết lập dữ liệu:** quản lý giáo viên (môn dạy, kiêm nhiệm, tiết chuẩn, lớp), đợt TKB, nhập **Excel TKB** (tự nhận diện cột Giáo viên/Thứ/Tiết/Lớp/Môn), ngoại lệ khóa giáo viên và **Năm mới** (xóa dữ liệu cũ, giữ giáo viên).
-- **PWA offline:** dữ liệu lưu trên thiết bị (localStorage), tự seed dữ liệu mẫu, không cần tài khoản.
+- **PWA offline + đồng bộ:** dữ liệu lưu trên thiết bị (localStorage), tự seed dữ liệu mẫu; khi kết nối Supabase cần **đăng nhập** và dữ liệu tự đồng bộ giữa các thiết bị. Bản demo (không có Supabase) vào thẳng không cần tài khoản.
 
 ### Quy định nghiệp vụ đã áp dụng
 
@@ -66,17 +66,22 @@ Khi đẩy lên nhánh `main`, workflow [.github/workflows/pages.yml](./.github/
 
 > Triển khai thủ công (không qua CI): `pnpm build` rồi tại repo → **Settings → Pages → Build and deployment → Source: GitHub Actions** (workflow đã định sẵn).
 
-## Kết nối Supabase (tùy chọn)
+## Kết nối Supabase (đồng bộ + đăng nhập)
 
 1. Tạo project Supabase.
-2. Chạy [supabase/schema.sql](./supabase/schema.sql) trong SQL Editor.
-3. Sao chép `.env.example` thành `.env.local`.
-4. Điền `VITE_SUPABASE_URL` và `VITE_SUPABASE_ANON_KEY`.
-5. Chạy lại ứng dụng.
+2. Chạy [supabase/schema.sql](./supabase/schema.sql) trong SQL Editor (gồm bảng nghiệp vụ, `profiles`, `invite_codes`, RLS và trigger tự gán admin đầu tiên / kiểm tra mã mời).
+3. **Authentication → Providers → Email**: đảm bảo bật Email; muốn vào ngay không cần xác nhận thì tắt **"Confirm email"**.
+4. Sao chép `.env.example` thành `.env.local` và điền `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY`.
+5. Trên GitHub: **Settings → Secrets and variables → Actions** thêm 2 secrets cùng tên để CI build bật đồng bộ.
+6. Chạy lại ứng dụng.
 
-Adapter hoạt động theo mô hình **local-first**: UI đọc/ghi cache trên thiết bị ngay lập tức, đồng thời tải và mirror dữ liệu với Supabase. Khi mất mạng, người dùng vẫn thao tác được; dữ liệu local không bị mất.
+### Quản lý tài khoản & mã mời
+- **Người đầu tiên** tự đăng ký → tự thành **Admin** (không cần mã mời).
+- Admin tạo **mã mời** (có giới hạn lượt) trong menu **Quản trị**.
+- Người khác đăng ký **phải nhập mã mời** do admin cấp — sai/hết lượt thì không vào được.
+- Admin quản lý người dùng: nâng/hạ quyền quản trị.
 
-> Policy trong schema cho phép anon đọc/ghi để phù hợp yêu cầu một người dùng, không đăng nhập. Với dữ liệu trường học thật, hãy bật Supabase Auth và giới hạn policy theo tài khoản tổ trưởng.
+Adapter hoạt động theo mô hình **local-first**: UI đọc/ghi cache trên thiết bị ngay lập tức, đồng thời tải và mirror dữ liệu với Supabase (mọi thao tác qua phiên đăng nhập). Khi mất mạng, người dùng vẫn thao tác được; có mạng tự đồng bộ. Nhiều thiết bị dùng chung 1 project → dữ liệu giống nhau.
 
 ## File import TKB
 

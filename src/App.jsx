@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import { HashRouter, NavLink, Route, Routes } from 'react-router-dom'
-import { CalendarPlus, History as HistoryIcon, Home as HomeIcon, Settings } from 'lucide-react'
+import { CalendarPlus, History as HistoryIcon, Home as HomeIcon, Settings, ShieldCheck, LogOut } from 'lucide-react'
 import Toast from './components/ui/Toast'
 import ConnectionStatus from './components/ConnectionStatus'
 import Home from './pages/Home'
 import History from './pages/History'
 import NewSubstitution from './pages/NewSubstitution'
 import SetupIndex from './pages/Setup/SetupIndex'
+import SetupAdmin from './pages/Setup/SetupAdmin'
+import AuthScreen from './pages/Auth/AuthScreen'
 import { useAppStore } from './stores/appStore'
 import logoUrl from './assets/logo-to-tin-the-duc-gdqp.png'
 
@@ -19,9 +21,26 @@ const navItems = [
 
 function AppShell() {
   const loadData = useAppStore((state) => state.loadData)
+  const initAuth = useAppStore((state) => state.initAuth)
+  const authReady = useAppStore((state) => state.authReady)
+  const user = useAppStore((state) => state.user)
+  const isAdmin = useAppStore((state) => state.isAdmin)
+  const logout = useAppStore((state) => state.logout)
   const toast = useAppStore((state) => state.toast)
   const clearToast = useAppStore((state) => state.clearToast)
-  useEffect(() => loadData(), [loadData])
+  useEffect(() => { initAuth() }, [initAuth])
+
+  if (!authReady) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-surface">
+        <p className="text-sm font-semibold text-slate-400">Đang tải…</p>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return <AuthScreen />
+  }
 
   return (
     <div className="min-h-screen bg-surface">
@@ -53,17 +72,32 @@ className={({ isActive }) =>
                 <Icon size={17} strokeWidth={2.2} /> {label}
               </NavLink>
             ))}
+            {isAdmin && (
+              <NavLink
+                to="/quan-tri"
+                className={({ isActive }) =>
+                  `flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-semibold transition ${isActive ? 'bg-gold/15 text-ink' : 'text-slate-500 hover:bg-slate-100'}`
+                }
+              >
+                <ShieldCheck size={17} strokeWidth={2.2} /> Quản trị
+              </NavLink>
+            )}
           </nav>
         </div>
       </header>
       <ConnectionStatus />
       <main className="mx-auto max-w-6xl px-4 pb-28 pt-5 md:pb-10">
         <div className="mx-auto max-w-xl">
+          <div className="mb-4 flex items-center justify-end gap-2">
+            <span className="text-xs font-semibold text-slate-500">{user.email} {isAdmin ? '• Quản trị' : ''}</span>
+            <button onClick={logout} className="flex items-center gap-1 rounded-full border border-slate-200 px-2.5 py-1 text-xs font-semibold text-slate-500 hover:bg-slate-100" aria-label="Đăng xuất"><LogOut size={13} /> Thoát</button>
+          </div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/phan-cong" element={<NewSubstitution />} />
             <Route path="/lich-su" element={<History />} />
             <Route path="/thiet-lap/*" element={<SetupIndex />} />
+            {isAdmin && <Route path="/quan-tri" element={<SetupAdmin />} />}
           </Routes>
         </div>
       </main>
@@ -81,6 +115,11 @@ className={({ isActive }) =>
               <Icon size={21} strokeWidth={2} /> {label}
             </NavLink>
           ))}
+          {isAdmin && (
+            <NavLink to="/quan-tri" className={({ isActive }) => `flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl text-[11px] font-semibold transition ${isActive ? 'text-ink' : 'text-slate-400'}`}>
+              <ShieldCheck size={21} strokeWidth={2} /> Quản trị
+            </NavLink>
+          )}
         </div>
       </nav>
       <footer className="mx-auto max-w-6xl px-4 pb-24 pt-2 text-left md:pb-4">

@@ -15,7 +15,7 @@ Hệ thống **Phân công dạy thay** của Tổ Tin - Thể dục - GDQP dàn
 
 ### 1.2 Cấu trúc màn hình
 
-Thanh điều hướng có 4 mục:
+Thanh điều hướng có 4 mục (thêm **Quản trị** nếu bạn là admin):
 
 | Mục | Chức năng |
 |---|---|
@@ -23,6 +23,13 @@ Thanh điều hướng có 4 mục:
 | **Phân công** | Tác vụ chính: tạo phân công dạy thay |
 | **Lịch sử** | Lịch sử phân công, báo cáo cân bằng tiết chuẩn, xuất Excel/PDF |
 | **Thiết lập** | Giáo viên, đợt TKB, thời khóa biểu, ngoại lệ, năm mới |
+| **Quản trị** (admin) | Tạo mã mời, quản lý quyền người dùng |
+
+### 1.3 Đăng nhập & đăng ký
+- **Đăng nhập:** mở ứng dụng → nhập email + mật khẩu → Đăng nhập.
+- **Lần đầu (người quản lý):** người đăng ký **đầu tiên** sẽ tự thành **Admin** — tạo trực tiếp bằng email + mật khẩu, không cần mã mời.
+- **Thành viên tổ:** đăng ký **phải nhập mã mời** do admin cấp (sai/hết lượt thì không vào được). Liên hệ admin để nhận mã.
+- Nút **Thoát** ở góc phải trên để đăng xuất.
 
 ---
 
