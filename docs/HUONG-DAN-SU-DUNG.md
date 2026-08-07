@@ -50,7 +50,7 @@ Chỉ cần **2 thao tác**, phần còn lại hệ thống tự làm:
 - Xem lại toàn bộ phân công → **Lưu phân công**.
 - Sau khi lưu có thể **Xuất báo cáo PDF** (phiếu phân công gửi tổ) hoặc **Chia sẻ kết quả** (Zalo/SMS) hoặc **Tạo phân công khác**.
 
-> **Quy định hệ thống tự kiểm tra khi lưu:** mỗi GV thế tối đa 3 tiết/ngày và tổng dạy + thế không quá 6 tiết/ngày. Vi phạm sẽ bị chặn và báo lỗi.
+> **Quy định hệ thống tự kiểm tra:** mỗi GV thế tối đa 3 tiết/ngày, 3 tiết/tuần, 4 tiết/buổi và tổng dạy + thế không quá 6 tiết/ngày. Nếu ứng viên vượt giới hạn, hệ thống **vẫn cho chọn** nhưng thẻ có cảnh báo đỏ **"Vi phạm giới hạn"** kèm chi tiết lý do; khi lưu phần mềm nhắc lại tên người vi phạm để tổ trưởng chủ động quyết định.
 
 ---
 
@@ -106,7 +106,8 @@ Chỉ cần **2 thao tác**, phần còn lại hệ thống tự làm:
 |---|---|
 | Báo "Không có đợt TKB hiệu lực" | Kiểm tra **Thiết lập → Đợt TKB**, đảm bảo ngày chọn nằm trong khoảng từ/đến của một đợt và đã có TKB trong đợt. |
 | Báo "Giáo viên không có tiết dạy trong ngày này" | GV vắng ngày đó không có tiết theo TKB (hoặc chỉ có tiết chào cờ). Chọn ngày khác. |
-| Không tìm được GV thay | Có thể toàn bộ GV cùng môn đều bận/đạt giới hạn 3 thế hoặc 6 tiết/ngày. Xử lý thủ công + ghi chú. |
+| Ứng viên có cảnh báo "Vi phạm giới hạn" | GV đó đã chạm tối đa 3 thế/ngày, 3/tuần, 4/buổi hoặc 6 tiết/ngày. Vẫn **chọn được** nếu tổ trưởng chấp nhận; thẻ sẽ ghi rõ lý do và khi lưu hệ thống nhắc lại. |
+| Không tìm được GV thay | Toàn bộ GV cùng môn vắng/bị khóa hoặc trùng tiết đúng (thu, tiết) đó. Xử lý thủ công + ghi chú. |
 | Chưa phân công được vẫn lưu | Được phép: ghi chú lý do và lưu trạng thái "Chưa phân công" để theo dõi sau. |
 | Phân nhầm người | Vào **Lịch sử**, nhấn nút xóa trên bản ghi (có xác nhận), tạo lại phân công. |
 | Dữ liệu không đúng môn/tiết chuẩn | Vào **Thiết lập → Giáo viên** chỉnh phân công chuyên môn; hoặc **Thiết lập → Thời khóa biểu → Cập nhật phân công từ TKB**. |

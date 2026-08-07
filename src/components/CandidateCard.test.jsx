@@ -25,4 +25,27 @@ describe('CandidateCard', () => {
     fireEvent.click(screen.getByRole('button', { name: /Chọn Trần Thị Bình/i }))
     expect(onSelect).toHaveBeenCalledOnce()
   })
+
+  it('hiển thị cảnh báo vi phạm giới hạn nhưng vẫn cho chọn', () => {
+    const onSelect = vi.fn()
+    render(
+      <CandidateCard
+        rank={2}
+        name="Lê Văn Cường"
+        balance={-2}
+        tiet_ngay_do={[2, 3]}
+        finalScore={0.4}
+        ly_do="Thừa tiết chuẩn"
+        violations={['Đã thế 4/3 tiết/ngày', 'Vượt giới hạn 4 tiết/buổi']}
+        onSelect={onSelect}
+      />,
+    )
+
+    expect(screen.getByText(/Vi phạm giới hạn/)).toBeInTheDocument()
+    expect(screen.getByText(/Đã thế 4\/3 tiết\/ngày/)).toBeInTheDocument()
+    expect(screen.getByText(/Vượt giới hạn 4 tiết\/buổi/)).toBeInTheDocument()
+    expect(screen.queryByText('Đề xuất')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: /Chọn Lê Văn Cường/i }))
+    expect(onSelect).toHaveBeenCalledOnce()
+  })
 })

@@ -87,14 +87,10 @@ export default function NewSubstitution() {
     const map = {}
     lessons.forEach((lesson) => {
       const lessonSessionMorning = Number(lesson.tiet) <= 5
-      map[lesson.id] = lesson.candidates.filter((candidate) => {
+      map[lesson.id] = lesson.candidates.map((candidate) => {
         const isThisLesson = selected[lesson.id] === candidate.teacher.id
         const effectiveSelected = (selectedCount[candidate.teacher.id] || 0) - (isThisLesson ? 1 : 0)
         const effectiveTheTrongNgay = candidate.the_trong_ngay + effectiveSelected
-        if (effectiveTheTrongNgay >= MAX_THE_PER_DAY) return false
-        if (candidate.tiet_ngay_do.length + effectiveTheTrongNgay >= MAX_TOTAL_PER_DAY) return false
-        const effectiveWeekCount = candidate.the_tuan + effectiveSelected
-        if (effectiveWeekCount >= MAX_THE_PER_WEEK) return false
         const sessionRegular = (candidate.tiet_ngay_do || []).filter(
           (t) => (Number(t) <= 5) === lessonSessionMorning,
         ).length
@@ -105,8 +101,23 @@ export default function NewSubstitution() {
           return l && (Number(l.tiet) <= 5) === lessonSessionMorning
         }).length
         const effectiveSessionSubs = candidate.the_trong_ngay_session + selectedInSession - (isThisLesson ? 1 : 0)
-        if (sessionRegular + effectiveSessionSubs >= MAX_PERIODS_PER_SESSION) return false
-        return true
+        const viPham = [...(candidate.violations || [])]
+        if (effectiveTheTrongNgay > MAX_THE_PER_DAY) {
+          viPham.push(`Sau khi chọn sẽ thế ${effectiveTheTrongNgay} > ${MAX_THE_PER_DAY} tiết/ngày`)
+        }
+        const totalAfter = (candidate.tiet_ngay_do?.length || 0) + effectiveTheTrongNgay
+        if (totalAfter > MAX_TOTAL_PER_DAY) {
+          viPham.push(`Sau khi chọn = ${totalAfter} > ${MAX_TOTAL_PER_DAY} tiết dạy + thế/ngày`)
+        }
+        const sessionAfter = sessionRegular + effectiveSessionSubs
+        if (sessionAfter > MAX_PERIODS_PER_SESSION) {
+          viPham.push(`Sau khi chọn = ${sessionAfter} > ${MAX_PERIODS_PER_SESSION} tiết/buổi`)
+        }
+        const weekAfter = candidate.the_tuan + effectiveSelected
+        if (weekAfter > MAX_THE_PER_WEEK) {
+          viPham.push(`Sau khi chọn = ${weekAfter} > ${MAX_THE_PER_WEEK} tiết/tuần`)
+        }
+        return { ...candidate, violations: viPham, has_violation: viPham.length > 0 }
       })
     })
     return map
@@ -308,7 +319,7 @@ export default function NewSubstitution() {
       else sessionCount[tid].afternoon += 1
     })
 
-    const violator = Object.entries(dayCount).find(([tid, count]) => {
+    const violators = Object.entries(dayCount).filter(([tid, count]) => {
       const dayReg = dayLessonsOf[tid] || 0
       const sessionKey = Number(lessons.find((l) => selected[l.id] === tid)?.tiet || 0) <= 5 ? 'morning' : 'afternoon'
       const sessionReg = sessionLessonsOf[tid]?.[sessionKey] || 0
@@ -320,16 +331,15 @@ export default function NewSubstitution() {
         sessionSubs + sessionReg > MAX_PERIODS_PER_SESSION
       )
     })
-    if (violator) {
-      const teacherName = store.teachers.find((item) => item.id === violator[0])?.name || violator[0]
-      const count = violator[1]
-      const weekCount_val = weekCount[violator[0]] || 0
-      const dayReg = dayLessonsOf[violator[0]] || 0
-      setError(
-        `Không thể lưu: ${teacherName} — ${count} thế hôm nay (≤${MAX_THE_PER_DAY}/ngày), ${weekCount_val} thế/tuần (≤${MAX_THE_PER_WEEK}), tổng ${dayReg + count} tiết (≤${MAX_TOTAL_PER_DAY}), ≤${MAX_PERIODS_PER_SESSION} tiết/buổi.`,
-      )
-      setStep(2)
-      return
+    if (violators.length > 0) {
+      const names = violators
+        .map(([tid, count]) => {
+          const name = store.teachers.find((item) => item.id === tid)?.name || tid
+          const dayReg = dayLessonsOf[tid] || 0
+          return `${name} (${count} thế/ngày, tổng ${dayReg + count}/ngày, ${weekCount[tid]}/tuần)`
+        })
+        .join('; ')
+      store.notify(`Đã lưu nhưng có vi phạm giới hạn: ${names}.`, 'error')
     }
     const records = lessons.map((lesson) => ({
       period_id: lesson.period.id,
@@ -484,6 +494,7 @@ export default function NewSubstitution() {
                     the_trong_ngay={candidate.the_trong_ngay}
                     finalScore={candidate.finalScore}
                     ly_do={candidate.ly_do}
+                    violations={candidate.violations}
                     selected={selected[lesson.id] === candidate.teacher.id}
                     onSelect={() => setSelected((current) => ({ ...current, [lesson.id]: candidate.teacher.id }))}
                   />

@@ -22,7 +22,7 @@ PWA **mobile-first** dành cho tổ trưởng chuyên môn. Khi có giáo viên 
 |---|---|
 | Tiết chuẩn | 17 tiết/tuần; **Chủ nhiệm +4** tiết/tuần; HĐTN tính **1 tiết**; kiêm nhiệm trừ tiết chuẩn (Tổ trưởng −3, Tổ phó −1, TTND −2, TTCĐ −3, TPCĐ −1, KTPM Tin −2; Phó BTĐ đặt 8,5; Bí thư Đoàn đặt 2,5). |
 | Cân bằng | Ưu tiên GV thiếu tiết chuẩn nhất (70%), tối ưu lịch trong buổi (20%), số lần thế trong tuần (10%). Cộng dồn thừa/thiếu qua các đợt TKB. |
-| Giới hạn thế | Mỗi GV thế tối đa **3 tiết/ngày** và tổng dạy + thế không quá **6 tiết/ngày**. |
+| Giới hạn thế | Mỗi GV thế tối đa **3 tiết/ngày**, **3 tiết/tuần**, **4 tiết/buổi** và tổng dạy + thế không quá **6 tiết/ngày**. Vượt giới hạn **vẫn hiển thị và chọn được** nhưng bị cảnh báo đỏ **"Vi phạm giới hạn"** và khi lưu hệ thống nhắc rõ ai đã vi phạm. |
 | Chào cờ | Tiết 1 Sáng thứ 2 và Tiết 5 Chiều thứ 2 là chào cờ — không tìm GV thế (vẫn giữ trong TKB và tính khối lượng). |
 | Ngoại lệ | GV bị khóa (nghỉ dài ngày, kiêm nhiệm BGH…) tự hết hiệu lực sau ngày kết thúc. |
 

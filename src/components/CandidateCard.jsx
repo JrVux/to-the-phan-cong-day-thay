@@ -1,4 +1,4 @@
-import { CalendarDays, Check, Clock3, Sparkles } from 'lucide-react'
+import { CalendarDays, Check, Clock3, Sparkles, TriangleAlert } from 'lucide-react'
 import { describeTiet } from '../services/scheduleService'
 import Badge from './ui/Badge'
 import Button from './ui/Button'
@@ -21,8 +21,10 @@ export default function CandidateCard({
   ly_do,
   selected = false,
   onSelect,
+  violations = [],
 }) {
   const balanceText = balance > 0 ? `Thiếu ${balance} tiết chuẩn` : balance < 0 ? `Thừa ${-balance} tiết chuẩn` : 'Đủ tiết chuẩn'
+  const hasViolation = violations.length > 0
   return (
     <article className={`rounded-2xl bg-white p-4 shadow-sm transition ${borderClasses[rank] || borderClasses[3]} ${selected ? 'ring-2 ring-primary ring-offset-2' : ''}`}>
       <div className="flex items-start justify-between gap-3">
@@ -30,8 +32,17 @@ export default function CandidateCard({
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-sm font-black text-slate-400">#{rank}</span>
             <h3 className="font-bold text-ink">{name}</h3>
-            {rank === 1 && <Badge variant="success"><Sparkles size={12} className="mr-1" />Đề xuất</Badge>}
+            {rank === 1 && !hasViolation && <Badge variant="success"><Sparkles size={12} className="mr-1" />Đề xuất</Badge>}
+            {hasViolation && <Badge variant="danger"><TriangleAlert size={12} className="mr-1" />Vi phạm giới hạn</Badge>}
           </div>
+          {hasViolation && (
+            <div className="mt-3 rounded-xl border border-red-200 bg-red-50/70 p-3">
+              <p className="text-xs font-bold uppercase tracking-wide text-danger">Cảnh báo — vẫn chọn được</p>
+              <ul className="mt-1 space-y-0.5 text-xs leading-5 text-red-700">
+                {violations.map((item) => <li key={item}>• {item}</li>)}
+              </ul>
+            </div>
+          )}
           <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-600">
             <span className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-2 py-1">
               <Clock3 size={14} /> {balanceText}
@@ -56,12 +67,12 @@ export default function CandidateCard({
       </div>
       <p className="mt-3 text-sm leading-6 text-slate-600">{ly_do}</p>
       <Button
-        variant={selected ? 'success' : rank === 1 ? 'primary' : 'secondary'}
+        variant={selected ? 'success' : hasViolation ? 'danger' : rank === 1 ? 'primary' : 'secondary'}
         className="mt-4 w-full"
         onClick={onSelect}
         aria-label={`Chọn ${name}`}
       >
-        {selected ? <><Check size={18} /> Đã chọn</> : 'Chọn giáo viên'}
+        {selected ? <><Check size={18} /> Đã chọn</> : hasViolation ? <><TriangleAlert size={18} /> Chọn vẫn được (vi phạm)</> : 'Chọn giáo viên'}
       </Button>
     </article>
   )

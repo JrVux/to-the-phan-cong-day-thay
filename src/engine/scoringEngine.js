@@ -158,32 +158,6 @@ export function scoreCandidates(input) {
             Number(lesson.tiet) === numericTiet,
         ),
     )
-    .filter((teacher) => {
-      const theTrongNgay = substitutions.filter(
-        (row) => row.the_teacher_id === teacher.id && toDateString(row.ngay) === target,
-      ).length
-      if (theTrongNgay >= MAX_THE_PER_DAY) return false
-      const dayLessons = schedules.filter(
-        (lesson) =>
-          lesson.teacher_id === teacher.id &&
-          (!period_id || lesson.period_id === period_id) &&
-          Number(lesson.thu) === Number(thu),
-      )
-      const dayLessonsCount = dayLessons.filter((lesson) => !isChaoCoPeriod(lesson)).length
-      const sessionLessonsCount = dayLessons.filter(
-        (lesson) => !isChaoCoPeriod(lesson) && isMorningSession(lesson.tiet) === targetIsMorning,
-      ).length
-      const theTrongNgaySameSession = substitutions.filter(
-        (row) =>
-          row.the_teacher_id === teacher.id &&
-          toDateString(row.ngay) === target &&
-          isMorningSession(row.tiet) === targetIsMorning,
-      ).length
-      return (
-        dayLessonsCount + theTrongNgay < MAX_TOTAL_PER_DAY &&
-        sessionLessonsCount + theTrongNgaySameSession < MAX_PERIODS_PER_SESSION
-      )
-    })
 
   const withBalance = baseEligible.map((teacher) => {
     const balanceInfo = computeTeacherBalance({
@@ -234,6 +208,29 @@ export function scoreCandidates(input) {
           Number(lesson.thu) === Number(thu),
       )
       .filter((lesson) => !isChaoCoPeriod(lesson))
+    const dayLessonCount = dayLessons.length
+    const sessionLessonCount = dayLessons.filter(
+      (lesson) => isMorningSession(lesson.tiet) === targetIsMorning,
+    ).length
+    const canTheThem = theTrongNgay < MAX_THE_PER_DAY
+    const totalThemDuoc = dayLessonCount + theTrongNgay < MAX_TOTAL_PER_DAY
+    const sessionThemDuoc = sessionLessonCount + theTrongNgaySession < MAX_PERIODS_PER_SESSION
+    const viPham = []
+    if (theTrongNgay >= MAX_THE_PER_DAY) {
+      viPham.push(`Đã thế quá ${MAX_THE_PER_DAY} tiết/ngày (hiện ${theTrongNgay})`)
+    }
+    if (!totalThemDuoc) {
+      viPham.push(`Vượt giới hạn ${MAX_TOTAL_PER_DAY} tiết dạy + thế/ngày`)
+    }
+    if (!sessionThemDuoc) {
+      viPham.push(`Vượt giới hạn ${MAX_PERIODS_PER_SESSION} tiết/buổi`)
+    }
+    if (balanceInfo.the_tuan >= MAX_THE_PER_WEEK) {
+      viPham.push(`Đã thế ${balanceInfo.the_tuan}/${MAX_THE_PER_WEEK} tiết tuần`)
+    }
+    if (balanceInfo.balance < 0) {
+      viPham.push('Thừa tiết chuẩn')
+    }
     const schedule = scheduleScore(dayLessons, numericTiet)
     return {
       teacher,
@@ -241,6 +238,9 @@ export function scoreCandidates(input) {
       thua_gio_hk: thuaGio,
       the_trong_ngay: theTrongNgay,
       the_trong_ngay_session: theTrongNgaySession,
+      violations: viPham,
+      has_violation: viPham.length > 0,
+      luat_han_che: { canTheThem, totalThemDuoc, sessionThemDuoc },
       ...balanceInfo,
       lien_ke: schedule.score === 1,
       tiet_ngay_do: dayLessons.map((lesson) => lesson.tiet).sort((a, b) => a - b),

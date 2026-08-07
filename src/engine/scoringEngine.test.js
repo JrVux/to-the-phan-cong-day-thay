@@ -183,7 +183,7 @@ describe('scoreCandidates', () => {
     expect(deficitTeachers[0]).toBe('gv_03')
   })
 
-  it('loại GV đã thế đủ 3 tiết trong cùng ngày', () => {
+  it('vẫn giữ GV đã thế đủ 3 tiết trong ngày nhưng đánh dấu vi phạm', () => {
     const substitutions = Array.from({ length: 3 }, (_, index) => ({
       id: `day_${index}`,
       the_teacher_id: 'gv_02',
@@ -194,8 +194,10 @@ describe('scoreCandidates', () => {
     }))
     const result = scoreCandidates({ ...baseInput, substitutions })
 
-    expect(result.some((item) => item.teacher.id === 'gv_02')).toBe(false)
-    expect(result[0].teacher.id).toBe('gv_03')
+    const binh = result.find((item) => item.teacher.id === 'gv_02')
+    expect(binh).toBeDefined()
+    expect(binh.has_violation).toBe(true)
+    expect(binh.violations.some((v) => v.includes('tiết/ngày'))).toBe(true)
   })
 
   it('cho phép GV mới thế khi mới nhận 2 tiết trong ngày', () => {
@@ -227,7 +229,7 @@ describe('scoreCandidates', () => {
     expect(binh.balance).toBeGreaterThan(0)
   })
 
-  it('loại GV có tổng dạy + thế trong ngày vượt quá 6 tiết', () => {
+  it('vẫn giữ GV có tổng dạy + thế vượt 6 tiết nhưng đánh dấu vi phạm', () => {
     const busy = [
       ...makeRows('dot_1', 'gv_02', 16),
       ...makeRows('dot_1', 'gv_03', 17),
@@ -242,7 +244,10 @@ describe('scoreCandidates', () => {
     ]
     const result = scoreCandidates({ ...baseInput, schedules: busy, substitutions })
 
-    expect(result.some((item) => item.teacher.id === 'gv_02')).toBe(false)
+    const binh = result.find((item) => item.teacher.id === 'gv_02')
+    expect(binh).toBeDefined()
+    expect(binh.has_violation).toBe(true)
+    expect(binh.violations.some((v) => v.includes('dạy + thế'))).toBe(true)
     expect(result.some((item) => item.teacher.id === 'gv_03')).toBe(true)
   })
 })
