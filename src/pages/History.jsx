@@ -7,7 +7,7 @@ import { buildTeacherSummary } from '../services/reportService'
 import { describeTiet } from '../services/scheduleService'
 import { listSubstitutions } from '../services/substitutionService'
 import { useAppStore } from '../stores/appStore'
-import { exportReportExcel, exportReportPdf } from '../utils/exportReport'
+import { exportReportExcel, exportReportPdf, exportAssignmentsByAbsentTeacher } from '../utils/exportReport'
 import Report from './Report'
 
 export default function History() {
@@ -32,7 +32,9 @@ export default function History() {
     setExporting(type)
     try {
       if (type === 'excel') await exportReportExcel({ summary, history, teachers: store.teachers })
-      else await exportReportPdf({ summary, history, teachers: store.teachers })
+      else if (type === 'pdf-per-teacher') {
+        await exportAssignmentsByAbsentTeacher({ records: history, teachers: store.teachers })
+      } else await exportReportPdf({ summary, history, teachers: store.teachers })
       store.notify(`Đã xuất báo cáo ${type === 'excel' ? 'Excel' : 'PDF'}.`)
     } catch {
       store.notify('Không thể xuất báo cáo. Vui lòng thử lại.', 'error')
@@ -76,6 +78,7 @@ export default function History() {
         <Button variant="secondary" disabled={Boolean(exporting)} onClick={() => runExport('excel')}><FileSpreadsheet size={18} /> {exporting === 'excel' ? 'Đang xuất…' : 'Xuất Excel'}</Button>
         <Button variant="secondary" disabled={Boolean(exporting)} onClick={() => runExport('pdf')}><FileText size={18} /> {exporting === 'pdf' ? 'Đang xuất…' : 'Xuất PDF'}</Button>
       </div>
+      <Button variant="secondary" className="w-full" disabled={Boolean(exporting)} onClick={() => runExport('pdf-per-teacher')}><FileText size={18} /> {exporting === 'pdf-per-teacher' ? 'Đang xuất…' : 'Xuất PDF theo từng GV vắng (mỗi GV 1 file)'}</Button>
 
       <section>
         <div className="mb-3 flex items-center justify-between gap-3">
